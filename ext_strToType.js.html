@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>ext/strToType.js - JS Utils</title>
+    
+    <meta name="description" content="common javascript utils" />
+    
+        <meta name="keywords" content="utils, javascript, helpers, lodash, underscore" />
+        <meta name="keyword" content="utils, javascript, helpers, lodash, underscore" />
+    
+    
+    
+    <meta property="og:title" content="JS Utils"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="jsutils"/>
+    <meta property="og:url" content="https://github.com/keg-hub/keg-hub/tree/develop/repos/jsutils"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/keg-hub/keg-hub/tree/develop/repos/jsutils" target="_blank" class="menu-item" id="repository" >Github repo</a></h2><h3>Global</h3><ul><li><a href="global.html#addAsync">addAsync</a></li><li><a href="global.html#addToProcess">addToProcess</a></li><li><a href="global.html#applyToCloneOf">applyToCloneOf</a></li><li><a href="global.html#applyToFunc">applyToFunc</a></li><li><a href="global.html#areCountMapsEqual">areCountMapsEqual</a></li><li><a href="global.html#areFrequencyEqual">areFrequencyEqual</a></li><li><a href="global.html#areSetEqual">areSetEqual</a></li><li><a href="global.html#buildElementCountMap">buildElementCountMap</a></li><li><a href="global.html#buildPath">buildPath</a></li><li><a href="global.html#camelCase">camelCase</a></li><li><a href="global.html#camelCasePath">camelCasePath</a></li><li><a href="global.html#capitalize">capitalize</a></li><li><a href="global.html#checkCall">checkCall</a></li><li><a href="global.html#cleanColl">cleanColl</a></li><li><a href="global.html#cleanStr">cleanStr</a></li><li><a href="global.html#clearObj">clearObj</a></li><li><a href="global.html#cloneArr">cloneArr</a></li><li><a href="global.html#cloneFunc">cloneFunc</a></li><li><a href="global.html#cloneJson">cloneJson</a></li><li><a href="global.html#compareTo">compareTo</a></li><li><a href="global.html#complement">complement</a></li><li><a href="global.html#containsStr">containsStr</a></li><li><a href="global.html#convertToStrBool">convertToStrBool</a></li><li><a href="global.html#debounce">debounce</a></li><li><a href="global.html#deepClone">deepClone</a></li><li><a href="global.html#deepEqual">deepEqual</a></li><li><a href="global.html#deepFreeze">deepFreeze</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#delimitString">delimitString</a></li><li><a href="global.html#docGroup">docGroup</a></li><li><a href="global.html#dockEnv">dockEnv</a></li><li><a href="global.html#doIt">doIt</a></li><li><a href="global.html#either">either</a></li><li><a href="global.html#eitherArr">eitherArr</a></li><li><a href="global.html#eitherFunc">eitherFunc</a></li><li><a href="global.html#eitherObj">eitherObj</a></li><li><a href="global.html#eitherStr">eitherStr</a></li><li><a href="global.html#ensureArr">ensureArr</a></li><li><a href="global.html#equalsNaN">equalsNaN</a></li><li><a href="global.html#everyEntry">everyEntry</a></li><li><a href="global.html#exists">exists</a></li><li><a href="global.html#filterObj">filterObj</a></li><li><a href="global.html#findExtrema">findExtrema</a></li><li><a href="global.html#findMax">findMax</a></li><li><a href="global.html#findMin">findMin</a></li><li><a href="global.html#findProc">findProc</a></li><li><a href="global.html#flatArr">flatArr</a></li><li><a href="global.html#flatMap">flatMap</a></li><li><a href="global.html#flatUnion">flatUnion</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getNearestDelimiterIndex">getNearestDelimiterIndex</a></li><li><a href="global.html#getNums">getNums</a></li><li><a href="global.html#getOS">getOS</a></li><li><a href="global.html#getRegexSource">getRegexSource</a></li><li><a href="global.html#getRelativePath">getRelativePath</a></li><li><a href="global.html#getURLParam">getURLParam</a></li><li><a href="global.html#getWordEndingAt">getWordEndingAt</a></li><li><a href="global.html#getWordStartingAt">getWordStartingAt</a></li><li><a href="global.html#hasDomAccess">hasDomAccess</a></li><li><a href="global.html#hashString">hashString</a></li><li><a href="global.html#hasOwn">hasOwn</a></li><li><a href="global.html#hyphenator">hyphenator</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#inDocker">inDocker</a></li><li><a href="global.html#isArr">isArr</a></li><li><a href="global.html#isArrMap">isArrMap</a></li><li><a href="global.html#isBool">isBool</a></li><li><a href="global.html#isColl">isColl</a></li><li><a href="global.html#isEmail">isEmail</a></li><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#isEmptyColl">isEmptyColl</a></li><li><a href="global.html#isEntry">isEntry</a></li><li><a href="global.html#isFloat">isFloat</a></li><li><a href="global.html#isFunc">isFunc</a></li><li><a href="global.html#isInt">isInt</a></li><li><a href="global.html#isLowerCase">isLowerCase</a></li><li><a href="global.html#isNegative">isNegative</a></li><li><a href="global.html#isNonNegative">isNonNegative</a></li><li><a href="global.html#isNum">isNum</a></li><li><a href="global.html#isObj">isObj</a></li><li><a href="global.html#isOrderable">isOrderable</a></li><li><a href="global.html#isPhone">isPhone</a></li><li><a href="global.html#isPositive">isPositive</a></li><li><a href="global.html#isQuoted">isQuoted</a></li><li><a href="global.html#isRegex">isRegex</a></li><li><a href="global.html#isSame">isSame</a></li><li><a href="global.html#isStr">isStr</a></li><li><a href="global.html#isStrBool">isStrBool</a></li><li><a href="global.html#isUpperCase">isUpperCase</a></li><li><a href="global.html#isUrl">isUrl</a></li><li><a href="global.html#isUuid">isUuid</a></li><li><a href="global.html#isValidDate">isValidDate</a></li><li><a href="global.html#isValidUrl">isValidUrl</a></li><li><a href="global.html#joinRegex">joinRegex</a></li><li><a href="global.html#jsonEqual">jsonEqual</a></li><li><a href="global.html#keyMap">keyMap</a></li><li><a href="global.html#limbo">limbo</a></li><li><a href="global.html#loadByType">loadByType</a></li><li><a href="global.html#loadModule">loadModule</a></li><li><a href="global.html#logData">logData</a></li><li><a href="global.html#loopLoad">loopLoad</a></li><li><a href="global.html#mapColl">mapColl</a></li><li><a href="global.html#mapEntries">mapEntries</a></li><li><a href="global.html#mapFind">mapFind</a></li><li><a href="global.html#mapKeys">mapKeys</a></li><li><a href="global.html#mapObj">mapObj</a></li><li><a href="global.html#mapString">mapString</a></li><li><a href="global.html#match">match</a></li><li><a href="global.html#memorize">memorize</a></li><li><a href="global.html#mod">mod</a></li><li><a href="global.html#noOp">noOp</a></li><li><a href="global.html#noOpArr">noOpArr</a></li><li><a href="global.html#noOpObj">noOpObj</a></li><li><a href="global.html#noPropArr">noPropArr</a></li><li><a href="global.html#noPropObj">noPropObj</a></li><li><a href="global.html#nth">nth</a></li><li><a href="global.html#objToQuery">objToQuery</a></li><li><a href="global.html#omitKeys">omitKeys</a></li><li><a href="global.html#omitRange">omitRange</a></li><li><a href="global.html#OPTIONS">OPTIONS</a></li><li><a href="global.html#parseArgs">parseArgs</a></li><li><a href="global.html#parseErrorMessage">parseErrorMessage</a></li><li><a href="global.html#parseJSON">parseJSON</a></li><li><a href="global.html#pickKeys">pickKeys</a></li><li><a href="global.html#pipeline">pipeline</a></li><li><a href="global.html#plural">plural</a></li><li><a href="global.html#promisify">promisify</a></li><li><a href="global.html#promisifyAll">promisifyAll</a></li><li><a href="global.html#queryToObj">queryToObj</a></li><li><a href="global.html#randomArr">randomArr</a></li><li><a href="global.html#randomizeArr">randomizeArr</a></li><li><a href="global.html#reduceColl">reduceColl</a></li><li><a href="global.html#reduceObj">reduceObj</a></li><li><a href="global.html#removeDot">removeDot</a></li><li><a href="global.html#repeat">repeat</a></li><li><a href="global.html#requireModule">requireModule</a></li><li><a href="global.html#resetLogs">resetLogs</a></li><li><a href="global.html#reverseStr">reverseStr</a></li><li><a href="global.html#runSeq">runSeq</a></li><li><a href="global.html#sanitize">sanitize</a></li><li><a href="global.html#sanitizeCopy">sanitizeCopy</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#setLogs">setLogs</a></li><li><a href="global.html#shallowEqual">shallowEqual</a></li><li><a href="global.html#singular">singular</a></li><li><a href="global.html#snakeCase">snakeCase</a></li><li><a href="global.html#softFalsy">softFalsy</a></li><li><a href="global.html#someEntry">someEntry</a></li><li><a href="global.html#spaceJoin">spaceJoin</a></li><li><a href="global.html#splitByKeys">splitByKeys</a></li><li><a href="global.html#strToType">strToType</a></li><li><a href="global.html#styleCase">styleCase</a></li><li><a href="global.html#template">template</a></li><li><a href="global.html#throttle">throttle</a></li><li><a href="global.html#throttleLast">throttleLast</a></li><li><a href="global.html#timedRun">timedRun</a></li><li><a href="global.html#TLimboResponse">TLimboResponse</a></li><li><a href="global.html#toBool">toBool</a></li><li><a href="global.html#toFloat">toFloat</a></li><li><a href="global.html#toInt">toInt</a></li><li><a href="global.html#toNum">toNum</a></li><li><a href="global.html#toObj">toObj</a></li><li><a href="global.html#toStr">toStr</a></li><li><a href="global.html#trainCase">trainCase</a></li><li><a href="global.html#trimStringFields">trimStringFields</a></li><li><a href="global.html#tryCatch">tryCatch</a></li><li><a href="global.html#tryRequire">tryRequire</a></li><li><a href="global.html#tryRequireSync">tryRequireSync</a></li><li><a href="global.html#typeOf">typeOf</a></li><li><a href="global.html#uniqArr">uniqArr</a></li><li><a href="global.html#uniqArrByReference">uniqArrByReference</a></li><li><a href="global.html#unset">unset</a></li><li><a href="global.html#uuid">uuid</a></li><li><a href="global.html#validate">validate</a></li><li><a href="global.html#validFilename">validFilename</a></li><li><a href="global.html#wait">wait</a></li><li><a href="global.html#waitForIt">waitForIt</a></li><li><a href="global.html#wordCaps">wordCaps</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">ext/strToType.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { isStr } from '../string/isStr'
+import { isNum } from '../number/isNum'
+import { toNum } from '../number/toNum'
+import { isStrBool } from '../boolean/isStrBool'
+import { toBool } from '../boolean/toBool'
+
+/**
+ * Converts a string to its own type if possible.
+ * @example
+ * strToType('12345678')
+ * // Returns 12345678
+ * @example
+ * strToType('{}')
+ * // Returns {}
+ * @example
+ * strToType('[]')
+ * // Returns []
+ * @function
+ * @param {*} val - value to convert
+ * @return { any | string } converted value || string if can't convert
+ */
+export const strToType = val => {
+  return !val || !isStr(val)
+    ? val
+    : isStrBool(val)
+      ? toBool(val)
+      : isNum(val)
+        ? toNum(val)
+        : (() => {
+            try {
+              return JSON.parse(val)
+            }
+            catch (e) {
+              return val
+            }
+          })()
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Thu Mar 31 2022 12:50:34 GMT-0700 (Mountain Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
