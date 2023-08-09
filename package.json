@@ -51,7 +51,7 @@
   ],
   "scripts": {
     "prepublish": "pnpm build:types && node -r esbuild-register ./scripts/prepublish.ts",
-    "postpublish": "pnpm build:types && node -r esbuild-register ./scripts/postpublish.ts",
+    "postpublish": "node -r esbuild-register ./scripts/postpublish.ts",
     "prebuild": "pnpm format && pnpm test",
     "postbuild": "pnpm docs:build",
     "build": "pnpm build:clean && pnpm build:es && build:types",
