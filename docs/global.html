@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>string/reverseStr.js - JS Utils</title>
+    <title>Global - JS Utils</title>
     
     <meta name="description" content="common javascript utils" />
     
@@ -46,39 +46,171 @@
 
 <div id="main">
     
-    <h1 class="page-title">string/reverseStr.js</h1>
+    <h1 class="page-title">Global</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/** @module String */
+        <h2>
+        
+        </h2>
+        
+    
+</header>
 
-import { isStr } from './isStr'
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-/**
- * Reverses string
- * @function
- * @param {String} str - string to reverse
- * @return {String} reversed str
- * @example
- * reverseStr('foo') // 'oof'
- */
-export const reverseStr = str => {
-  if (!isStr(str)) return undefined
-  let reversed = ''
-  for (let char of str) {
-    reversed = char + reversed
-  }
-  return reversed
-}
-</code></pre>
-        </article>
-    </section>
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="asCallback"><span class="type-signature">(constant) </span>asCallback<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="method_asCallback.js.html">method/asCallback.js</a>, <a href="method_asCallback.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Converts the passed in method into a callback to allow calling the method in place
+Second argument can be a boolean or defaults object
+When boolean, if true, the callback will forward arguments when called, false will not
+When object, will be passed as the first argument of the callback</p>
+<ul>
+<li>Checks the <code>allowArgs</code> property to know if it should forward arguments to the callback</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
