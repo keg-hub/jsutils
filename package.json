@@ -50,6 +50,7 @@
   ],
   "scripts": {
     "prebuild": "pnpm format && pnpm test",
+    "postbuild": "pnpm docs:build",
     "build": "pnpm build:clean && pnpm build:es",
     "build:es": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
     "build:clean": "rimraf ./build/esm && rimraf ./build/umd && rimraf ./build/cjs",
@@ -57,7 +58,6 @@
     "clean:full": "pnpm clean && pnpm install",
     "clean": "pnpm build:clean && pnpm clean:nm",
     "docs:build": "node -r esbuild-register ./scripts/buildDocs.js",
-    "docs:move": "node -r esbuild-register ./scripts/moveDocs.js",
     "entries": "node -r esbuild-register ./scripts/getEntries.ts",
     "format:eslint": "eslint --config ./configs/eslintrc.config.js ./src --fix --quiet",
     "format:prettier": "prettier --config ./configs/prettier.config.js --ignore-path .eslintignore --write '**/*.{js,jsx}'",
