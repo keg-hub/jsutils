@@ -54,7 +54,7 @@
     "postpublish": "node -r esbuild-register ./scripts/postpublish.ts",
     "prebuild": "pnpm format && pnpm test",
     "postbuild": "pnpm docs:build",
-    "build": "pnpm build:clean && pnpm build:es && build:types",
+    "build": "pnpm build:clean && pnpm build:es",
     "build:es": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
     "build:clean": "rimraf ./build/esm && rimraf ./build/umd && rimraf ./build/cjs",
     "clean:nm": "rimraf node_modules",
