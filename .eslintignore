@@ -1,0 +1,7 @@
+# Ignore everything:
+/*
+
+# Repos
+!/src
+!/scripts
+!/configs
