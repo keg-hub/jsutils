@@ -13,8 +13,8 @@ import { isArr } from './isArr'
  * @returns {Array<any>} - Array of matching items
  */
 export const intersect = (arrA, arrB) => {
-  if(!isArr(arrA) || !isArr(arrB)) return []
-  
+  if (!isArr(arrA) || !isArr(arrB)) return []
+
   const setB = new Set(arrB)
-  return [...new Set(arrA)].filter((x) => setB.has(x))
+  return [...new Set(arrA)].filter(x => setB.has(x))
 }

@@ -25,13 +25,15 @@ import { emptyObj } from '../ext/noOps'
  * @param {boolean} [asObject=false] - 2nd argument in resp array should be an object when an error is caught
  * @return {Promise<TLimboResponse>} - Slot 1 => error, Slot 2 => response from promise
  */
-export const limbo = (promise, asObject=false) => {
+export const limbo = (promise, asObject = false) => {
   return !promise || !isFunc(promise.then)
     ? [
         new Error(`A promise or thenable is required as the first argument!`),
         asObject ? emptyObj : undefined,
       ]
-    : promise.then(data => [ null, data ]).catch(err => [ err, asObject ? emptyObj : undefined ])
+    : promise
+      .then(data => [ null, data ])
+      .catch(err => [ err, asObject ? emptyObj : undefined ])
 }
 
 /**

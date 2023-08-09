@@ -12,17 +12,16 @@ import { emptyObj } from '../ext/noOps'
  * transformKeys({my_key: `1234`, other_key: `4321`}, {my_key: `myKey`}, opts) === { myKey: `1234` }
  */
 export const transformKeys = (
-  obj=emptyObj,
-  keyMap=emptyObj,
-  opts=emptyObj,
+  obj = emptyObj,
+  keyMap = emptyObj,
+  opts = emptyObj
 ) => {
-  const { strict=false  } = opts
+  const { strict = false } = opts
 
-  return Object.entries(obj)
-    .reduce((acc, [key, value])=> {
-      const ref = keyMap[key] || (!strict ? key : undefined)
-      ref && (acc[ref] = value)
+  return Object.entries(obj).reduce((acc, [ key, value ]) => {
+    const ref = keyMap[key] || (!strict ? key : undefined)
+    ref && (acc[ref] = value)
 
-      return acc
-    }, {})
+    return acc
+  }, {})
 }

@@ -20,7 +20,7 @@ export const doIt = (...args) => {
   const params = args.slice()
 
   const num = params.find(p => isNum(p))
-  if(!num) return []
+  if (!num) return []
   params.splice(params.indexOf(num), 1)
 
   const bindTo = params.find(p => !isNum(p))
