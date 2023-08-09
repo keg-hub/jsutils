@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>string/isUpperCase.js - JS Utils</title>
+    <title>method/asCallback.js - JS Utils</title>
     
     <meta name="description" content="common javascript utils" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">string/isUpperCase.js</h1>
+    <h1 class="page-title">method/asCallback.js</h1>
     
 
     
@@ -56,15 +56,29 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module String */
+            <pre class="prettyprint source linenums"><code>import { noOp } from './noOp'
+import { isFunc } from './isFunc'
+import { isBool } from '../boolean/isBool'
+import { eitherObj } from '../object/eitherObj'
 
 /**
- * Checks if a string is all capital letters
- * @function
- * @param {String} str - String to check if it's uppercase
- * @returns {Boolean} - True if str is uppercase
+ * Converts the passed in method into a callback to allow calling the method in place
+ * Second argument can be a boolean or defaults object
+ * When boolean, if true, the callback will forward arguments when called, false will not
+ * When object, will be passed as the first argument of the callback
+ *   * Checks the `allowArgs` property to know if it should forward arguments to the callback
  */
-export const isUpperCase = str => str === str.toUpperCase()
+export const asCallback = (callback, defs) => {
+  if (!isFunc(callback)) return noOp
+
+  const defArgs = isBool(defs)
+    ? { allowArgs: defs }
+    : eitherObj(defs, { allowArgs: true })
+
+  return (...args) => {
+    return defArgs?.allowArgs ? callback(defArgs, ...args) : callback()
+  }
+}
 </code></pre>
         </article>
     </section>

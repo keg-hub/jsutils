@@ -56,7 +56,7 @@
     "clean:nm": "rimraf node_modules",
     "clean:full": "pnpm clean && pnpm install",
     "clean": "pnpm build:clean && pnpm clean:nm",
-    "docs": "node -r esbuild-register ./scripts/buildDocs.js",
+    "docs:build": "node -r esbuild-register ./scripts/buildDocs.js",
     "docs:move": "node -r esbuild-register ./scripts/moveDocs.js",
     "entries": "node -r esbuild-register ./scripts/getEntries.ts",
     "format:eslint": "eslint --config ./configs/eslintrc.config.js ./src --fix --quiet",

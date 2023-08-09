@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>string/isUpperCase.js - JS Utils</title>
+    <title>array/intersect.js - JS Utils</title>
     
     <meta name="description" content="common javascript utils" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">string/isUpperCase.js</h1>
+    <h1 class="page-title">array/intersect.js</h1>
     
 
     
@@ -56,15 +56,26 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module String */
+            <pre class="prettyprint source linenums"><code>/** @module Array */
+
+import { isArr } from './isArr'
 
 /**
- * Checks if a string is all capital letters
- * @function
- * @param {String} str - String to check if it's uppercase
- * @returns {Boolean} - True if str is uppercase
+ * Creates and returns a new array of all items that exist in both passed in arrays
+ * @param {Array&lt;any>} arrA - array to compare with arrB
+ * @param {Array&lt;any>} arrB - array to compare with arrA
+ *
+ * @example
+ *  intersect([1], [1]) === [1]
+ *
+ * @returns {Array&lt;any>} - Array of matching items
  */
-export const isUpperCase = str => str === str.toUpperCase()
+export const intersect = (arrA, arrB) => {
+  if (!isArr(arrA) || !isArr(arrB)) return []
+
+  const setB = new Set(arrB)
+  return [...new Set(arrA)].filter(x => setB.has(x))
+}
 </code></pre>
         </article>
     </section>
