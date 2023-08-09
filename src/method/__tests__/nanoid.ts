@@ -4,8 +4,8 @@ jest.resetModules()
 jest.resetAllMocks()
 jest.clearAllMocks()
 
-import { doIt } from './doIt'
-import { nanoid } from './nanoid'
+import { doIt } from '../doIt'
+import { nanoid } from '../nanoid'
 
 describe(`nanoid`, () => {
 

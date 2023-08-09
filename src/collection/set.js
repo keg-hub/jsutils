@@ -25,4 +25,3 @@ export const set = (obj, path, val) => {
 
   return obj
 }
-

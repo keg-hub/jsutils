@@ -17,14 +17,20 @@ module.exports = {
     '<rootDir>/**/__tests__/*.{js,jsx,ts,tsx}',
   ],
   transform: {
-    '\\.[jt]sx?$': ['esbuild-jest', {
-      target: `esnext`,
-      sourcemap: true
-    }],
-    '\\.(js|jsx|mjs|cjs|ts|tsx)?$': ['esbuild-jest', {
-      target: `esnext`,
-      sourcemap: true
-    }],
+    '\\.[jt]sx?$': [
+      'esbuild-jest',
+      {
+        target: `esnext`,
+        sourcemap: true,
+      },
+    ],
+    '\\.(js|jsx|mjs|cjs|ts|tsx)?$': [
+      'esbuild-jest',
+      {
+        target: `esnext`,
+        sourcemap: true,
+      },
+    ],
   },
   coverageDirectory: '<rootDir>/coverage',
   coverageReporters: ['text-summary', 'text'],

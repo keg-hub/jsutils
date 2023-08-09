@@ -1,6 +1,7 @@
 /** @module Node */
 
-const { exists, noOpObj } = require('../../build/cjs')
+const { exists } = require('../ext/exists')
+const { emptyObj } = require('../ext/noOps')
 
 /**
  * Loop over the passed in ENVs, and add them to the current process
@@ -11,7 +12,7 @@ const { exists, noOpObj } = require('../../build/cjs')
  *
  * @returns {Void}
  */
-const addToProcess = (addEnvs, opts = noOpObj) => {
+const addToProcess = (addEnvs, opts = emptyObj) => {
   const { force } = opts
 
   Object.entries(addEnvs).map(([ key, value ]) => {

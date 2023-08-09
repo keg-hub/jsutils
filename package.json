@@ -4,6 +4,24 @@
   "description": "Keg common javascript utils",
   "main": "build/cjs/index.js",
   "module": "build/esm/index.js",
+  "browser": "build/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./build/esm/index.js",
+      "require": "./build/cjs/index.js",
+      "default": "./build/cjs/index.js"
+    },
+    "./*": {
+      "import": "./build/esm/*",
+      "require": "./build/cjs/*",
+      "default": "./build/cjs/*"
+    },
+    "./node/*": {
+      "import": "./build/esm/node/*",
+      "require": "./build/cjs/node/*",
+      "default": "./build/cjs/node/*"
+    }
+  },
   "types": "index.d.ts",
   "author": "lancetipton <lancetipton04@gmail.com>",
   "license": "MIT",
@@ -31,6 +49,7 @@
     "helpers"
   ],
   "scripts": {
+    "prebuild": "pnpm format && pnpm test",
     "build": "pnpm build:clean && pnpm build:es",
     "build:es": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
     "build:clean": "rimraf ./build/esm && rimraf ./build/umd && rimraf ./build/cjs",
@@ -39,33 +58,34 @@
     "clean": "pnpm build:clean && pnpm clean:nm",
     "docs": "node -r esbuild-register ./scripts/buildDocs.js",
     "docs:move": "node -r esbuild-register ./scripts/moveDocs.js",
-    "docs:git": "node -r esbuild-register ./scripts/docsSetupGit.js",
-    "docs:publish": "pnpm docs && pnpm docs:git",
+    "entries": "node -r esbuild-register ./scripts/getEntries.ts",
     "format:eslint": "eslint --config ./configs/eslintrc.config.js ./src --fix --quiet",
     "format:prettier": "prettier --config ./configs/prettier.config.js --ignore-path .eslintignore --write '**/*.{js,jsx}'",
     "format": "pnpm format:prettier && pnpm format:eslint",
-    "test": "NODE_ENV=test jest --no-cache --verbose --config=./configs/jest.config.js  --maxWorkers=50%",
-    "validate": "",
+    "test": "NODE_ENV=test jest --verbose --config=./configs/jest.config.js  --maxWorkers=50%",
+    "prettier": "prettier",
     "web": "npx http-server ./docs -p 8888 --cors"
   },
   "dependencies": {},
   "devDependencies": {
     "@types/debug": "4.1.5",
     "@types/node": "18.15.13",
+    "@typescript-eslint/parser": "5.60.1",
     "docdash": "1.2.0",
-    "eslint": "8.23.0",
+    "esbuild": "0.18.17",
+    "esbuild-register": "3.4.2",
+    "esbuild-jest": "0.5.0",
+    "eslint": "8.44.0",
     "eslint-plugin-jest": "27.0.1",
     "gh-pages": "4.0.0",
+    "glob": "10.3.3",
     "jest": "29.5.0",
     "jsdoc": "3.6.11",
     "jsdom": "^20.0.0",
     "jsutils": "file:.",
     "prettier": "2.7.1",
     "rimraf": "3.0.2",
-    "esbuild": "0.18.17",
-    "esbuild-register": "3.4.2",
-    "esbuild-jest": "0.5.0",
-    "glob": "10.3.3"
+    "typescript": "5.1.6"
   },
   "directories": {
     "doc": "docs"

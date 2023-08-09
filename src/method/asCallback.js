@@ -1,9 +1,7 @@
-import { noOp } from '../ext/noOps'
-import { isFunc } from '../method/isFunc'
+import { noOp } from './noOp'
+import { isFunc } from './isFunc'
 import { isBool } from '../boolean/isBool'
 import { eitherObj } from '../object/eitherObj'
-
-
 
 /**
  * Converts the passed in method into a callback to allow calling the method in place
@@ -13,9 +11,11 @@ import { eitherObj } from '../object/eitherObj'
  *   * Checks the `allowArgs` property to know if it should forward arguments to the callback
  */
 export const asCallback = (callback, defs) => {
-  if(!isFunc(callback)) return noOp
+  if (!isFunc(callback)) return noOp
 
-  const defArgs = isBool(defs) ? { allowArgs: defs } : eitherObj(defs, { allowArgs: true })
+  const defArgs = isBool(defs)
+    ? { allowArgs: defs }
+    : eitherObj(defs, { allowArgs: true })
 
   return (...args) => {
     return defArgs?.allowArgs ? callback(defArgs, ...args) : callback()

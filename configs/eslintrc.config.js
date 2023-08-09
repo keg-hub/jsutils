@@ -1,4 +1,9 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: 'tsconfig.json',
+    tsconfigRootDir: require('path').join(__dirname, '../'),
+  },
   root: true,
   ignorePatterns: ['build', 'dist', 'node_modules', 'examples', 'scripts'],
   globals: {
@@ -13,7 +18,7 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-    }
+    },
   },
   env: {
     es6: true,
@@ -70,14 +75,15 @@ module.exports = {
       {
         args: 'none',
         ignoreRestSiblings: true,
-        varsIgnorePattern: '_',
+        varsIgnorePattern: '_|err',
       },
     ],
     /* Jest */
     'jest/no-disabled-tests': 'error',
     'jest/no-focused-tests': 'error',
     'jest/no-identical-title': 'error',
-    'jest/prefer-to-have-length': 'warn',
+    'jest/prefer-to-have-length': 'off',
+    'jest/no-conditional-expect': 'off',
     'jest/valid-expect': 'error',
   },
 }

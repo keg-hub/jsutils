@@ -18,4 +18,3 @@ export const unset = (obj, path) => {
 
   return obj
 }
-
