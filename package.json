@@ -22,7 +22,7 @@
       "default": "./build/cjs/node/*"
     }
   },
-  "types": "index.d.ts",
+  "types": ".d.ts",
   "author": "lancetipton <lancetipton04@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -37,7 +37,8 @@
     "build",
     "node.js",
     "src/node",
-    "index.d.ts"
+    ".d.ts",
+    "*.d.ts"
   ],
   "publishConfig": {
     "access": "public"
@@ -49,9 +50,11 @@
     "helpers"
   ],
   "scripts": {
+    "prepublish": "pnpm build:types && node -r esbuild-register ./scripts/prepublish.ts",
+    "postpublish": "pnpm build:types && node -r esbuild-register ./scripts/postpublish.ts",
     "prebuild": "pnpm format && pnpm test",
     "postbuild": "pnpm docs:build",
-    "build": "pnpm build:clean && pnpm build:es",
+    "build": "pnpm build:clean && pnpm build:es && build:types",
     "build:es": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
     "build:clean": "rimraf ./build/esm && rimraf ./build/umd && rimraf ./build/cjs",
     "clean:nm": "rimraf node_modules",
@@ -59,6 +62,7 @@
     "clean": "pnpm build:clean && pnpm clean:nm",
     "docs:build": "node -r esbuild-register ./scripts/buildDocs.js",
     "entries": "node -r esbuild-register ./scripts/getEntries.ts",
+    "build:types": "node -r esbuild-register ./scripts/buildTypes.ts",
     "format:eslint": "eslint --config ./configs/eslintrc.config.js ./src --fix --quiet",
     "format:prettier": "prettier --config ./configs/prettier.config.js --ignore-path .eslintignore --write '**/*.{js,jsx}'",
     "format": "pnpm format:prettier && pnpm format:eslint",

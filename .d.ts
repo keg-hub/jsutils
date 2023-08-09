@@ -11,6 +11,7 @@ declare module "@keg-hub/jsutils" {
   * </ul>
   */
   function areCountMapsEqual(mapA: Map<any, number>, mapB: Map<any, number>): boolean;
+
   /**
   * <p>Checks if arrays are frequency equal. Does this
   * by making only one pass over each array and using an auxillary map.</p>

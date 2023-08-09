@@ -3,6 +3,10 @@ import * as esbuild from 'esbuild'
 import { fileURLToPath } from 'url'
 import { promises as fs } from 'fs'
 import { getEntries } from '../scripts/getEntries'
+import { promisify } from 'util'
+import { exec } from 'child_process'
+const cmdExec = promisify(exec)
+
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.join(dirname, `..`)
@@ -12,6 +16,7 @@ const cjsdir = path.join(outdir, `cjs`)
 const esmNodedir = path.join(outdir, `esm/node`)
 const cjsNodedir = path.join(outdir, `cjs/node`)
 const indexEntry = path.join(rootDir, `src/index.js`)
+const typesFile = path.join(rootDir, `src/index.d.ts`)
 const nodeEntry = path.join(rootDir, `src/node/node.js`)
 
 const opts = {
@@ -70,27 +75,30 @@ const buildCjs = async (options:any, type:string) => {
 
   // Remove the existing output dir
   await fs.rm(outdir, { recursive: true, force: true })
+
   await buildEsm({
     outdir: esmdir,
     format: `esm` as const,
     entryPoints: noNodeEntries,
   }, `Index`)
+
   await buildCjs({
     outdir: cjsdir,
     format: `cjs` as const,
     entryPoints: noNodeEntries,
   }, `Index`)
+
   await buildEsm({
     outdir: esmNodedir,
     format: `esm` as const,
     entryPoints: nodeEntries,
   }, `Node`)
+
   await buildCjs({
     outdir: cjsNodedir,
     format: `cjs` as const,
     entryPoints: nodeEntries,
   }, `Node`)
-
 
 })()
 

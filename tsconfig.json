@@ -24,6 +24,8 @@
   },
   "include": [
     "src",
+    ".d.ts",
+    "scripts",
     "configs",
     "node.js",
     "index.js",
