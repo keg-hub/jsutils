@@ -1,0 +1,76 @@
+{
+  "name": "@keg-hub/jsutils",
+  "version": "9.6.1",
+  "description": "Keg common javascript utils",
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "types": "index.d.ts",
+  "author": "lancetipton <lancetipton04@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "url": "git+https://github.com/keg-hub/keg-hub.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/keg-hub/keg-hub/issues"
+  },
+  "homepage": "https://github.com/keg-hub/keg-hub#readme",
+  "files": [
+    "build",
+    "node.js",
+    "src/node",
+    "index.d.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "keg",
+    "keg-hub",
+    "utils",
+    "helpers"
+  ],
+  "scripts": {
+    "build": "pnpm build:clean && pnpm build:es",
+    "build:es": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
+    "build:clean": "rimraf ./build/esm && rimraf ./build/umd && rimraf ./build/cjs",
+    "clean:nm": "rimraf node_modules",
+    "clean:full": "pnpm clean && pnpm install",
+    "clean": "pnpm build:clean && pnpm clean:nm",
+    "docs": "node -r esbuild-register ./scripts/buildDocs.js",
+    "docs:move": "node -r esbuild-register ./scripts/moveDocs.js",
+    "docs:git": "node -r esbuild-register ./scripts/docsSetupGit.js",
+    "docs:publish": "pnpm docs && pnpm docs:git",
+    "format:eslint": "eslint --config ./configs/eslintrc.config.js ./src --fix --quiet",
+    "format:prettier": "prettier --config ./configs/prettier.config.js --ignore-path .eslintignore --write '**/*.{js,jsx}'",
+    "format": "pnpm format:prettier && pnpm format:eslint",
+    "test": "NODE_ENV=test jest --no-cache --verbose --config=./configs/jest.config.js  --maxWorkers=50%",
+    "validate": "",
+    "web": "npx http-server ./docs -p 8888 --cors"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/debug": "4.1.5",
+    "@types/node": "18.15.13",
+    "docdash": "1.2.0",
+    "eslint": "8.23.0",
+    "eslint-plugin-jest": "27.0.1",
+    "gh-pages": "4.0.0",
+    "jest": "29.5.0",
+    "jsdoc": "3.6.11",
+    "jsdom": "^20.0.0",
+    "jsutils": "file:.",
+    "prettier": "2.7.1",
+    "rimraf": "3.0.2",
+    "esbuild": "0.18.17",
+    "esbuild-register": "3.4.2",
+    "esbuild-jest": "0.5.0",
+    "glob": "10.3.3"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "publish": {
+    "repository": "https://github.com/keg-hub/jsutils.git"
+  }
+}
