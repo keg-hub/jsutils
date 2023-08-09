@@ -1,5 +1,5 @@
-import { noOp } from '../ext/noOps'
-import { isFunc } from '../method/isFunc'
+import { noOp } from './noOp'
+import { isFunc } from './isFunc'
 import { isBool } from '../boolean/isBool'
 import { eitherObj } from '../object/eitherObj'
 
