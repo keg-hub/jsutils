@@ -26,8 +26,8 @@ export const repeat = (element, times, cloneDeep = false) => {
     const value = isFunc(element)
       ? element()
       : cloneDeep
-        ? deepClone(element)
-        : element
+      ? deepClone(element)
+      : element
     arr.push(value)
   }
   return arr

@@ -33,7 +33,7 @@ export const mapEntries = (obj, cb) => {
 
   const initialValue = isArr(obj) ? [] : {}
 
-  return entries.reduce((obj, [ key, value ]) => {
+  return entries.reduce((obj, [key, value]) => {
     const result = cb(key, value)
     if (!isEntry(result)) {
       console.error(

@@ -14,5 +14,5 @@ export const mapObj = (obj, cb) => {
   if (!isObj(obj)) return []
 
   const entries = Object.entries(obj)
-  return isFunc(cb) ? entries.map(([ key, value ]) => cb(key, value)) : entries
+  return isFunc(cb) ? entries.map(([key, value]) => cb(key, value)) : entries
 }

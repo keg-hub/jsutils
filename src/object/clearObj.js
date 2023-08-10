@@ -9,7 +9,7 @@
  */
 export const clearObj = (obj, filter) => {
   obj &&
-    Object.entries(obj).map(([ key, value ]) => {
+    Object.entries(obj).map(([key, value]) => {
       if (filter && filter.indexOf(key) !== -1) return
       if (typeof value === 'object') clearObj(value)
       obj[key] = undefined

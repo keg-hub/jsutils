@@ -15,7 +15,7 @@ const { emptyObj } = require('@ext/noOps')
 const addToProcess = (addEnvs, opts = emptyObj) => {
   const { force } = opts
 
-  Object.entries(addEnvs).map(([ key, value ]) => {
+  Object.entries(addEnvs).map(([key, value]) => {
     exists(value) &&
       (!exists(process.env[key]) || force) &&
       (process.env[key] = value)

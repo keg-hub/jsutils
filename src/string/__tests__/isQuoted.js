@@ -28,6 +28,6 @@ describe('isQuoted', () => {
   it('should work with custom quote symbols', () => {
     expect(isQuoted('*boo foo bar*', ['*'])).toBe(true)
 
-    expect(isQuoted('boo foo boo', [ '*', 'boo' ])).toBe(true)
+    expect(isQuoted('boo foo boo', ['*', 'boo'])).toBe(true)
   })
 })

@@ -5,7 +5,7 @@
 let SHOW_LOGS
 let METH_DEF = 'dir'
 let PREFIX = 'type'
-const LOG_TYPES = [ 'error', 'info', 'log', 'dir', 'warn' ]
+const LOG_TYPES = ['error', 'info', 'log', 'dir', 'warn']
 const isTest = process.env.NODE_ENV === 'test'
 
 /**

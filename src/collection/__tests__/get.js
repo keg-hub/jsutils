@@ -8,7 +8,7 @@ describe('get', () => {
       foo: 123,
       data: 'Hello',
     }
-    const path = [ 'data', 'path2' ]
+    const path = ['data', 'path2']
 
     // path2 doesn't exist, should return fallback value
     expect(Coll.get(obj, path, 0) === 0).toBe(true)
@@ -22,7 +22,7 @@ describe('get', () => {
         count: 100,
       },
     }
-    const path2 = [ 'data', 'count', 'toes' ]
+    const path2 = ['data', 'count', 'toes']
 
     expect(Coll.get(obj2, path2, 0) === 0).toBe(true)
     // traversed path should keep its value
@@ -70,7 +70,7 @@ describe('get', () => {
   it('should handle array brackets in in the object path', () => {
     const foo = () => {}
     foo.boo = 'duper'
-    foo.doo = [ 1, 2, { first: 'last' }]
+    foo.doo = [1, 2, { first: 'last' }]
     const getObj = [{ foo }]
 
     expect(Coll.get(getObj, '[0].foo.boo') === 'duper').toBe(true)

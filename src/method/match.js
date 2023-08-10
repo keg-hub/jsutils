@@ -62,7 +62,7 @@ export const match = (matchArg, ...args) => {
       )
       break
     }
-    const [ caseValueOrPredicate, valueOnMatch ] = entry
+    const [caseValueOrPredicate, valueOnMatch] = entry
     if (isFunc(caseValueOrPredicate) && caseValueOrPredicate(matchArg))
       return valueOnMatch
     if (caseValueOrPredicate === matchArg) return valueOnMatch

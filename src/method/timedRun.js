@@ -16,9 +16,9 @@ import { isFunc } from './isFunc'
  */
 export const timedRun = async (fn, ...args) => {
   const [valid] = validate({ fn }, { fn: isFunc })
-  if (!valid) return [ undefined, -1 ]
+  if (!valid) return [undefined, -1]
 
   const startTime = new Date()
   const result = await fn(...args)
-  return [ result, new Date() - startTime ]
+  return [result, new Date() - startTime]
 }

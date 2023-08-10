@@ -10,8 +10,7 @@
 export const jsonEqual = (one, two) => {
   try {
     return JSON.stringify(one) === JSON.stringify(two)
-  }
-  catch (e) {
+  } catch (e) {
     return false
   }
 }

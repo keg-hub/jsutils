@@ -46,12 +46,12 @@ export const template = (tempStr, data, fallback = '') => {
 
   return isStr(tempStr)
     ? tempStr.replace(regex, (match, exact) => {
-      const path = (exact || match.substr(2, match.length - 3)).trim()
-      const replaceWith = get(data, path, fallback)
-      return isFunc(replaceWith)
-        ? replaceWith(data, path, fallback)
-        : replaceWith
-    })
+        const path = (exact || match.substr(2, match.length - 3)).trim()
+        const replaceWith = get(data, path, fallback)
+        return isFunc(replaceWith)
+          ? replaceWith(data, path, fallback)
+          : replaceWith
+      })
     : console.error(`template requires a string as the first argument`) ||
         tempStr
 }

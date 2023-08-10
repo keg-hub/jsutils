@@ -2,7 +2,7 @@
 
 import { isFunc } from './isFunc'
 
-const defFilters = [ `node:internal`, `node_modules/jest` ]
+const defFilters = [`node:internal`, `node_modules/jest`]
 
 /**
  * Gets the paths from a stacktrace as CallSites and returns them
@@ -25,8 +25,8 @@ export const stackTracePaths = (filter = defFilters) => {
     const ignore = isFunc(filter)
       ? filter(loc, cs, stack)
       : Boolean(
-        filter.length && filter.find(filterLoc => loc.includes(filterLoc))
-      )
+          filter.length && filter.find(filterLoc => loc.includes(filterLoc))
+        )
 
     !ignore && acc.push(loc)
 

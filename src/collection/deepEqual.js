@@ -39,7 +39,7 @@ export const deepEqual = (a, b) => {
     // If unequal length, then not equal
     if (length != b.length) return false
     // Loop the arrays and check the contents of both
-    for (i = length; i-- !== 0;) if (!deepEqual(a[i], b[i])) return false
+    for (i = length; i-- !== 0; ) if (!deepEqual(a[i], b[i])) return false
 
     return true
   }
@@ -67,10 +67,10 @@ export const deepEqual = (a, b) => {
   if (length !== keyList(b).length) return false
 
   // Ensure both objects have the same keys
-  for (i = length; i-- !== 0;) if (!hasProp.call(b, keys[i])) return false
+  for (i = length; i-- !== 0; ) if (!hasProp.call(b, keys[i])) return false
 
   // Check the value of the object keys
-  for (i = length; i-- !== 0;) {
+  for (i = length; i-- !== 0; ) {
     key = keys[i]
     if (!deepEqual(a[key], b[key])) return false
   }

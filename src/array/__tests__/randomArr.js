@@ -4,14 +4,14 @@ describe('randomArr', () => {
   beforeEach(() => jest.resetAllMocks())
 
   it('should randomly select values from a passed in array', () => {
-    const arr = [ 1, 4, 5, 3, 7, 'test' ]
+    const arr = [1, 4, 5, 3, 7, 'test']
     const random = Arr.randomArr(arr, 3)
 
     random.map(item => expect(arr.indexOf(item) !== -1).toBe(true))
   })
 
   it('should arrays with a length equal to the second argument', () => {
-    const arr = [ 1, 4, 5, 3, 7, 'test' ]
+    const arr = [1, 4, 5, 3, 7, 'test']
     const random = Arr.randomArr(arr, 3)
     const random2 = Arr.randomArr(arr, 8)
     const random3 = Arr.randomArr(arr, 1)
@@ -22,7 +22,7 @@ describe('randomArr', () => {
   })
 
   it('should return a random array item if no amount is passed in', () => {
-    const arr = [ 1, 4, 5, 3, 7, 'test' ]
+    const arr = [1, 4, 5, 3, 7, 'test']
     const random1 = Arr.randomArr(arr)
     const random2 = Arr.randomArr(arr)
     const random3 = Arr.randomArr(arr)

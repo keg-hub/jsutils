@@ -19,7 +19,7 @@ describe('cleanColl', () => {
   })
 
   it('should clean null an undefined in arrays', () => {
-    const arr = [ undefined, null ]
+    const arr = [undefined, null]
     const res = Coll.cleanColl(arr)
 
     expect(arr.length).toBe(2)
@@ -33,7 +33,7 @@ describe('cleanColl', () => {
   })
 
   it('should clean recursively', () => {
-    const arr = [{ value: null, test: { foo: undefined } }, null ]
+    const arr = [{ value: null, test: { foo: undefined } }, null]
     const res = Coll.cleanColl(arr)
 
     expect(res.length).toBe(1)
@@ -43,7 +43,7 @@ describe('cleanColl', () => {
   })
 
   it('should not clean recursively when false is passed as the second argument', () => {
-    const arr = [{ value: null, test: { foo: undefined } }, null ]
+    const arr = [{ value: null, test: { foo: undefined } }, null]
     const res = Coll.cleanColl(arr, false)
 
     expect(res.length).toBe(1)

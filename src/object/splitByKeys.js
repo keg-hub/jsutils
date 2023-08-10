@@ -27,15 +27,15 @@ export const splitByKeys = (obj = {}, keys) => {
 
   return isObj(obj)
     ? reduceObj(
-      obj,
-      (key, _, updated) => {
-        exists(compareKeys.find(k => exists(k) && toStr(k) === key))
-          ? (updated[0][key] = obj[key])
-          : (updated[1][key] = obj[key])
+        obj,
+        (key, _, updated) => {
+          exists(compareKeys.find(k => exists(k) && toStr(k) === key))
+            ? (updated[0][key] = obj[key])
+            : (updated[1][key] = obj[key])
 
-        return updated
-      },
-      intersect
-    )
+          return updated
+        },
+        intersect
+      )
     : intersect
 }

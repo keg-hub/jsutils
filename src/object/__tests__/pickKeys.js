@@ -6,10 +6,10 @@ describe('pickKeys', () => {
   it('should return object with keys in passed in array', () => {
     const obj = {
       test: 'I should exist',
-      sub: [ 1, 2, 3 ],
+      sub: [1, 2, 3],
       data: 'I should not exist',
     }
-    const picked = Obj.pickKeys(obj, [ 'data', 'sub' ])
+    const picked = Obj.pickKeys(obj, ['data', 'sub'])
 
     expect(picked.sub).toEqual(obj.sub)
     expect(picked.data).toEqual(obj.data)
@@ -19,10 +19,10 @@ describe('pickKeys', () => {
   it('should not add non-existing keys to the return object', () => {
     const obj = {
       test: 'I should exist',
-      sub: [ 1, 2, 3 ],
+      sub: [1, 2, 3],
       data: 'I should not exist',
     }
-    const picked = Obj.pickKeys(obj, [ 'data', 'sub', 'duper' ])
+    const picked = Obj.pickKeys(obj, ['data', 'sub', 'duper'])
 
     expect(picked.sub).toEqual(obj.sub)
     expect(picked.data).toEqual(obj.data)

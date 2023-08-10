@@ -18,7 +18,7 @@ export const transformKeys = (
 ) => {
   const { strict = false } = opts
 
-  return Object.entries(obj).reduce((acc, [ key, value ]) => {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
     const ref = keyMap[key] || (!strict ? key : undefined)
     ref && (acc[ref] = value)
 

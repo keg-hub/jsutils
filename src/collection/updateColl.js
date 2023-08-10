@@ -40,12 +40,12 @@ export const updateColl = (obj, path, type, val) => {
 
   return type === 'get'
     ? // Get return the value
-    key in obj
+      key in obj
       ? obj[key]
       : val
     : type === 'unset'
-      ? // Unset, return if the key was removed
+    ? // Unset, return if the key was removed
       delete obj[key]
-      : // Set, updated object
-        ((obj[key] = val) && org) || org
+    : // Set, updated object
+      ((obj[key] = val) && org) || org
 }
