@@ -8,4 +8,3 @@ import { noOpObj } from './noOpObj'
  * @type {Object}
  */
 export const emptyObj = noOpObj
-

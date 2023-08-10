@@ -15,4 +15,3 @@ import { isFunc } from './isFunc'
 export const checkCall = (method, ...params) => {
   return isFunc(method) ? method(...params) : undefined
 }
-

@@ -2,7 +2,6 @@
 
 import { noPropArr } from './noPropArr'
 
-
 /**
  * Reusable, empty frozen array.
  * Renamed for consistency
