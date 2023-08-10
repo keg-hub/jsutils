@@ -1,12 +1,10 @@
 /** @module Log */
 
-'use strict'
-
-let SHOW_LOGS
-let METH_DEF = 'dir'
-let PREFIX = 'type'
-const LOG_TYPES = [ 'error', 'info', 'log', 'dir', 'warn' ]
-const isTest = process.env.NODE_ENV === 'test'
+export let SHOW_LOGS
+export let METH_DEF = 'dir'
+export let PREFIX = 'type'
+export const LOG_TYPES = [ 'error', 'info', 'log', 'dir', 'warn' ]
+export const isTest = process.env.NODE_ENV === 'test'
 
 /**
  * Turns logs on || off.
@@ -34,7 +32,7 @@ export const setLogs = (log, methDef, prefix) => {
  * @function
  * @return { void }
  */
-export const resetLogs = () => {
+export const logsReset = () => {
   SHOW_LOGS = undefined
   METH_DEF = 'log'
   PREFIX = 'type'
@@ -49,7 +47,7 @@ export const resetLogs = () => {
  * @param {Array} args - to be passed to the log call
  * @return { void }
  */
-export const logData = (...args) => {
+export const logFun = (...args) => {
   if (!args.length) return
 
   let type = args.length === 1 ? METH_DEF : args.pop()
@@ -64,4 +62,5 @@ export const logData = (...args) => {
     : console[METH_DEF](...args, type)
 }
 
-isTest && (module.exports.getShowLogs = () => SHOW_LOGS)
+
+export const showLogs = () => SHOW_LOGS

@@ -7,7 +7,7 @@ import { isColl } from '@collection/isColl'
 import { isEmptyColl } from '@collection/isEmptyColl'
 import { deepEqual } from '@collection/deepEqual'
 
-import { isDom } from '@dom/hasDomAccess'
+import { isDom } from '@dom/isDom'
 
 import { exists } from '@ext/exists'
 import { isEmpty } from '@ext/isEmpty'
