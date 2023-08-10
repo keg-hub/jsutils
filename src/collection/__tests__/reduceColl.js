@@ -6,7 +6,7 @@ describe('reduceColl', () => {
   it('should loop over a collection of items', () => {
     let counter = 0
     const res = Coll.reduceColl(
-      [1, 2, 3, 4],
+      [ 1, 2, 3, 4 ],
       (key, value, org, reduced) => {
         counter++
         return counter
@@ -21,7 +21,7 @@ describe('reduceColl', () => {
   it('should return a reduced value', () => {
     let counter = 0
     const res = Coll.reduceColl(
-      [1, 2, 3, 4],
+      [ 1, 2, 3, 4 ],
       (key, value, org, reduced) => {
         counter++
         reduced[value] = counter

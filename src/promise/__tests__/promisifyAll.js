@@ -38,8 +38,8 @@ const getClsObj = type => {
   return type === 'obj'
     ? { ...object }
     : type === 'class'
-    ? MyClass
-    : new MyClass()
+      ? MyClass
+      : new MyClass()
 }
 
 describe('promisifyAll', () => {

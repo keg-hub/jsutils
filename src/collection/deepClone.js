@@ -30,10 +30,10 @@ export const deepClone = (obj, hash = new WeakMap()) => {
     obj instanceof Date
       ? new Date(obj)
       : obj instanceof RegExp
-      ? new RegExp(obj.source, obj.flags)
-      : !obj.constructor
-      ? Object.create(null)
-      : null
+        ? new RegExp(obj.source, obj.flags)
+        : !obj.constructor
+            ? Object.create(null)
+            : null
 
   // if result is null, object has a constructor and wasn't an instance of Date nor RegExp
   if (result === null) return cloneObjWithPrototypeAndProperties(obj)
@@ -41,7 +41,7 @@ export const deepClone = (obj, hash = new WeakMap()) => {
   hash.set(obj, result)
 
   if (obj instanceof Map)
-    return Array.from(obj, ([key, val]) =>
+    return Array.from(obj, ([ key, val ]) =>
       result.set(key, deepClone(val, hash))
     )
 
@@ -65,7 +65,7 @@ export const cloneObjWithPrototypeAndProperties = objectWithPrototype => {
   const sourceDescriptors =
     Object.getOwnPropertyDescriptors(objectWithPrototype)
 
-  for (const [key, descriptor] of Object.entries(sourceDescriptors)) {
+  for (const [ key, descriptor ] of Object.entries(sourceDescriptors)) {
     descriptor.value &&
       (sourceDescriptors[key].value = deepClone(descriptor.value))
   }

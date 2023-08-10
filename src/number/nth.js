@@ -32,13 +32,13 @@ export const nth = num => {
   if (mod >= 10 && mod <= 20) return 'th'
 
   switch (num % 10) {
-    case 1:
-      return 'st'
-    case 2:
-      return 'nd'
-    case 3:
-      return 'rd'
-    default:
-      return 'th'
+  case 1:
+    return 'st'
+  case 2:
+    return 'nd'
+  case 3:
+    return 'rd'
+  default:
+    return 'th'
   }
 }

@@ -25,7 +25,8 @@ const fold = (hash, text) => {
 const foldObject = (hash, obj, seen) => {
   const foldKey = (hash, key) => foldValue(hash, obj[key], key, seen)
 
-  return Object.keys(obj).sort().reduce(foldKey, hash)
+  return Object.keys(obj).sort()
+    .reduce(foldKey, hash)
 }
 
 const foldValue = (input, value, key, seen) => {
@@ -46,7 +47,8 @@ const foldValue = (input, value, key, seen) => {
 
     try {
       return fold(objHash, String(value.valueOf()))
-    } catch (err) {
+    }
+    catch (err) {
       return fold(objHash, '[valueOf exception]' + (err.stack || err.message))
     }
   }

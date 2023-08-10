@@ -24,6 +24,6 @@ export const everyEntry = (obj, predicate, logError = true) => {
   }
 
   return pipeline(obj, Object.entries, entries =>
-    entries.every(([key, value]) => predicate(key, value))
+    entries.every(([ key, value ]) => predicate(key, value))
   )
 }

@@ -29,6 +29,6 @@ export const flatUnion = (...args) => {
   return args.reduce((merged, arr) => {
     if (!isArr(arr)) return merged
 
-    return uniqArr(flatArr([...merged, ...arr], opts), compare)
+    return uniqArr(flatArr([ ...merged, ...arr ], opts), compare)
   }, [])
 }

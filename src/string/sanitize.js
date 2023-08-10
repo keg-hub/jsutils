@@ -10,5 +10,6 @@ import { isStr } from './isStr'
  */
 export const sanitize = str =>
   (isStr(str) &&
-    str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')) ||
+    str.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')) ||
   str

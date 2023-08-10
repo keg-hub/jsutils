@@ -23,7 +23,7 @@ export const queryToObj = string => {
       if (components.length <= 1) return currentQueryItems
 
       // split on the first instance of '=', so we join the rest if any
-      const itemSplit = [components.shift(), components.join('=')]
+      const itemSplit = [ components.shift(), components.join('=') ]
 
       if (itemSplit.length === 2) {
         // if the value contains special char ',' then make it into an array
@@ -35,8 +35,9 @@ export const queryToObj = string => {
           const val = currentQueryItems[itemSplit[0]]
           currentQueryItems[itemSplit[0]] = isArr(val)
             ? val.push(decodeURIComponent(itemSplit[1]))
-            : [val, decodeURIComponent(itemSplit[1])]
-        } else
+            : [ val, decodeURIComponent(itemSplit[1]) ]
+        }
+        else
           currentQueryItems[itemSplit[0]] = decodeURIComponent(itemSplit[1])
       }
     })

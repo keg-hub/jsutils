@@ -12,5 +12,5 @@ export const toStr = val =>
   val === null || val === undefined
     ? ''
     : isStr(val)
-    ? val
-    : JSON.stringify(val)
+      ? val
+      : JSON.stringify(val)

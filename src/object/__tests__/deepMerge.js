@@ -4,8 +4,8 @@ describe('deepMerge', () => {
   beforeEach(() => jest.resetAllMocks())
 
   it('should merge objects together into new object', () => {
-    const obj1 = { test: 'I am a obj 1', sub: [1, 2, 3] }
-    const obj2 = { test: 'I am a obj 2', sub: [4, 5, 6] }
+    const obj1 = { test: 'I am a obj 1', sub: [ 1, 2, 3 ] }
+    const obj2 = { test: 'I am a obj 2', sub: [ 4, 5, 6 ] }
     const obj3 = Obj.deepMerge(obj1, obj2)
 
     expect(obj3).not.toEqual(obj1)
@@ -18,8 +18,8 @@ describe('deepMerge', () => {
   it('should merge child objects together into new object', () => {
     const childObj = { arr: ['data'], obj: { foo: 'bar' } }
     const childObj2 = { bas: 'baz' }
-    const obj1 = { test: 'I am a obj 1', sub: [childObj, 1, 2, 3] }
-    const obj2 = { test: 'I am a obj 2', sub: [childObj2, 4, 5, 6] }
+    const obj1 = { test: 'I am a obj 1', sub: [ childObj, 1, 2, 3 ] }
+    const obj2 = { test: 'I am a obj 2', sub: [ childObj2, 4, 5, 6 ] }
 
     expect(obj1.sub.indexOf(childObj)).toBe(0)
     expect(obj1.sub[0].arr).toBe(childObj.arr)
@@ -64,8 +64,8 @@ describe('deepMerge', () => {
   })
 
   it('should handel non-objects passed in as a param', () => {
-    const obj1 = { test: 'I am a obj 1', sub: [1, 2, 3] }
-    const obj2 = { test: 'I am a obj 2', sub: [4, 5, 6] }
+    const obj1 = { test: 'I am a obj 1', sub: [ 1, 2, 3 ] }
+    const obj2 = { test: 'I am a obj 2', sub: [ 4, 5, 6 ] }
     const obj3 = Obj.deepMerge(obj1, 'I am not an object', obj2)
 
     expect(obj3).not.toEqual(obj1)
@@ -77,7 +77,7 @@ describe('deepMerge', () => {
 
   it('should handel objects with functions', () => {
     const obj1 = { test: 'I am a obj 1', method: () => {} }
-    const obj2 = { test: 'I am a obj 2', sub: [4, 5, 6] }
+    const obj2 = { test: 'I am a obj 2', sub: [ 4, 5, 6 ] }
     const obj3 = Obj.deepMerge(obj1, obj2)
 
     expect('method' in obj3).toEqual(true)

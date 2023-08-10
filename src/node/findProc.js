@@ -17,7 +17,7 @@ const parseOutput = (procName, output) => {
     .trim()
     .split(/\n|\r|\r\n/)
     .reduce((acc, line) => {
-      const [pid, tty, time, ...rest] = line
+      const [ pid, tty, time, ...rest ] = line
         .trim()
         .split(' ')
         .filter(part => part)
@@ -51,13 +51,13 @@ const getPlatformCmd = (procName, platform) => {
   const proc = `"[${procName[0]}]${procName.substring(1)}"`
 
   switch (platform) {
-    case 'linux':
-    case 'darwin':
-      return `ps -A | grep ${proc}`
-    case 'win32':
-      return `tasklist`
-    default:
-      return false
+  case 'linux':
+  case 'darwin':
+    return `ps -A | grep ${proc}`
+  case 'win32':
+    return `tasklist`
+  default:
+    return false
   }
 }
 

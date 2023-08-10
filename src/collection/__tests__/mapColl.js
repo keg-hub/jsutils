@@ -5,7 +5,7 @@ describe('mapColl', () => {
 
   it('should loop over a collection of items', () => {
     let counter = 0
-    const res = Coll.mapColl([1, 2, 3, 4], () => {
+    const res = Coll.mapColl([ 1, 2, 3, 4 ], () => {
       counter++
       return counter
     })

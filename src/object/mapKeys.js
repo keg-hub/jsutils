@@ -14,5 +14,5 @@ import { mapEntries } from './mapEntries'
 export const mapKeys = (obj, keyMapper) => {
   if (!isObj(obj) || !isFunc(keyMapper)) return obj
 
-  return mapEntries(obj, (key, value) => [keyMapper(key), value])
+  return mapEntries(obj, (key, value) => [ keyMapper(key), value ])
 }

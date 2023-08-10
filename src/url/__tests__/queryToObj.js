@@ -22,7 +22,7 @@ describe('queryToObj', () => {
 
   it('should return a valid object given array', () => {
     const obj = Url.queryToObj('?names=daniel,foo,man&id=5')
-    expect(obj.names).toEqual(expect.arrayContaining(['daniel', 'foo', 'man']))
+    expect(obj.names).toEqual(expect.arrayContaining([ 'daniel', 'foo', 'man' ]))
     expect(obj.id).toEqual('5')
 
     const obj2 = Url.queryToObj('?names=daniel,&id=5')
@@ -30,7 +30,7 @@ describe('queryToObj', () => {
     expect(obj2.id).toEqual('5')
 
     const obj3 = Url.queryToObj('?name=daniel&groups=1%2C2%2C3')
-    expect(obj3.groups).toEqual(expect.arrayContaining(['1', '2', '3']))
+    expect(obj3.groups).toEqual(expect.arrayContaining([ '1', '2', '3' ]))
     expect(obj3.name).toEqual('daniel')
   })
 
@@ -56,9 +56,9 @@ describe('queryToObj', () => {
 
   it('should combine duplicate keys into array', () => {
     const obj = Url.queryToObj('?names=daniel&names=foo')
-    expect(obj.names).toEqual(expect.arrayContaining(['daniel', 'foo']))
+    expect(obj.names).toEqual(expect.arrayContaining([ 'daniel', 'foo' ]))
 
     const obj2 = Url.queryToObj('?names=&names=foo')
-    expect(obj2.names).toEqual(expect.arrayContaining(['foo', '']))
+    expect(obj2.names).toEqual(expect.arrayContaining([ 'foo', '' ]))
   })
 })

@@ -2,7 +2,7 @@ const { spaceJoin } = require('../')
 
 const defStr = 'keg-default-class'
 const spacedStr = 'keg-default-class keg-passed-down'
-const strArr = ['keg-default-class', 'keg-passed-down']
+const strArr = [ 'keg-default-class', 'keg-passed-down' ]
 const customStr = 'custom-keg-class'
 
 describe('spaceJoin', () => {

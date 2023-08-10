@@ -31,7 +31,7 @@ describe('limbo', () => {
 
   it('should return promise response for second slot when error is not throw', async () => {
     // eslint-disable-next-line no-unused-vars
-    const [err, data] = await Method.limbo(promiseHelper(true))
+    const [ err, data ] = await Method.limbo(promiseHelper(true))
     expect(data).toEqual(`Promise Valid`)
   })
 
@@ -46,13 +46,13 @@ describe('limbo', () => {
   })
 
   it('should return an object for second slot when non-promise and true are passed as arguments', async () => {
-    const [err, data] = await Method.limbo(undefined, true)
+    const [ err, data ] = await Method.limbo(undefined, true)
     expect(typeof data).toBe(`object`)
   })
 
   it('should return an object in second slot on error and true is passed as 2nd argument', async () => {
     // eslint-disable-next-line no-unused-vars
-    const [err, data] = await Method.limbo(promiseHelper(false), true)
+    const [ err, data ] = await Method.limbo(promiseHelper(false), true)
     expect(typeof data).toBe(`object`)
   })
 })

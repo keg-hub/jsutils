@@ -7,15 +7,15 @@ describe('mapEntries', () => {
   it('should work with objects and return an object', () => {
     const obj = { a: 1, b: 2, c: 3 }
     const expected = { a: 1, b: 4, c: 9 }
-    const result = Obj.mapEntries(obj, (key, val) => [key, val * val])
+    const result = Obj.mapEntries(obj, (key, val) => [ key, val * val ])
     expect(Obj.isObj(result)).toBe(true)
     expect(result).toEqual(expected)
   })
 
   it('should work with arrays and return an array', () => {
-    const obj = [1, 2, 3]
-    const expected = [1, 4, 9]
-    const result = Obj.mapEntries(obj, (key, val) => [key, val * val])
+    const obj = [ 1, 2, 3 ]
+    const expected = [ 1, 4, 9 ]
+    const result = Obj.mapEntries(obj, (key, val) => [ key, val * val ])
     expect(isArr(result)).toBe(true)
     expect(result).toEqual(expected)
   })
@@ -33,7 +33,7 @@ describe('mapEntries', () => {
   })
 
   it('can change keys', () => {
-    const result = Obj.mapEntries({ a: 1 }, (key, value) => ['b', value])
+    const result = Obj.mapEntries({ a: 1 }, (key, value) => [ 'b', value ])
     expect(result.b).toEqual(1)
     expect(result.a).toEqual(undefined)
   })

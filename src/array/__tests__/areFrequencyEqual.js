@@ -1,7 +1,7 @@
 import { areFrequencyEqual } from '../areFrequencyEqual'
 describe('areFrequencyEqual', () => {
   it('should return true if arrays contain the same elements and frequencies', () => {
-    expect(areFrequencyEqual([1, 1, 2, 4, 4, 4], [4, 4, 1, 2, 1, 4])).toEqual(
+    expect(areFrequencyEqual([ 1, 1, 2, 4, 4, 4 ], [ 4, 4, 1, 2, 1, 4 ])).toEqual(
       true
     )
   })
@@ -15,10 +15,10 @@ describe('areFrequencyEqual', () => {
   })
 
   it('should return false if same-length arrays contain different elements', () => {
-    expect(areFrequencyEqual([1, 1, 2], [1, 1, 3])).toEqual(false)
+    expect(areFrequencyEqual([ 1, 1, 2 ], [ 1, 1, 3 ])).toEqual(false)
   })
 
   it('should return true if arrays contain the same elements', () => {
-    expect(areFrequencyEqual([1, 2, 3], [1, 2, 3])).toEqual(true)
+    expect(areFrequencyEqual([ 1, 2, 3 ], [ 1, 2, 3 ])).toEqual(true)
   })
 })

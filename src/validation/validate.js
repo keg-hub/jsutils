@@ -45,7 +45,7 @@ export const validate = (argObj, validators = {}, options = {}) => {
   const validationCaseEntries = Object.entries(argObj)
 
   // validate each argument
-  const validationResults = validationCaseEntries.map(([argName, argValue]) =>
+  const validationResults = validationCaseEntries.map(([ argName, argValue ]) =>
     validateArgument(
       argName,
       argValue,
@@ -62,7 +62,7 @@ export const validate = (argObj, validators = {}, options = {}) => {
     cases: {},
   })
 
-  return [success, cases]
+  return [ success, cases ]
 }
 
 /**
@@ -159,7 +159,7 @@ const validationReducer = (
  */
 const handleFailure = (validation, shouldLog, shouldThrow, prefix) => {
   // prepend the prefix if one is defined
-  const reason = prefix ? [prefix, ...validation.reason] : validation.reason
+  const reason = prefix ? [ prefix, ...validation.reason ] : validation.reason
 
   if (shouldThrow) throw new Error(reason.join())
 

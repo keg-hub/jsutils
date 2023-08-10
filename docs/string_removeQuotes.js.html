@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>method/find.js - JS Utils</title>
+    <title>string/removeQuotes.js - JS Utils</title>
     
     <meta name="description" content="common javascript utils" />
     
@@ -46,7 +46,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">method/find.js</h1>
+    <h1 class="page-title">string/removeQuotes.js</h1>
     
 
     
@@ -56,52 +56,19 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module Function */
-
-// import { exists } from '@ext/exists'
-// import { isObj } from '@object/isObj'
-
-// TODO - Add tests. Method is not included in current export / build due to no tests
+            <pre class="prettyprint source linenums"><code>/** @module String */
 
 /**
- * Helper method to find an item in a list of items
- * Works with Arrays and Objects
- * Item can be an a primitive of a collection ( Object | Array )
- * When item is an Object, a prop can be passed as the third argument to match against the object property
- * @private
- * @param{Object|Array} items - Collection of items to search for a match
- * @param{Object|primitive} item - Item to match against
- * @param{string|number} prop - Property to match against when item is an object
- * @example
- * find([1,2], 1) === 1 // True
- * const data = {id: 2}
- * find([{id: 1},data], data) === data // True - Compares object equality using `===`
- * find([{id: 1},{id: 2}], 2, `id`) === {id: 2} // True - Compares 2 to the id of each in the array
- * find([{id: 1},{id: 2}], {id: 2}, `id`) === {id: 2} // True - Compares the item id to the id of each in the array
- * find({name: 'name'}, {name: 'name'}, `name`) === 'name' // True - Compares the name property and return the matching value
- *
- * find([1,2], 3) === 1 // False, undefined is returned from the find method
- *
- * @returns {*} - Found matching item or undefined
+ * Removes quotes from a string
+ * @function
+ * @param {String} str - string to convert
+ * @return {String} string without quotes
  */
-
-// export const find = (items, item, prop) => {
-//   const hasRef = exists(prop)
-//   const asObj = isObj(item)
-
-//   return Object.entries(items).reduce((found, [ key, value ]) => {
-//     if (found || exists(found)) return found
-
-//     const hasMatch =
-//       asObj &amp;&amp; hasRef
-//         ? value[prop] === item[prop]
-//         : hasRef
-//           ? value[prop] === item
-//           : value === item
-
-//     return hasMatch ? value : found
-//   }, undefined)
-// }
+export const removeQuotes = str =>
+  str
+    .trim()
+    .replace(/^("|')/, '')
+    .replace(/("|')$/, '')
 </code></pre>
         </article>
     </section>

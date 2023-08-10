@@ -15,7 +15,7 @@ describe('deepClone', () => {
   })
 
   it('should create a copy of the passed in array collection', () => {
-    const org = ['foo', 'bar']
+    const org = [ 'foo', 'bar' ]
     const clone = Coll.deepClone(org)
 
     expect(clone === org).toEqual(false)
@@ -27,15 +27,15 @@ describe('deepClone', () => {
   describe('preserving the source types when cloning', () => {
     class Foo {}
     const testCases = [
-      [[], isArr],
-      [{}, isObj],
-      [1, Number.isInteger],
-      [new Foo(), x => x instanceof Foo],
-      [new Date(), x => x instanceof Date],
-      ['hi', x => typeof x === 'string'],
+      [[], isArr ],
+      [{}, isObj ],
+      [ 1, Number.isInteger ],
+      [ new Foo(), x => x instanceof Foo ],
+      [ new Date(), x => x instanceof Date ],
+      [ 'hi', x => typeof x === 'string' ],
     ]
 
-    testCases.map(([source, predicate], idx) => {
+    testCases.map(([ source, predicate ], idx) => {
       it(`should preserve the source type for test case ${idx}`, () => {
         const clone = Coll.deepClone(source)
         expect(predicate(clone)).toBe(true)
@@ -53,7 +53,7 @@ describe('deepClone', () => {
   })
 
   it('should create a deep copy of the passed in array collection', () => {
-    const org = [['foo', 'baz'], ['bar']]
+    const org = [[ 'foo', 'baz' ], ['bar']]
     const clone = Coll.deepClone(org)
 
     expect(clone[0] === org[0]).toEqual(false)
@@ -64,7 +64,7 @@ describe('deepClone', () => {
   })
 
   it('should create a deep copy of the passed in object with arrays with objects', () => {
-    const org = { das: [{ bar: ['foo', 'baz'] }] }
+    const org = { das: [{ bar: [ 'foo', 'baz' ] }] }
     const clone = Coll.deepClone(org)
 
     expect(clone.das === org.das).toEqual(false)
@@ -98,9 +98,9 @@ describe('deepClone', () => {
     const clone = Coll.deepClone(source)
     expect(Object.getPrototypeOf(clone)).toEqual(Object.getPrototypeOf(source))
   }),
-    it('should make a sealed clone if the source is sealed', () => {
-      const source = Object.seal({ a: 1 })
-      const clone = Coll.deepClone(source)
-      expect(Object.isSealed(clone)).toBe(true)
-    })
+  it('should make a sealed clone if the source is sealed', () => {
+    const source = Object.seal({ a: 1 })
+    const clone = Coll.deepClone(source)
+    expect(Object.isSealed(clone)).toBe(true)
+  })
 })

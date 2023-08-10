@@ -17,7 +17,8 @@ export const hasDomAccess = () => {
       window.document &&
       window.document.createElement
     )
-  } catch (error) {
+  }
+  catch (error) {
     return false
   }
 }

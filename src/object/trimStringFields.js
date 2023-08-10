@@ -9,7 +9,7 @@ import { isStr } from '@string/isStr'
  * @return {Object} - object with string fields trimmed
  */
 export const trimStringFields = object =>
-  Object.entries(object).reduce((cleaned, [key, value]) => {
+  Object.entries(object).reduce((cleaned, [ key, value ]) => {
     cleaned[key] = isStr(value) ? value.trim() : value
     return cleaned
   }, object)

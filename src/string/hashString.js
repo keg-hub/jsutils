@@ -17,7 +17,8 @@ import { isNonNegative } from '@number/isNonNegative'
 export const hashString = (str, maxLength) => {
   if (!isStr(str) || str.length == 0) return 0
 
-  str = str.split('').reverse().join('')
+  str = str.split('').reverse()
+    .join('')
 
   let hash = 0
   for (let i = 0; i < str.length; i++) {

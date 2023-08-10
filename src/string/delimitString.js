@@ -16,7 +16,7 @@ import { isUpperCase } from './isUpperCase'
  * @example
  * delimitString('fooBar', '_') === 'foo_Bar'
  */
-export const delimitString = (str, delimiter, delimiters = ['-', '_', ' ']) => {
+export const delimitString = (str, delimiter, delimiters = [ '-', '_', ' ' ]) => {
   if (!isStr(str)) return str
   const isDelimiter = c => delimiters.some(del => del === c)
   let prevChar = '_'

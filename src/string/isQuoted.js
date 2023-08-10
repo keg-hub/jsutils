@@ -2,7 +2,7 @@
 
 import { isStr } from './isStr'
 
-const quoteSymbols = ['"', "'"]
+const quoteSymbols = [ '"', "'" ]
 
 /**
  * Checks if the string contains quoted text

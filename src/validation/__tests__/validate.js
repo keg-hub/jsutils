@@ -73,7 +73,7 @@ describe('validate', () => {
     const y = 1
     const z = 'wow'
 
-    const [isValid, results] = validate(
+    const [ isValid, results ] = validate(
       { x, y, z },
       {
         x: x => x < 0,

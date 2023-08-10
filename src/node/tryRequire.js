@@ -15,7 +15,8 @@ const fs = require('fs')
 const tryRequireSync = filePath => {
   try {
     return fs.existsSync(filePath) ? require(filePath) : null
-  } catch (err) {
+  }
+  catch (err) {
     return null
   }
 }
@@ -37,7 +38,8 @@ const tryRequire = filePath => {
       try {
         const module = require(filePath)
         return resolve(module)
-      } catch (err) {
+      }
+      catch (err) {
         return resolve(null)
       }
     })

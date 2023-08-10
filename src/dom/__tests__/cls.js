@@ -10,9 +10,9 @@ describe('checkCall', () => {
 
   it('should format an array', () => {
     let class2Active = false
-    expect(Dom.cls([`class1`, class2Active && `class2`])).toBe(`class1`)
+    expect(Dom.cls([ `class1`, class2Active && `class2` ])).toBe(`class1`)
     class2Active = true
-    expect(Dom.cls([`class1`, class2Active && `class2`])).toBe(`class1 class2`)
+    expect(Dom.cls([ `class1`, class2Active && `class2` ])).toBe(`class1 class2`)
   })
 
   it('should format a string', () => {
@@ -27,7 +27,7 @@ describe('checkCall', () => {
 
   it('should trim the returned string', () => {
     expect(Dom.cls(` class1  `)).toBe(`class1`)
-    expect(Dom.cls([` class1  `, `   class2  `, `class3  `])).toBe(
+    expect(Dom.cls([ ` class1  `, `   class2  `, `class3  ` ])).toBe(
       `class1 class2 class3`
     )
     expect(Dom.cls({ [`  class1`]: true })).toBe(`class1`)
@@ -43,8 +43,8 @@ describe('checkCall', () => {
     expect(
       Dom.cls(
         [
-          [`class1`, `class2`],
-          [`class3`, { sub: [`class4`] }],
+          [ `class1`, `class2` ],
+          [ `class3`, { sub: [`class4`] }],
         ],
         { class5: true, sub: [`class6`] }
       )
