@@ -14,13 +14,12 @@ const esmNodedir = path.join(outdir, `esm/node`)
 const cjsNodedir = path.join(outdir, `cjs/node`)
 const nodeEntry = path.join(rootDir, `src/node/node.js`)
 
-
 const loopAliases = (content:string, aliases:Record<string, string>) => {
   return Object.entries(aliases).reduce((acc, [key, val]) => {
-    return acc.replace(`from '${key}`, `from '${val}`)
-      .replace(`from "${key}/`, `from "${val}`)
-      .replace(`require('${key}/`, `require('${val}`)
-      .replace(`require("${key}/`, `require("${val}`)
+    return acc.replaceAll(`from '${key}`, `from '${val}`)
+      .replaceAll(`from "${key}/`, `from "${val}`)
+      .replaceAll(`require('${key}/`, `require('${val}`)
+      .replaceAll(`require("${key}/`, `require("${val}`)
   }, content)
 }
 
@@ -28,14 +27,10 @@ const aliasReplace = (aliases:Record<string, string>) => {
   return {
     name: 'example',
     setup(build) {
-      build.onLoad({ filter: /\.js$/ }, async (args) => {
-        let text = await fs.readFile(args.path, 'utf8')
-        
-        const replaced = loopAliases(text, aliases)
-        
-
+      build.onLoad({ filter: /\.*/ }, async (args) => {
+        const text = await fs.readFile(args.path, 'utf8')
         return {
-          contents: replaced,
+          contents: loopAliases(text, aliases),
         }
       })
     }
