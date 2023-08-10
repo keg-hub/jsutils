@@ -1,7 +1,7 @@
 /** @module Node */
 
-const { exists } = require('@ext/exists')
-const { emptyObj } = require('@ext/noOps')
+const { exists } = require('../../build/cjs/exists')
+const { emptyObj } = require('../../build/cjs/noOps')
 
 /**
  * Loop over the passed in ENVs, and add them to the current process

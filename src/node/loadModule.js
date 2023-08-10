@@ -3,11 +3,11 @@
 'use strict'
 
 const path = require('path')
-const { isArr } = require('@array/isArr')
-const { isFunc } = require('@method/isFunc')
-const { isObj } = require('@object/isObj')
-const { isStr } = require('@string/isStr')
-const { logData } = require('@log/log')
+const { isArr } = require('../../build/cjs/isArr')
+const { isFunc } = require('../../build/cjs/isFunc')
+const { isObj } = require('../../build/cjs/isObj')
+const { isStr } = require('../../build/cjs/isStr')
+const { logData } = require('../../build/cjs/log')
 
 /**
  * Gets the relative path from the passed in pathToModule

@@ -23,4 +23,3 @@ export const hasDomAccess = () => {
   }
 }
 
-export { hasDomAccess as isDom }

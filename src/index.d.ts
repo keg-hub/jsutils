@@ -106,11 +106,7 @@ declare module "@keg-hub/jsutils" {
   * <li>Mutated original array now flattened, or a new flattened array based on options</li>
   * </ul>
   */
-  function flatArr<T=any>(arr: any[], opts?: {
-      truthy?: boolean;
-      exists?: boolean;
-      mutate?: boolean;
-  }): T[];
+  function flatArr<T=any>(arr: any[], opts?: {truthy?: boolean, exists?: boolean, mutate?: boolean,}): T[];
 
   /**
   * <p>Maps each element using mapping function <code>mapFn</code>, but returns the result as a flattened array.
@@ -745,12 +741,7 @@ declare module "@keg-hub/jsutils" {
   /**
    * Generates an small id, using the uuid method to ensure randomness
    */
-  function nanoid(base?:string|TNanoidOpts, opts?:TNanoidOpts):string;
-  type TNanoidOpts = {
-    joiner?:string
-    parts?:number
-    prefix?:string
-  };
+  function nanoid(base?:string|TNanoidOpts, opts?:{joiner?:string, parts?:number, prefix?:string}):string;
 
 /**
   * Converts the passed in method into a callback to allow calling the method in place
@@ -1086,7 +1077,7 @@ declare module "@keg-hub/jsutils" {
   * @param {Object|string} error - The Error message or Object to throw
   * @throws
   */
-  function throwError(error:string|Error):void
+  function throwError(error:string|Error):void;
 
   /**
   * <p>Executes and times the function <code>fn</code>.</p>
@@ -1109,7 +1100,7 @@ declare module "@keg-hub/jsutils" {
   * <li>build uuid</li>
   * </ul>
   */
-  function uuid(start?: number): string
+  function uuid(start?: number): string;
 
   /**
   * <p>Waits for check method to return true before calling onFinish
@@ -1133,7 +1124,7 @@ declare module "@keg-hub/jsutils" {
       total?:number
   },
     ...params:any[]
-  ): Promise<any>
+  ): Promise<any>;
 
   /**
   * <p>Loop over the passed in ENVs, and add them to the current process
@@ -1142,9 +1133,7 @@ declare module "@keg-hub/jsutils" {
   * @param options - <p>Configure out the envs are added</p>
   * @param options.force - <p>Force add the env, even if it already exists</p>
   */
-  function addToProcess(addEnvs: any, options: {
-      force: boolean;
-  }): void;
+  function addToProcess(addEnvs: any, options: {force: boolean}): void;
 
   /**
   * <p>Searches for a currently process by name, and returns it if found</p>
@@ -1211,10 +1200,7 @@ declare module "@keg-hub/jsutils" {
   * <li>Loaded module</li>
   * </ul>
   */
-  function requireModule(pathToModule: string, config: {
-      rootDir: string;
-      logErrors: boolean;
-  }): any | ((...params: any[]) => any);
+  function requireModule(pathToModule: string, config: {rootDir: string, logErrors: boolean}): any | ((...params: any[]) => any);
 
   /**
   * <p>Checks if the module is a function and calls it
@@ -1238,10 +1224,7 @@ declare module "@keg-hub/jsutils" {
   * <li>Loaded module object</li>
   * </ul>
   */
-  function loopLoad(pathsToModule: any[], config: {
-      rootDir: string;
-      logErrors: boolean;
-  }, params: any[]): any;
+  function loopLoad(pathsToModule: any[], config: {rootDir: string, logErrors: boolean}, params: any[]): any;
 
   /**
   * <p>Use nodes require method to load a module by file path.
@@ -1266,10 +1249,7 @@ declare module "@keg-hub/jsutils" {
   * <li>Loaded module object</li>
   * </ul>
   */
-  function loadModule(pathsToModule: string[] | string, config?: {
-      rootDir?: string;
-      logErrors?: boolean;
-  }, ...params: (any[] | undefined)[]): any;
+  function loadModule(pathsToModule: string[] | string, config?: {rootDir?: string, logErrors?: boolean}, ...params: (any[] | undefined)[]): any;
 
   /**
   * <p>Tries to synchronously require the path, returning null if unable to.
@@ -1726,11 +1706,7 @@ declare module "@keg-hub/jsutils" {
  * const opts = { strict: true }
  * transformKeys({my_key: `1234`, other_key: `4321`}, {my_key: `myKey`}, opts) === { myKey: `1234` }
  */
-  function transformKeys<T=Record<string, any>>(
-    obj: T,
-    keyMap: Record<string, string>,
-    opts?: Record<'strict', boolean>,
-  ): T;
+  function transformKeys<T=Record<string, any>>(obj: T, keyMap: Record<string, string>, opts?: Record<'strict', boolean>): T;
 
   /**
   * <p>Converts a standard callback method into Promise</p>
