@@ -17,9 +17,10 @@ const nodeEntry = path.join(rootDir, `src/node/node.js`)
 const loopAliases = (content:string, aliases:Record<string, string>) => {
   return Object.entries(aliases).reduce((acc, [key, val]) => {
     return acc.replaceAll(`from '${key}`, `from '${val}`)
-      .replaceAll(`from "${key}/`, `from "${val}`)
-      .replaceAll(`require('${key}/`, `require('${val}`)
-      .replaceAll(`require("${key}/`, `require("${val}`)
+      .replaceAll(`from "${key}`, `from "${val}`)
+      .replaceAll(`require('${key}`, `require('${val}`)
+      .replaceAll(`require("${key}`, `require("${val}`)
+
   }, content)
 }
 
@@ -29,8 +30,9 @@ const aliasReplace = (aliases:Record<string, string>) => {
     setup(build) {
       build.onLoad({ filter: /\.*/ }, async (args) => {
         const text = await fs.readFile(args.path, 'utf8')
+        const replaced = loopAliases(text, aliases)
         return {
-          contents: loopAliases(text, aliases),
+          contents: replaced
         }
       })
     }
