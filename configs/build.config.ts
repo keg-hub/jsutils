@@ -127,17 +127,17 @@ const buildCjs = async (options:any, type:string) => {
     entryPoints: noNodeEntries,
   }, `Index`)
 
-  await buildEsm({
-    outdir: esmNodedir,
-    format: `esm` as const,
-    entryPoints: nodeEntries,
-  }, `Node`)
+  // await buildEsm({
+  //   outdir: esmNodedir,
+  //   format: `esm` as const,
+  //   entryPoints: nodeEntries,
+  // }, `Node`)
 
-  await buildCjs({
-    outdir: cjsNodedir,
-    format: `cjs` as const,
-    entryPoints: nodeEntries,
-  }, `Node`)
+  // await buildCjs({
+  //   outdir: cjsNodedir,
+  //   format: `cjs` as const,
+  //   entryPoints: nodeEntries,
+  // }, `Node`)
   
   await buildIndexes(entries)
 

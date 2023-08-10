@@ -10,15 +10,15 @@
     "./node": "./node.js",
     "./src/node": "./node.js",
     "./src/node/*": "./src/node/*",
+    "./node/*": {
+      "import": "./src/node/*",
+      "require": "./src/node/*",
+      "default": "./src/node/*"
+    },
     "./*": {
       "import": "./build/esm/*.js",
       "require": "./build/cjs/*.js",
       "default": "./build/cjs/*.js"
-    },
-    "./node/*": {
-      "import": "./build/esm/node/*",
-      "require": "./build/cjs/node/*",
-      "default": "./build/cjs/node/*"
     },
     ".": {
       "import": "./build/esm/index.js",
