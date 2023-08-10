@@ -3,10 +3,7 @@ import * as esbuild from 'esbuild'
 import { fileURLToPath } from 'url'
 import { promises as fs } from 'fs'
 import { getEntries } from '../scripts/getEntries'
-import { promisify } from 'util'
-import { exec } from 'child_process'
-const cmdExec = promisify(exec)
-
+import {buildIndexes} from '../scripts/buildIndexes'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.join(dirname, `..`)
@@ -15,12 +12,10 @@ const esmdir = path.join(outdir, `esm`)
 const cjsdir = path.join(outdir, `cjs`)
 const esmNodedir = path.join(outdir, `esm/node`)
 const cjsNodedir = path.join(outdir, `cjs/node`)
-const indexEntry = path.join(rootDir, `src/index.js`)
-const typesFile = path.join(rootDir, `src/index.d.ts`)
 const nodeEntry = path.join(rootDir, `src/node/node.js`)
 
 const opts = {
-  bundle: true,
+  // bundle: true,
   minify: false,
   sourcemap: true,
   treeShaking: true,
@@ -71,7 +66,7 @@ const buildCjs = async (options:any, type:string) => {
     return true
   })
 
-  const noNodeEntries = [...nonNode, indexEntry]
+  const noNodeEntries = [...nonNode]
 
   // Remove the existing output dir
   await fs.rm(outdir, { recursive: true, force: true })
@@ -99,6 +94,8 @@ const buildCjs = async (options:any, type:string) => {
     format: `cjs` as const,
     entryPoints: nodeEntries,
   }, `Node`)
+  
+  await buildIndexes(entries)
 
 })()
 

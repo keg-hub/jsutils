@@ -32,6 +32,7 @@ module.exports = {
       },
     ],
   },
+  modulePathIgnorePatterns: ['<rootDir>/App'],
   coverageDirectory: '<rootDir>/coverage',
   coverageReporters: ['text-summary', 'text'],
   collectCoverageFrom: [

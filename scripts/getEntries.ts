@@ -1,9 +1,11 @@
 import { glob } from 'glob'
 import path from 'node:path'
+import {buildTypes} from './buildTypes'
 import { fileURLToPath } from 'node:url'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const srcDir = path.join(dirname, `../src`)
+const typesDir = path.join(dirname, `../types`)
 
 const GlobJSExts = [
   `js`,
@@ -31,5 +33,14 @@ export const getEntries = async () => {
       `**/node_modules/**/*.{${exts}}`,
     ]
   })
+}
 
+export const getTypeEntries = async () => {
+  await buildTypes()
+  
+  return await glob(`*.d.ts`, {
+    cwd: typesDir,
+    nodir: true,
+    absolute: false,
+  })
 }
