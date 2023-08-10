@@ -1,6 +1,6 @@
 /** @module Number */
 
-import { toStr } from '../string/toStr'
+import { toStr } from '@string/toStr'
 
 /**
  * Gets numbers and floats (.) from a string.

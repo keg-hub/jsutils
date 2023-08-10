@@ -1,11 +1,11 @@
 /** @module Object */
 
-import { isFunc } from '../method/isFunc'
-import { cloneFunc } from '../method/cloneFunc'
-import { isArr } from '../array/isArr'
+import { isFunc } from '@method/isFunc'
+import { cloneFunc } from '@method/cloneFunc'
+import { isArr } from '@array/isArr'
 import { isObj } from './isObj'
-import { deepClone } from '../collection/deepClone'
-import { isColl } from '../collection/isColl'
+import { deepClone } from '@collection/deepClone'
+import { isColl } from '@collection/isColl'
 
 /**
  * Deep merges an array of objects together.

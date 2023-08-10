@@ -1,8 +1,8 @@
 /** @module Function */
 
-import { isStr } from '../string'
-import { isBool } from '../boolean'
-import { isNum } from '../number'
+import { isStr } from '@string/isStr'
+import { isBool } from '@boolean/isBool'
+import { isNum } from '@number/isNum'
 
 /**
  * Checks if param is an orderable primitive

@@ -1,11 +1,11 @@
 /** @module Url */
 
-import { reduceObj } from '../object/reduceObj'
-import { isStr } from '../string/isStr'
-import { isNum } from '../number/isNum'
-import { isBool } from '../boolean/isBool'
-import { isColl } from '../collection/isColl'
-import { isArr } from '../array/isArr'
+import { reduceObj } from '@object/reduceObj'
+import { isStr } from '@string/isStr'
+import { isNum } from '@number/isNum'
+import { isBool } from '@boolean/isBool'
+import { isColl } from '@collection/isColl'
+import { isArr } from '@array/isArr'
 
 /**
  * Converts the input object to url querystring

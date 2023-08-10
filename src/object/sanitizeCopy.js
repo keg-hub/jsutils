@@ -1,6 +1,6 @@
 /** @module Object */
 
-import { sanitize } from '../string/sanitize'
+import { sanitize } from '@string/sanitize'
 
 /**
  * Sanitizes all html strings in an object's properties.

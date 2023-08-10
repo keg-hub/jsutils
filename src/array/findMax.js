@@ -1,7 +1,8 @@
 /** @module Array */
 
-import { identity, compareTo } from '../method'
 import { findExtrema } from './findExtrema'
+import { identity } from '@method/identity'
+import { compareTo } from '@method/compareTo'
 
 /**
  * Returns the maximum element in arr

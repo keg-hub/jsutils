@@ -1,8 +1,8 @@
 /** @module Object */
 
-import { isStr } from '../string/isStr'
-import { isNum } from '../number/isNum'
-import { isArr } from '../array/isArr'
+import { isStr } from '@string/isStr'
+import { isNum } from '@number/isNum'
+import { isArr } from '@array/isArr'
 
 /**
  * Checks if the input is a valid entry - a 2-element array, like what Object.entries produces.

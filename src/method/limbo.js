@@ -1,7 +1,7 @@
 /** @module Function */
 
 import { isFunc } from './isFunc'
-import { emptyObj } from '../ext/noOps'
+import { emptyObj } from '@ext/noOps'
 
 /**
  * Response returned from a limbo promise

@@ -1,7 +1,7 @@
 /** @module Object */
 
-import { isFunc } from '../method/isFunc'
-import { deepClone } from '../collection/deepClone'
+import { isFunc } from '@method/isFunc'
+import { deepClone } from '@collection/deepClone'
 import { isObj } from './isObj'
 
 /**

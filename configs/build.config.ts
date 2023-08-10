@@ -14,6 +14,34 @@ const esmNodedir = path.join(outdir, `esm/node`)
 const cjsNodedir = path.join(outdir, `cjs/node`)
 const nodeEntry = path.join(rootDir, `src/node/node.js`)
 
+
+const loopAliases = (content:string, aliases:Record<string, string>) => {
+  return Object.entries(aliases).reduce((acc, [key, val]) => {
+    return acc.replace(`from '${key}`, `from '${val}`)
+      .replace(`from "${key}/`, `from "${val}`)
+      .replace(`require('${key}/`, `require('${val}`)
+      .replace(`require("${key}/`, `require("${val}`)
+  }, content)
+}
+
+const aliasReplace = (aliases:Record<string, string>) => {
+  return {
+    name: 'example',
+    setup(build) {
+      build.onLoad({ filter: /\.js$/ }, async (args) => {
+        let text = await fs.readFile(args.path, 'utf8')
+        
+        const replaced = loopAliases(text, aliases)
+        
+
+        return {
+          contents: replaced,
+        }
+      })
+    }
+  }
+}
+
 const opts = {
   // bundle: true,
   minify: false,
@@ -24,6 +52,25 @@ const opts = {
   platform: `node` as const,
   logLevel: `silent` as const,
   target: [`node20`],
+  plugins: [
+    aliasReplace({
+      [`@array/`]: `./`,
+      [`@boolean/`]: `./`,
+      [`@collection/`]: `./`,
+      [`@dom/`]: `./`,
+      [`@ext/`]: `./`,
+      [`@log/`]: `./`,
+      [`@method/`]: `./`,
+      [`@node/`]: `./`,
+      [`@number/`]: `./`,
+      [`@object/`]: `./`,
+      [`@promise/`]: `./`,
+      [`@regex/`]: `./`,
+      [`@string/`]: `./`,
+      [`@url/`]: `./`,
+      [`@validation/`]: `./`,
+    }),
+  ],
 }
 
 const buildEsm = async (options:any, type:string) => {

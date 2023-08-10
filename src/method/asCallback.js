@@ -1,7 +1,7 @@
 import { noOp } from './noOp'
 import { isFunc } from './isFunc'
-import { isBool } from '../boolean/isBool'
-import { eitherObj } from '../object/eitherObj'
+import { isBool } from '@boolean/isBool'
+import { eitherObj } from '@object/eitherObj'
 
 /**
  * Converts the passed in method into a callback to allow calling the method in place

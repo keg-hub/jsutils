@@ -1,7 +1,7 @@
 /** @module Extra */
 
-import { softFalsy } from '../boolean/softFalsy'
-import { isFunc } from '../method/isFunc'
+import { softFalsy } from '@boolean/softFalsy'
+import { isFunc } from '@method/isFunc'
 
 /**
  * Determines the correct value to return, by calling the passed in check function.

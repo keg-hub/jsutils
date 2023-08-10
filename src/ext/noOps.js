@@ -1,6 +1,6 @@
 /** @module Extra */
 
-import { deepFreeze } from '../object/deepFreeze'
+import { deepFreeze } from '@object/deepFreeze'
 
 /**
  * Reuseable empty, frozen object

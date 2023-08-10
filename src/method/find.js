@@ -1,7 +1,7 @@
 /** @module Function */
 
-// import { exists } from '../ext'
-// import { isObj } from '../object'
+// import { exists } from '@ext/exists'
+// import { isObj } from '@object/isObj'
 
 // TODO - Add tests. Method is not included in current export / build due to no tests
 

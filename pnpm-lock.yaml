@@ -4907,5 +4907,5 @@ packages:
   'file:':
     resolution: {directory: '', type: directory}
     name: '@keg-hub/jsutils'
-    version: 9.6.1
+    version: 9.7.2
     dev: true

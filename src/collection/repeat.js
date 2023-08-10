@@ -1,8 +1,8 @@
 /** @module Collection */
 
 import { deepClone } from './deepClone'
-import { isFunc } from '../method/isFunc'
-import { isNum } from '../number/isNum'
+import { isFunc } from '@method/isFunc'
+import { isNum } from '@number/isNum'
 
 /**
  * Returns an array composed of element repeated "times" times. If element is a function, it will be called.

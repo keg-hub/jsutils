@@ -1,8 +1,8 @@
 /** @module Collection */
 
-import { exists } from '../ext/exists'
-import { isArr } from '../array/isArr'
-import { isStr } from '../string/isStr'
+import { exists } from '@ext/exists'
+import { isArr } from '@array/isArr'
+import { isStr } from '@string/isStr'
 
 /**
  * Searches an object based on the path param

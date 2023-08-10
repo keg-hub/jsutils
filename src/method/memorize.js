@@ -1,7 +1,7 @@
 /** @module Function */
 
-import { isNum } from '../number/isNum'
-import { hasOwn } from '../object/hasOwn'
+import { isNum } from '@number/isNum'
+import { hasOwn } from '@object/hasOwn'
 import { isFunc } from './isFunc'
 
 /**

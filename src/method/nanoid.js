@@ -1,17 +1,11 @@
 // @ts-nocheck
-import { emptyObj } from '../ext/noOps'
+import { emptyObj } from '@ext/noOps'
 import { uuid } from './uuid'
 import { doIt } from './doIt'
-import { isObj } from '../object/isObj'
-import { isStr } from '../string/isStr'
+import { isObj } from '@object/isObj'
+import { isStr } from '@string/isStr'
 
-export type TNanoidOpts = {
-  joiner?:string
-  parts?:number
-  prefix?:string
-}
-
-const sudoRandomStr = (str:string) => {
+const sudoRandomStr = (str) => {
   const times = Math.floor(str.length / 2)
   // @ts-ignore
   return doIt(times, {}, () => str.charAt(Math.floor(Math.random() * str.length))).join(``)
@@ -25,9 +19,9 @@ const sudoRandom = (radix=36) => {
   return sudoRandomNum().toString(radix)
 }
 
-export const nanoid = (base?:string|TNanoidOpts, opts?:TNanoidOpts) => {
+export const nanoid = (base, opts) => {
   if(!isObj(opts)){
-    if(isObj<TNanoidOpts>(base)){
+    if(isObj(base)){
       opts = base
       base = undefined
     }

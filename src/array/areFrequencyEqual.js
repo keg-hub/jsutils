@@ -1,6 +1,6 @@
 /** @module Array */
 
-import { validate } from '../validation'
+import { validate } from '@validation/validate'
 import { isArr } from './isArr'
 
 /**

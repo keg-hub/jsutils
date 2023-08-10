@@ -1,9 +1,9 @@
 /** @module Array */
 
 import { isArr } from './isArr'
-import { isObj } from '../object/isObj'
-import { noOpObj } from '../ext/noOps'
-import { exists } from '../ext/exists'
+import { isObj } from '@object/isObj'
+import { noOpObj } from '@ext/noOps'
+import { exists } from '@ext/exists'
 
 /**
  * Helper method to flatten and mutate the passed in array based on options

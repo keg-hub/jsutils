@@ -1,7 +1,7 @@
 /** @module Function */
 
-import { validate } from '../validation'
-import { isFunc } from '../method/isFunc'
+import { isFunc } from '@method/isFunc'
+import { validate } from '@validation/validate'
 
 /**
  * Returns a new function that is the complement of predicate function `predicate`

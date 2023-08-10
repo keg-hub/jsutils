@@ -17,7 +17,7 @@ const typesIgnore = [
 
 const buildJSIdx = async (ents?:string[]) => {
   const entries = ents ||await getEntries()
-  
+
   const esmItems:string[] = []
   const cjsItems:string[] = []
   
@@ -34,4 +34,3 @@ const buildJSIdx = async (ents?:string[]) => {
 export const buildIndexes = async (ents?:string[], tys?:string[]) => {
   await buildJSIdx(ents)
 }
-

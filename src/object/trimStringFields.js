@@ -1,6 +1,6 @@
 /** @module Object */
 
-import { isStr } from '../string/isStr'
+import { isStr } from '@string/isStr'
 
 /**
  * Trims objects string fields.
