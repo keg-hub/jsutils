@@ -6,7 +6,7 @@ describe('deepFreeze', () => {
   it('should recursively freeze an object and its children', () => {
     const obj = {
       test: 'I should freeze',
-      sub: [1, 2, 3],
+      sub: [ 1, 2, 3 ],
       data: { test: 'I should freeze' },
     }
     Obj.deepFreeze(obj)

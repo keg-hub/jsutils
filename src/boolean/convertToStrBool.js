@@ -16,5 +16,5 @@ export const convertToStrBool = val =>
   isBool(val)
     ? toStr(val)
     : !val || val === 'false' || val === '0'
-    ? 'false'
-    : 'true'
+        ? 'false'
+        : 'true'

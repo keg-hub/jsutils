@@ -4,7 +4,7 @@ describe('cloneJson', () => {
   beforeEach(() => jest.resetAllMocks())
 
   it('should clone the passed in object, and its children', () => {
-    const obj = { test: 'I am a string', sub: [1, 2, 3] }
+    const obj = { test: 'I am a string', sub: [ 1, 2, 3 ] }
     const clone = Obj.cloneJson(obj)
 
     expect(typeof clone).toEqual('object')

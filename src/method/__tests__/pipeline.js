@@ -15,7 +15,7 @@ describe('pipeline', () => {
     const result = Method.pipeline(
       2,
       square,
-      [subtractBy, 5] // take the square of 2 and subtract 5 from it
+      [ subtractBy, 5 ] // take the square of 2 and subtract 5 from it
     )
     expect(result).toEqual(-1)
   })

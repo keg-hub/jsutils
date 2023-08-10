@@ -38,8 +38,8 @@ export const runSeq = async (asyncFns = [], options = {}) => {
     const result = isFunc(fn)
       ? await fn(results.length, cloneResults ? deepClone(results) : results)
       : returnOriginal
-      ? fn
-      : undefined
+        ? fn
+        : undefined
     results.push(result)
   }
 

@@ -22,8 +22,8 @@ const flatten = (arr, result, opts) => {
     isArr(value)
       ? flatten(value, result, opts)
       : (opts.exists && !exists(value)) || (opts.truthy && !value)
-      ? result
-      : result.push(value)
+          ? result
+          : result.push(value)
   }
 
   if (!opts.mutate) return result

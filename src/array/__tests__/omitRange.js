@@ -12,17 +12,17 @@ describe('omitRange', () => {
   })
 
   it('should return a new array with the range omitted', () => {
-    const array = Object.freeze([1, 2, 3, 4, 5])
+    const array = Object.freeze([ 1, 2, 3, 4, 5 ])
     const newArray = Arr.omitRange(array, 1, 2)
-    expect(array).toEqual([1, 2, 3, 4, 5])
+    expect(array).toEqual([ 1, 2, 3, 4, 5 ])
     expect(newArray).not.toBe(array)
-    expect(newArray).toEqual([1, 4, 5])
+    expect(newArray).toEqual([ 1, 4, 5 ])
   })
 
   it('should work with a count exceeding the length of the array', () => {
-    const array = Object.freeze([1, 2, 3, 4, 5])
+    const array = Object.freeze([ 1, 2, 3, 4, 5 ])
     const newArray = Arr.omitRange(array, 0, 9)
-    expect(array).toEqual([1, 2, 3, 4, 5])
+    expect(array).toEqual([ 1, 2, 3, 4, 5 ])
     expect(newArray).toEqual([])
   })
 
@@ -35,13 +35,13 @@ describe('omitRange', () => {
 
   it('should console error with invalid range input', () => {
     const cases = [
-      [['x'], -1, 1],
-      [['x'], 1, -1],
-      [['x'], null, 1],
-      [['x'], 1, null],
+      [['x'], -1, 1 ],
+      [['x'], 1, -1 ],
+      [['x'], null, 1 ],
+      [['x'], 1, null ],
     ]
 
-    cases.forEach(([arr, start, count]) => {
+    cases.forEach(([ arr, start, count ]) => {
       console.error = jest.fn()
       const result = Arr.omitRange(arr, start, count)
       expect(result).toEqual(['x'])

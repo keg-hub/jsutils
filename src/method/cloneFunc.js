@@ -20,8 +20,8 @@ export const cloneFunc = func => {
           return new func(...args)
         })()
       : get(func.prototype, 'constructor.name')
-      ? new func(...args)
-      : func.apply(func, args)
+        ? new func(...args)
+        : func.apply(func, args)
   }
 
   for (let key in func) func.hasOwnProperty(key) && (funcClone[key] = func[key])

@@ -17,5 +17,5 @@ export const mapColl = (coll, cb) =>
   isFunc(cb) && isColl(coll)
     ? Object.keys(coll).map(key => cb(key, coll[key], coll))
     : isArr(coll)
-    ? []
-    : {}
+      ? []
+      : {}
