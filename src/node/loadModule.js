@@ -7,7 +7,7 @@ const { isArr } = require('../../build/cjs/isArr')
 const { isFunc } = require('../../build/cjs/isFunc')
 const { isObj } = require('../../build/cjs/isObj')
 const { isStr } = require('../../build/cjs/isStr')
-const { logData } = require('../../build/cjs/log')
+const { logData } = require('../../build/cjs/logData')
 
 /**
  * Gets the relative path from the passed in pathToModule
