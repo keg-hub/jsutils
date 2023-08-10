@@ -18,9 +18,9 @@ import { isArr } from '@array/isArr'
 export const reduceColl = (coll, cb, reduce) =>
   isFunc(cb) && isColl(coll)
     ? Object.keys(coll).reduce(
-      (data, key) => cb(key, coll[key], coll, data),
-      reduce
-    )
+        (data, key) => cb(key, coll[key], coll, data),
+        reduce
+      )
     : isArr(coll)
-      ? []
-      : {}
+    ? []
+    : {}

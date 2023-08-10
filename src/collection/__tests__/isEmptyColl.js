@@ -12,7 +12,7 @@ describe('isEmptyColl', () => {
   })
 
   it('should handle arrays, and not throw an error', () => {
-    const notEmpty = [ 1, 2, 3 ]
+    const notEmpty = [1, 2, 3]
     const empty = []
 
     expect(Coll.isEmptyColl(notEmpty)).toBe(false)

@@ -16,7 +16,7 @@ describe('stackTracePaths', () => {
   })
 
   it('should allow overwriting the default filters with an array', () => {
-    const paths = stackTracePaths([ `stackTracePaths.js`, `node:`, `/jest` ])
+    const paths = stackTracePaths([`stackTracePaths.js`, `node:`, `/jest`])
     expect(paths.length).toBe(0)
   })
 

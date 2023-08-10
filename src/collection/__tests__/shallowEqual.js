@@ -21,7 +21,7 @@ describe('shallowEqual', () => {
 
   it('should return true when the objects have the same keys but are not the same', () => {
     const col1 = { 0: 'foo', 1: 'bar' }
-    const col2 = [ 'foo', 'bar' ]
+    const col2 = ['foo', 'bar']
 
     expect(col1 === col2).toEqual(false)
     expect(Coll.shallowEqual(col1, col2)).toEqual(true)

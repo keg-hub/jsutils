@@ -13,10 +13,10 @@ const getOS = () => {
   return system === `darwin`
     ? `mac`
     : system === `win32` || system === `win64`
-      ? `win`
-      : system === `linux`
-        ? `lin`
-        : false
+    ? `win`
+    : system === `linux`
+    ? `lin`
+    : false
 }
 
 module.exports = {

@@ -7,7 +7,7 @@ describe('timedRun', () => {
   afterAll(() => (console.error = oldConsole))
 
   it('should handle nullish input', async () => {
-    const [ result, duration ] = await timedRun(null)
+    const [result, duration] = await timedRun(null)
     expect(result).toBeUndefined()
     expect(duration).toEqual(-1)
   })
@@ -18,7 +18,7 @@ describe('timedRun', () => {
 
     const fn = arg => wait(waitTime).then(_ => arg)
 
-    const [ result, duration ] = await timedRun(fn, fnArg)
+    const [result, duration] = await timedRun(fn, fnArg)
     expect(result).toEqual(fnArg)
     expect(duration).toBeGreaterThanOrEqual(waitTime)
   })

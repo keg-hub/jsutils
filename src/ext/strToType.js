@@ -25,15 +25,14 @@ export const strToType = val => {
   return !val || !isStr(val)
     ? val
     : isStrBool(val)
-      ? toBool(val)
-      : isNum(val)
-        ? toNum(val)
-        : (() => {
-            try {
-              return JSON.parse(val)
-            }
-            catch (e) {
-              return val
-            }
-          })()
+    ? toBool(val)
+    : isNum(val)
+    ? toNum(val)
+    : (() => {
+        try {
+          return JSON.parse(val)
+        } catch (e) {
+          return val
+        }
+      })()
 }

@@ -24,9 +24,9 @@ export const isEmpty = val =>
   isObj(val)
     ? Object.keys(val).length === 0
     : isArr(val)
-      ? val.length === 0
-      : isStr(val)
-        ? val.trim().length === 0
-        : isNum(val)
-          ? val < 1
-          : false
+    ? val.length === 0
+    : isStr(val)
+    ? val.trim().length === 0
+    : isNum(val)
+    ? val < 1
+    : false

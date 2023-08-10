@@ -32,8 +32,8 @@ export const limbo = (promise, asObject = false) => {
         asObject ? emptyObj : undefined,
       ]
     : promise
-      .then(data => [ null, data ])
-      .catch(err => [ err, asObject ? emptyObj : undefined ])
+        .then(data => [null, data])
+        .catch(err => [err, asObject ? emptyObj : undefined])
 }
 
 /**

@@ -39,11 +39,10 @@ const requireModule = (pathToModule, config) => {
     // Check if a rootDir exists
     return rootDir
       ? // If rootDir exists, use it to load the module
-      require(path.join(rootDir, pathToModule))
+        require(path.join(rootDir, pathToModule))
       : // If no rootDir, try to load the module without it
-      require(getRelativePath(pathToModule))
-  }
-  catch (err) {
+        require(getRelativePath(pathToModule))
+  } catch (err) {
     // Show errors if set to true
     logErrors && logData(err.message, `error`)
 
@@ -64,11 +63,11 @@ const loadByType = (foundModule, params) => {
   // Check the type of the foundModule
   return isFunc(foundModule)
     ? // If it's a function call it with params
-    foundModule(...params)
+      foundModule(...params)
     : // If it's an object just return it
     isObj(foundModule) || isArr(foundModule)
-      ? foundModule
-      : // If it's not a function or object, return undefined
+    ? foundModule
+    : // If it's not a function or object, return undefined
       undefined
 }
 
@@ -91,8 +90,7 @@ const loopLoad = (pathsToModule, config, params) => {
     if (!loadedModule) throw new Error(`No Module!`)
 
     return loadedModule
-  }
-  catch (err) {
+  } catch (err) {
     if (!isArr(pathsToModule) || !pathsToModule.length) return undefined
 
     return loopLoad(pathsToModule, config, params)
@@ -128,17 +126,17 @@ const loadModule = (pathsToModule, config = {}, ...params) => {
     ? // If it's a string, convert to an array
       [pathsToModule]
     : // Otherwise check if it's and array
-    isArr(pathsToModule) && pathsToModule
+      isArr(pathsToModule) && pathsToModule
 
   // Check if there are paths to load
   return pathsToModule
     ? // Call loopLoad to load the module
-    loopLoad(pathsToModule, config, params)
+      loopLoad(pathsToModule, config, params)
     : // If not paths, log an error
-    logData(
-      `loadModule requires an array or string as the first argument.`,
-      `error`
-    )
+      logData(
+        `loadModule requires an array or string as the first argument.`,
+        `error`
+      )
 }
 
 module.exports = {

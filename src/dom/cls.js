@@ -33,9 +33,9 @@ export const cls = (...classGroup) => {
       return Array.isArray(classes)
         ? cls(...classes)
         : typeof classes !== `object`
-          ? formatCls([classes])
-          : formatCls(
-            Object.entries(classes).map(([ item, val ]) => {
+        ? formatCls([classes])
+        : formatCls(
+            Object.entries(classes).map(([item, val]) => {
               return typeof val === 'boolean'
                 ? val && formatCls([item])
                 : cls(val)

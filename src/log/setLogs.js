@@ -3,7 +3,7 @@
 export let SHOW_LOGS
 export let METH_DEF = 'dir'
 export let PREFIX = 'type'
-export const LOG_TYPES = [ 'error', 'info', 'log', 'dir', 'warn' ]
+export const LOG_TYPES = ['error', 'info', 'log', 'dir', 'warn']
 export const isTest = process.env.NODE_ENV === 'test'
 
 /**
@@ -61,6 +61,5 @@ export const logFun = (...args) => {
     ? console[type](...args)
     : console[METH_DEF](...args, type)
 }
-
 
 export const showLogs = () => SHOW_LOGS

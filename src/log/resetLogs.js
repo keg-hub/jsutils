@@ -2,7 +2,4 @@
 
 import { logsReset } from './setLogs'
 
-
-export {
-  logsReset as resetLogs
-}
+export { logsReset as resetLogs }

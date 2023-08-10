@@ -2,6 +2,4 @@
 
 import { showLogs } from './setLogs'
 
-export {
-  showLogs as getShowLogs
-}
+export { showLogs as getShowLogs }

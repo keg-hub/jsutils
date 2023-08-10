@@ -8,19 +8,19 @@ describe('match', () => {
     const expectedResult = 55
 
     const matchArg = 'wow'
-    const result = Method.match(matchArg, [ 'whoa', 1 ], [ 'wow', expectedResult ])
+    const result = Method.match(matchArg, ['whoa', 1], ['wow', expectedResult])
 
     expect(result).toEqual(expectedResult)
   })
 
   it('should work with predicate functions as the matching value', () => {
     const expectedResult = 22
-    const result = Method.match('fooby', [ isStr, expectedResult ], [ isArr, 55 ])
+    const result = Method.match('fooby', [isStr, expectedResult], [isArr, 55])
     expect(result).toEqual(expectedResult)
   })
 
   it('should default to null if no matches were valid and no fallback was specified', () => {
-    const result = Method.match('fooby', [ isArr, 12 ], [ 'barbaz', 55 ])
+    const result = Method.match('fooby', [isArr, 12], ['barbaz', 55])
     expect(result).toBeNull()
   })
 
@@ -37,9 +37,9 @@ describe('match', () => {
     const expectedResult = 22
     const result = Method.match(
       1,
-      [ isStr, 33 ],
-      [ isArr, 55 ],
-      [ Method.match.default, expectedResult ]
+      [isStr, 33],
+      [isArr, 55],
+      [Method.match.default, expectedResult]
     )
     expect(result).toEqual(expectedResult)
   })

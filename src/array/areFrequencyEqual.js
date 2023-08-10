@@ -29,7 +29,7 @@ export const buildElementCountMap = arr => {
 export const areCountMapsEqual = (mapA, mapB) => {
   if (mapA.size !== mapB.size) return false
 
-  for (let [ key, count ] of mapA) {
+  for (let [key, count] of mapA) {
     const otherCount = mapB.get(key)
     if (otherCount !== count) return false
   }

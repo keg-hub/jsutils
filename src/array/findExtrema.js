@@ -37,7 +37,7 @@ export const findExtrema = (arr, comparator) => {
 
   return arr.length
     ? arr.reduce((extremaSoFar, next) =>
-      comparator(extremaSoFar, next) > 0 ? extremaSoFar : next
-    )
+        comparator(extremaSoFar, next) > 0 ? extremaSoFar : next
+      )
     : null
 }

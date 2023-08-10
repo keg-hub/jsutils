@@ -26,8 +26,7 @@ export const nanoid = (base, opts) => {
     if (isObj(base)) {
       opts = base
       base = undefined
-    }
-    else opts = emptyObj
+    } else opts = emptyObj
   }
 
   const { parts = 2, prefix = ``, joiner = `.` } = opts

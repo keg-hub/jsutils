@@ -12,8 +12,7 @@ let inContainer
 const tryCatch = cb => {
   try {
     return Boolean(cb())
-  }
-  catch (_) {
+  } catch (_) {
     return false
   }
 }
