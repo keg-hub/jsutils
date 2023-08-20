@@ -2,13 +2,13 @@ lockfileVersion: '6.0'
 
 patchedDependencies:
   '@daybrush/jsdoc@0.4.7':
-    hash: ku5ihcn34ho62bhegukykhirtq
+    hash: y2wlki2vtyx6dr66z7f3a5acpa
     path: patches/@daybrush__jsdoc@0.4.7.patch
 
 devDependencies:
   '@daybrush/jsdoc':
     specifier: 0.4.7
-    version: 0.4.7(patch_hash=ku5ihcn34ho62bhegukykhirtq)
+    version: 0.4.7(patch_hash=y2wlki2vtyx6dr66z7f3a5acpa)
   '@jgoz/esbuild-plugin-typecheck':
     specifier: 3.0.2
     version: 3.0.2(esbuild@0.18.17)(typescript@5.1.6)
@@ -429,7 +429,7 @@ packages:
       minimist: 1.2.8
     dev: true
 
-  /@daybrush/jsdoc@0.4.7(patch_hash=ku5ihcn34ho62bhegukykhirtq):
+  /@daybrush/jsdoc@0.4.7(patch_hash=y2wlki2vtyx6dr66z7f3a5acpa):
     resolution: {integrity: sha512-iR8P5Hdvcg4TvwRvS3XKlxF+4FlF5DSP7HnZoj4+01QEaFRID4HbBAEKu4t5CvGm6h9wypE4R+aVxfoin4IW1Q==}
     engines: {node: '>=4.2.0'}
     hasBin: true

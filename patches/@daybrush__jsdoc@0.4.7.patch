@@ -1,12 +1,13 @@
 diff --git a/lib/jsdoc/src/parser.js b/lib/jsdoc/src/parser.js
-index b776103db2547a1ee08a67505bfea7bb9e87fa24..d5fb8bd159bae7a2bf7a1d24d8753260d2e5762d 100644
+index b776103db2547a1ee08a67505bfea7bb9e87fa24..6cdf3c317ede561b696c9ca09c504c88615d509c 100644
 --- a/lib/jsdoc/src/parser.js
 +++ b/lib/jsdoc/src/parser.js
-@@ -219,7 +219,9 @@ Parser.prototype.parseExtra = function(filename, info) {
+@@ -219,7 +219,10 @@ Parser.prototype.parseExtra = function(filename, info) {
      var name = info.name.replace('exports.', '');
  
      this._extras[filename] = this._extras[filename] || {};
--    const extrasArr = this._extras[filename][name] || [];
+-    this._extras[filename][name] = this._extras[filename][name] || [];
++    const extrasArr = this._extras[filename][name] || [];
 +    this._extras[filename][name] = extrasArr && !Array.isArray(extrasArr)
 +        ? [extrasArr]
 +        : extrasArr
