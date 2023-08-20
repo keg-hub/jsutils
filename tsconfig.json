@@ -4,7 +4,7 @@
   },
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./build",
+    "outDir": "./build/esm",
     "target": "esnext",
     "module": "esnext",
     "noEmit": false,
@@ -21,6 +21,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noUnusedParameters": true,
+    "emitDeclarationOnly": true,
     "strictFunctionTypes": true,
     "moduleResolution": "nodenext",
     "noFallthroughCasesInSwitch": true,

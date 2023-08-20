@@ -3,7 +3,6 @@
 import { isArr } from './isArr'
 import { isObj } from '@object/isObj'
 import { noOpObj } from '@ext/noOps'
-import { exists } from '@ext/exists'
 
 /**
  * Helper method to flatten and mutate the passed in array based on options
@@ -20,6 +19,9 @@ const flatten = <T = any>(
   result: T[],
   opts?: { truthy?: boolean; exists?: boolean; mutate?: boolean }
 ) => {
+  const exists = (value: any) =>
+    value === value && value !== undefined && value !== null
+
   for (let i = 0; i < arr.length; i++) {
     const value = arr[i]
 

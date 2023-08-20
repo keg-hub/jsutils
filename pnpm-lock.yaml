@@ -61,9 +61,6 @@ devDependencies:
   prettier:
     specifier: 2.7.1
     version: 2.7.1
-  rimraf:
-    specifier: 3.0.2
-    version: 3.0.2
   typescript:
     specifier: 5.1.6
     version: 5.1.6
