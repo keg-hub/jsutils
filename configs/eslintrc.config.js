@@ -5,7 +5,6 @@ module.exports = {
     tsconfigRootDir: require('path').join(__dirname, '../'),
   },
   root: true,
-  ignorePatterns: [ 'docs', 'build', 'scripts', 'examples', 'node_modules' ],
   globals: {
     jest: true,
     __DEV__: true,
@@ -28,8 +27,6 @@ module.exports = {
   rules: {
     /* General */
     'no-console': [ 'warn', { allow: [ 'warn', 'error' ] }],
-    'brace-style': [ 'error', 'stroustrup' ],
-    indent: [ 'error', 2, { offsetTernaryExpressions: true }],
     quotes: [
       'error',
       'single',
@@ -48,15 +45,6 @@ module.exports = {
       },
     ],
     'newline-per-chained-call': 2,
-    'array-bracket-spacing': [
-      'error',
-      'always',
-      {
-        arraysInArrays: false,
-        singleValue: false,
-        objectsInArrays: false,
-      },
-    ],
     'space-in-parens': [ 'error', 'never' ],
     'object-curly-spacing': [ 'error', 'always' ],
     'func-call-spacing': [ 'error', 'never' ],
@@ -75,6 +63,17 @@ module.exports = {
         varsIgnorePattern: '_|err',
       },
     ],
+    semi: [ `error`, `never` ],
+    indent: [ 'error', 2, { offsetTernaryExpressions: true }],
+    'array-bracket-spacing': [
+      'error',
+      'always',
+      {
+        arraysInArrays: false,
+        singleValue: false,
+        objectsInArrays: false,
+      },
+    ],
     /* Jest */
     'jest/no-disabled-tests': 'error',
     'jest/no-focused-tests': 'error',
@@ -85,5 +84,6 @@ module.exports = {
     'jest/no-mocks-import': 0,
     'jest/no-export': 0,
     'jest/valid-title': 0,
+    'brace-style': [ 'error', 'stroustrup', { 'allowSingleLine': true }]
   },
 }

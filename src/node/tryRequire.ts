@@ -15,7 +15,8 @@ import fs from 'fs'
 export const tryRequireSync = <T = any>(filePath: string): T => {
   try {
     return fs.existsSync(filePath) ? require(filePath) : null
-  } catch (err) {
+  }
+  catch (err) {
     return null
   }
 }
@@ -37,7 +38,8 @@ export const tryRequire = <T = any>(filePath: string): Promise<T> => {
       try {
         const module = require(filePath)
         return resolve(module)
-      } catch (err) {
+      }
+      catch (err) {
         return resolve(null)
       }
     })

@@ -12,7 +12,8 @@ let inContainer: boolean = undefined
 const tryCatch = (cb: () => any) => {
   try {
     return Boolean(cb())
-  } catch (_) {
+  }
+  catch (_) {
     return false
   }
 }
