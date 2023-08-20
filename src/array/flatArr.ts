@@ -1,0 +1,64 @@
+/** @module Array */
+
+import { isArr } from './isArr'
+import { isObj } from '@object/isObj'
+import { noOpObj } from '@ext/noOps'
+
+/**
+ * Helper method to flatten and mutate the passed in array based on options
+ * @function
+ * @private
+ * @param {Array|*} arr - Array to be flattened
+ * @param {Array} result - Flattened array values
+ * @param {Array} opts - Options to modify how the array is flattened
+ *
+ * @return {Array} - Mutated arr or result, but flattened based on options
+ */
+const flatten = <T = any>(
+  arr: any[],
+  result: T[],
+  opts?: { truthy?: boolean; exists?: boolean; mutate?: boolean }
+) => {
+  const exists = (value: any) =>
+    value === value && value !== undefined && value !== null
+
+  for (let i = 0; i < arr.length; i++) {
+    const value = arr[i]
+
+    isArr(value)
+      ? flatten(value, result, opts)
+      : (opts.exists && !exists(value)) || (opts.truthy && !value)
+      ? result
+      : result.push(value)
+  }
+
+  if (!opts.mutate) return result
+
+  Object.assign(arr, result).splice(result.length)
+
+  return arr
+}
+
+/**
+ * Flattens an array to a single level
+ * @function
+ * @param {Array|*} arr - Array to be flattened
+ * @param {Object} [opts={}] - Options to modify how the array is flattened
+ * @param {Boolean} [opts.truthy] - Only include truthy values when flattening
+ * @param {Boolean} [opts.exists] - Only include values that exist when flattening
+ * @param {Boolean} [opts.mutate] - Mutates the original array
+ *
+ * @example
+ * const arr = flatArr([[ 'flat', '' ], [ 'array' ]]) // returns ['flat', '', 'array']
+ * const arrTruthy = flatArr([ 0, 2, [ false ] ], { truthy: true }) // returns [ 2 ]
+ * const arrExist = flatArr([ 0, 2, [ false ] ], { exists: true }) // returns [ 0, 2, false ]
+ * const mutateArr = [ [1], [2] ]
+ * flatArr(mutateArr, { mutate: true }) === mutateArr
+ * // Evaluates to true, but mutateArr value is [ 1, 2 ]
+ *
+ * @return {Array} - Mutated original array now flattened, or a new flattened array based on options
+ */
+export const flatArr = <T = any>(
+  arr: any[],
+  opts?: { truthy?: boolean; exists?: boolean; mutate?: boolean }
+): T[] => flatten(arr, [], isObj(opts) ? opts : noOpObj)

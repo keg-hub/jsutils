@@ -1,0 +1,23 @@
+/** @module Number */
+
+import { equalsNaN } from './equalsNaN'
+import { isNum } from './isNum'
+import { getNums } from './getNums'
+
+/**
+ * Converts passed in value to an integer.
+ * @example
+ * toInt('1')
+ * // Returns 1
+ * @example
+ * toInt(NaN)
+ * // Returns 0
+ * @function
+ * @param {*} val - value to convert
+ * @return {Number} value converted to a integer
+ */
+export const toInt = (val: any): number =>
+  (val &&
+    !equalsNaN(val) &&
+    parseInt((isNum(val) && `${val}`) || getNums(val))) ||
+  0

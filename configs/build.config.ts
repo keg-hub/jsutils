@@ -1,9 +1,13 @@
-import path from 'path'
+import path from 'node:path'
 import * as esbuild from 'esbuild'
-import { fileURLToPath } from 'url'
-import { promises as fs } from 'fs'
+import tsConfig from '../tsconfig.json'
+import { fileURLToPath } from 'node:url'
+import { promises as fs } from 'node:fs'
 import { getEntries } from '../scripts/getEntries'
-import {buildIndexes} from '../scripts/buildIndexes'
+import { aliasReplace } from '../scripts/alias.plugin'
+import { buildIndexes } from '../scripts/buildIndexes'
+
+const { paths } = tsConfig.compilerOptions
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.join(dirname, `..`)
@@ -14,133 +18,69 @@ const esmNodedir = path.join(outdir, `esm/node`)
 const cjsNodedir = path.join(outdir, `cjs/node`)
 const nodeEntry = path.join(rootDir, `src/node/node.js`)
 
-const loopAliases = (content:string, aliases:Record<string, string>) => {
-  return Object.entries(aliases).reduce((acc, [key, val]) => {
-    return acc.replaceAll(`from '${key}`, `from '${val}`)
-      .replaceAll(`from "${key}`, `from "${val}`)
-      .replaceAll(`require('${key}`, `require('${val}`)
-      .replaceAll(`require("${key}`, `require("${val}`)
-
-  }, content)
-}
-
-const aliasReplace = (aliases:Record<string, string>) => {
-  return {
-    name: 'example',
-    setup(build) {
-      build.onLoad({ filter: /\.*/ }, async (args) => {
-        const text = await fs.readFile(args.path, 'utf8')
-        const replaced = loopAliases(text, aliases)
-        return {
-          contents: replaced
-        }
-      })
-    }
-  }
-}
+const aliases = Object.entries(paths).reduce((acc, [key, valArr]) => {
+  acc[key] = `.`
+  return acc
+}, {} as Record<string, string>)
 
 const opts = {
-  // bundle: true,
+  outdir,
   minify: false,
   sourcemap: true,
-  treeShaking: true,
-  entryNames: `[name]`,
-  assetNames: `[name]`,
-  platform: `node` as const,
-  logLevel: `silent` as const,
+  platform: `node`,
   target: [`node20`],
-  plugins: [
-    aliasReplace({
-      [`@array/`]: `./`,
-      [`@boolean/`]: `./`,
-      [`@collection/`]: `./`,
-      [`@dom/`]: `./`,
-      [`@ext/`]: `./`,
-      [`@log/`]: `./`,
-      [`@method/`]: `./`,
-      [`@node/`]: `./`,
-      [`@number/`]: `./`,
-      [`@object/`]: `./`,
-      [`@promise/`]: `./`,
-      [`@regex/`]: `./`,
-      [`@string/`]: `./`,
-      [`@url/`]: `./`,
-      [`@validation/`]: `./`,
-    }),
-  ],
+  entryNames: `[name]`,
+  tsconfig: path.join(rootDir, `tsconfig.json`),
+  plugins: [],
+  entryPoints: [],
 }
 
-const buildEsm = async (options:any, type:string) => {
-  // Build the files with esbuild
-  await esbuild.build({...opts, ...options})
-  .catch((cause) => {
-    console.error(cause)
-    process.exit(1)
-  })
-  .then(result => result?.errors?.length
-    ? console.error(result?.errors)
-    : console.log(`${type} ESM build completed`)
-  )
+const esBuild = async (options: any) => {
+  await esbuild
+    .build({
+      ...opts,
+      ...options,
+      entryPoints: [...opts.entryPoints, ...(options?.entryPoints || [])],
+      plugins: [...opts.plugins, ...(options?.plugins || [])],
+    })
+    .catch(cause => {
+      console.error(cause)
+      process.exit(1)
+    })
 }
-
-
-const buildCjs = async (options:any, type:string) => {
-  // Build the files with esbuild
-  await esbuild.build({...opts, ...options})
-  .catch((cause) => {
-    console.error(cause)
-    process.exit(1)
-  })
-  .then(result => result?.errors?.length
-    ? console.error(result?.errors)
-    : console.log(`${type} CJS build completed`)
-  )
-}
-
 
 ;(async () => {
-  const entries = await getEntries()
-  const nodeEntries = [nodeEntry]
-  const nonNode = entries.filter((item) => {
-    if(item.includes(`/node`)){
-      nodeEntries.push(item)
-      return false
-    }
-
-    return true
-  })
-
-  const noNodeEntries = [...nonNode]
-
   // Remove the existing output dir
   await fs.rm(outdir, { recursive: true, force: true })
 
-  await buildEsm({
-    outdir: esmdir,
-    format: `esm` as const,
-    entryPoints: noNodeEntries,
-  }, `Index`)
+  const entries = await getEntries()
 
-  await buildCjs({
+  await esBuild({
     outdir: cjsdir,
+    entryPoints: entries,
     format: `cjs` as const,
-    entryPoints: noNodeEntries,
-  }, `Index`)
+    plugins: [aliasReplace(aliases)],
+  })
+  await esBuild({
+    outdir: esmdir,
+    entryPoints: entries,
+    format: `esm` as const,
+    plugins: [aliasReplace(aliases)],
+  })
 
-  // await buildEsm({
-  //   outdir: esmNodedir,
-  //   format: `esm` as const,
-  //   entryPoints: nodeEntries,
-  // }, `Node`)
+  await esBuild({
+    bundle: true,
+    outdir: esmNodedir,
+    format: `esm` as const,
+    entryPoints: [nodeEntry],
+  })
 
-  // await buildCjs({
-  //   outdir: cjsNodedir,
-  //   format: `cjs` as const,
-  //   entryPoints: nodeEntries,
-  // }, `Node`)
-  
+  await esBuild({
+    bundle: true,
+    outdir: cjsNodedir,
+    format: `cjs` as const,
+    entryPoints: [nodeEntry],
+  })
+
   await buildIndexes(entries)
-
 })()
-
-

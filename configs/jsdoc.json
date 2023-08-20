@@ -3,6 +3,7 @@
     "allowUnknownTags": true
   },
   "source": {
+    "includePattern": ".+\\.(j|t)s(doc|x)?$",
     "include": [
       "src/",
       "README.md"

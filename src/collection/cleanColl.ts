@@ -1,0 +1,32 @@
+/** @module Collection */
+
+import { isObj } from '@object/isObj'
+import { isColl } from './isColl'
+
+/**
+ * Cleans a collection by creating a new collection
+ * With the null and undefined values removed
+ * @function
+ * @param {Object|Array} coll - Collection to remove empty values from
+ * @param {Boolean} [recursive=true] - Should recursively clean child values
+ *
+ * @returns {Object|Array} - Cleaned collection
+ */
+export const cleanColl = <T extends Record<any, any> | any[] = any>(
+  coll: T,
+  recursive: boolean = true
+): any | any[] => {
+  return isColl(coll)
+    ? Object.keys(coll).reduce((cleaned, key) => {
+        const value = coll[key]
+        if (value === null || value === undefined) return cleaned
+
+        cleaned[key] = recursive && isColl(value) ? cleanColl(value) : value
+
+        return cleaned
+      }, (isObj(coll) && {}) || [])
+    : (() => {
+        console.error(`cleanColl requires a collection as the first argument`)
+        return coll
+      })()
+}

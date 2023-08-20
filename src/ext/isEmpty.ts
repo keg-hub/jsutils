@@ -1,0 +1,32 @@
+/** @module Extra */
+
+import { isObj } from '@object/isObj'
+import { isArr } from '@array/isArr'
+import { isStr } from '@string/isStr'
+import { isNum } from '@number/isNum'
+
+/**
+ * Checks if the value is empty.
+ * @example
+ * isEmpty('')
+ * // Returns true
+ * @example
+ * isEmpty({})
+ * // Returns true
+ * @example
+ * isEmpty([ 1 ])
+ * // Returns false
+ * @function
+ * @param {*} val - value to check
+ * @return {Boolean} if the value is empty
+ */
+export const isEmpty = <T = boolean>(val: any): val is T =>
+  isObj(val)
+    ? Object.keys(val).length === 0
+    : isArr(val)
+    ? val.length === 0
+    : isStr(val)
+    ? val.trim().length === 0
+    : isNum(val)
+    ? val < 1
+    : false

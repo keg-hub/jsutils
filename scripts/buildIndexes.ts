@@ -1,28 +1,22 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { getEntries, getTypeEntries } from './getEntries'
-import { writeFile, cp, mkdir } from 'node:fs/promises'
+import { getEntries } from './getEntries'
+import { writeFile } from 'node:fs/promises'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.join(dirname, `../`)
 const buildDir = path.join(rootDir, `./build`)
 const cjsIdx = path.join(buildDir, `./cjs/index.js`)
 const esmIdx = path.join(buildDir, `./esm/index.js`)
-const typesBuildDir = path.join(buildDir, `./types`)
 
-const typesIgnore = [
-  `noOps`
-]
+const buildJSIdx = async (ents?: string[]) => {
+  const entries = ents || (await getEntries())
 
+  const esmItems: string[] = []
+  const cjsItems: string[] = []
 
-const buildJSIdx = async (ents?:string[]) => {
-  const entries = ents ||await getEntries()
-
-  const esmItems:string[] = []
-  const cjsItems:string[] = []
-  
   entries.forEach(ent => {
-    const name = path.basename(ent)
+    const name = path.basename(ent, `.ts`)
     cjsItems.push(`  ...require("./${name}"),`)
     esmItems.push(`export * from "./${name}"`)
   })
@@ -31,6 +25,6 @@ const buildJSIdx = async (ents?:string[]) => {
   await writeFile(esmIdx, esmItems.join(`\n`))
 }
 
-export const buildIndexes = async (ents?:string[], tys?:string[]) => {
+export const buildIndexes = async (ents?: string[]) => {
   await buildJSIdx(ents)
 }

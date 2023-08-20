@@ -1,1 +1,1 @@
-module.exports = require('./src/node/node')
+module.exports = require('./build/cjs/node/node.js')

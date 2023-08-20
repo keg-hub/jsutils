@@ -10,7 +10,8 @@ const fixDocs = async () => {
     await cmdExec(`cp ./configs/.gitignore ./docs/.gitignore`)
     console.log(`---------- Success ----------`)
     process.exit(0)
-  } catch (e) {
+  }
+  catch (e) {
     console.error(e)
     process.exit(1)
   }

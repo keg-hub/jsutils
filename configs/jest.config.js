@@ -34,7 +34,7 @@ module.exports = {
   },
   modulePathIgnorePatterns: ['<rootDir>/App'],
   coverageDirectory: '<rootDir>/coverage',
-  coverageReporters: ['text-summary', 'text'],
+  coverageReporters: [ 'text-summary', 'text' ],
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
@@ -45,7 +45,7 @@ module.exports = {
     '!**/*.test.{js,jsx,ts,tsx}',
   ],
   coveragePathIgnorePatterns: ['/node_modules/'],
-  moduleFileExtensions: ['js', 'json', 'jsx', 'es6', `ts`, `tsx`],
+  moduleFileExtensions: [ 'js', 'json', 'jsx', 'es6', `ts`, `tsx` ],
   setupFilesAfterEnv: [`${ROOT_DIR}scripts/setupTests.js`],
   moduleNameMapper: {
     [`^@array/(.*)$`]: path.join(ROOT_DIR, './src/array/$1'),

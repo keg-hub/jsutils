@@ -3,19 +3,26 @@
     "extraFileExtensions": ["json"]
   },
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
+    "outDir": "./build/esm",
     "target": "esnext",
-    "outDir": "./build",
+    "module": "esnext",
     "noEmit": false,
     "allowJs": true,
     "sourceMap": true,
     "declaration": true,
     "skipLibCheck": true,
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "noImplicitAny": false,
     "declarationMap": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "noUnusedParameters": true,
+    "emitDeclarationOnly": true,
+    "strictFunctionTypes": true,
     "moduleResolution": "nodenext",
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
@@ -50,20 +57,24 @@
       "@url": ["./src/url"],
       "@url/*": [ "./src/url/*" ],
       "@validation": ["./src/validation"],
-      "@validation/*": [ "./src/validation/*" ],
+      "@validation/*": [ "./src/validation/*" ]
     }
   },
-  "include": [
-    "src",
-    "index.js"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
-    "./types",
-    "./build",
-    "./docs",
-    "./config",
-    "./scripts",
-    "./node_modules",
+    "__tests__",
+    "**/__tests__",
+    "__tests__/*",
+    "**/__tests__/*",
+    "__mocks__",
+    "**/__mocks__",
+    "__mocks__/*",
+    "**/__mocks__/*",
+    "build",
+    "docs",
+    "config",
+    "scripts",
+    "node_modules"
   ]
 }
 

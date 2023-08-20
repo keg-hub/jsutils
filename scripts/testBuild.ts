@@ -1,3 +1,9 @@
-import * as utils from '../build/esm'
+import * as esUtils from '../build/esm'
 
-const modUtils = require('../build/cjs')
+const cjsUtils = require('../build/cjs')
+
+console.log(`------- cjsUtils -------`)
+console.log(cjsUtils)
+
+console.log(`------- esUtils -------`)
+console.log(esUtils)
