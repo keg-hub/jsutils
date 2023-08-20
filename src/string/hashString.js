@@ -1,7 +1,7 @@
 /** @module String */
 
 import { isStr } from './isStr'
-import { isNonNegative } from '../number/isNonNegative'
+import { isNonNegative } from '@number/isNonNegative'
 /**
  * Creates a hash from a passed in string consistently
  * <br/>Not intended to be secure

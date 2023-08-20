@@ -1,10 +1,10 @@
 /** @module Object */
 
 import { isObj } from './isObj'
-import { exists } from '../ext/exists'
-import { toStr } from '../string/toStr'
+import { exists } from '@ext/exists'
+import { toStr } from '@string/toStr'
 import { reduceObj } from './reduceObj'
-import { ensureArr } from '../array/ensureArr'
+import { ensureArr } from '@array/ensureArr'
 
 /**
  * Creates an intersection of the passed in object, based on the passed in keys

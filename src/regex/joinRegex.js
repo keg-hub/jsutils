@@ -1,7 +1,7 @@
 /** @module RegEx */
 
-import { isStr } from '../string'
-import { isArr } from '../array'
+import { isStr } from '@string/isStr'
+import { isArr } from '@array/isArr'
 import { getRegexSource } from './getRegexSource'
 
 /**

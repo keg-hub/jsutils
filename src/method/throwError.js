@@ -1,6 +1,6 @@
 /** @module Function */
 
-const { isStr } = require('../string')
+const { isStr } = require('@string/isStr')
 
 /**
  * Throws an Error from the passed in error

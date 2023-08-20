@@ -190,3 +190,7 @@ noAuthData.json
 tasks/index.js
 .pnpm-*
 repos/testUtils/exam/*
+
+/types
+/*.d.ts
+!/.d.ts

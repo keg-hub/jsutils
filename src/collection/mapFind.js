@@ -1,10 +1,10 @@
 /** @module Collection */
 
 import { isColl } from './isColl'
-import { isObj } from '../object/isObj'
-import { isFunc } from '../method/isFunc'
-import { exists } from '../ext/exists'
-import { validate } from '../validation'
+import { isObj } from '@object/isObj'
+import { isFunc } from '@method/isFunc'
+import { exists } from '@ext/exists'
+import { validate } from '@validation/validate'
 
 /**
  * Helper for mapFind, handling the array case

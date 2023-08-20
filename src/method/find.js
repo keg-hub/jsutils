@@ -1,7 +1,7 @@
 /** @module Function */
 
-import { exists } from '../ext'
-import { isObj } from '../object'
+// import { exists } from '@ext/exists'
+// import { isObj } from '@object/isObj'
 
 // TODO - Add tests. Method is not included in current export / build due to no tests
 
@@ -26,20 +26,21 @@ import { isObj } from '../object'
  *
  * @returns {*} - Found matching item or undefined
  */
-export const find = (items, item, prop) => {
-  const hasRef = exists(prop)
-  const asObj = isObj(item)
 
-  return Object.entries(items).reduce((found, [ key, value ]) => {
-    if (found || exists(found)) return found
+// export const find = (items, item, prop) => {
+//   const hasRef = exists(prop)
+//   const asObj = isObj(item)
 
-    const hasMatch =
-      asObj && hasRef
-        ? value[prop] === item[prop]
-        : hasRef
-          ? value[prop] === item
-          : value === item
+//   return Object.entries(items).reduce((found, [ key, value ]) => {
+//     if (found || exists(found)) return found
 
-    return hasMatch ? value : found
-  }, undefined)
-}
+//     const hasMatch =
+//       asObj && hasRef
+//         ? value[prop] === item[prop]
+//         : hasRef
+//           ? value[prop] === item
+//           : value === item
+
+//     return hasMatch ? value : found
+//   }, undefined)
+// }

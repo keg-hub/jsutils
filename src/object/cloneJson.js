@@ -1,6 +1,6 @@
 /** @module Object */
 
-import { logData } from '../log'
+import { logData } from '@log/logData'
 
 /**
  * Clones an object by converting to JSON string and back.

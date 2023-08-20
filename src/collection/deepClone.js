@@ -1,8 +1,8 @@
 /** @module Collection */
 
-import { isFunc } from '../method/isFunc'
-import { cloneFunc } from '../method/cloneFunc'
-import { isArr } from '../array/isArr'
+import { isFunc } from '@method/isFunc'
+import { cloneFunc } from '@method/cloneFunc'
+import { isArr } from '@array/isArr'
 
 /**
  * Recursively clones an object or array.

@@ -1,28 +1,31 @@
 {
   "name": "@keg-hub/jsutils",
-  "version": "9.7.0",
+  "version": "9.7.8",
   "description": "Keg common javascript utils",
+  "types": ".d.ts",
   "main": "build/cjs/index.js",
   "module": "build/esm/index.js",
   "browser": "build/esm/index.js",
   "exports": {
+    "./node": "./node.js",
+    "./src/node": "./node.js",
+    "./src/node/*": "./src/node/*",
+    "./node/*": {
+      "import": "./src/node/*",
+      "require": "./src/node/*",
+      "default": "./src/node/*"
+    },
+    "./*": {
+      "import": "./build/esm/*.js",
+      "require": "./build/cjs/*.js",
+      "default": "./build/cjs/*.js"
+    },
     ".": {
       "import": "./build/esm/index.js",
       "require": "./build/cjs/index.js",
       "default": "./build/cjs/index.js"
-    },
-    "./*": {
-      "import": "./build/esm/*",
-      "require": "./build/cjs/*",
-      "default": "./build/cjs/*"
-    },
-    "./node/*": {
-      "import": "./build/esm/node/*",
-      "require": "./build/cjs/node/*",
-      "default": "./build/cjs/node/*"
     }
   },
-  "types": "index.d.ts",
   "author": "lancetipton <lancetipton04@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -37,7 +40,10 @@
     "build",
     "node.js",
     "src/node",
-    "index.d.ts"
+    ".d.ts",
+    "*.d.ts",
+    "index.cjs",
+    "index.js"
   ],
   "publishConfig": {
     "access": "public"
@@ -49,11 +55,16 @@
     "helpers"
   ],
   "scripts": {
+    "prepublish": "pnpm build:u && node -r esbuild-register ./scripts/prepublish.ts",
+    "postpublish": "node -r esbuild-register ./scripts/postpublish.ts",
     "prebuild": "pnpm format && pnpm test",
     "postbuild": "pnpm docs:build",
-    "build": "pnpm build:clean && pnpm build:es",
-    "build:es": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
+    "build": "pnpm build:clean && pnpm build:u",
+    "build:u": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
     "build:clean": "rimraf ./build/esm && rimraf ./build/umd && rimraf ./build/cjs",
+    "build:i": "node -r esbuild-register ./scripts/buildIndexes.ts",
+    "build:t": "node -r esbuild-register ./scripts/buildTypes.ts",
+    "build:test": "node -r esbuild-register ./scripts/testBuild.ts",
     "clean:nm": "rimraf node_modules",
     "clean:full": "pnpm clean && pnpm install",
     "clean": "pnpm build:clean && pnpm clean:nm",
@@ -66,15 +77,14 @@
     "prettier": "prettier",
     "web": "npx http-server ./docs -p 8888 --cors"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/debug": "4.1.5",
     "@types/node": "18.15.13",
     "@typescript-eslint/parser": "5.60.1",
     "docdash": "1.2.0",
     "esbuild": "0.18.17",
-    "esbuild-register": "3.4.2",
     "esbuild-jest": "0.5.0",
+    "esbuild-register": "3.4.2",
     "eslint": "8.44.0",
     "eslint-plugin-jest": "27.0.1",
     "gh-pages": "4.0.0",

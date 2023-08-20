@@ -1,6 +1,6 @@
 /** @module Collection */
 
-import { isObj } from '../object/isObj'
+import { isObj } from '@object/isObj'
 import { isColl } from './isColl'
 
 /**

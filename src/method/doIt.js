@@ -1,6 +1,6 @@
 /** @module Function */
 
-import { isNum } from '../number/isNum'
+import { isNum } from '@number/isNum'
 import { isFunc } from './isFunc'
 
 /**

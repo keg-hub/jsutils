@@ -1,7 +1,7 @@
 /** @module Object */
 
-import { isFunc } from '../method/isFunc'
-import { pipeline } from '../method/pipeline'
+import { isFunc } from '@method/isFunc'
+import { pipeline } from '@method/pipeline'
 import { isObj } from './isObj'
 
 /**

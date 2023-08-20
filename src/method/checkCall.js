@@ -15,5 +15,3 @@ import { isFunc } from './isFunc'
 export const checkCall = (method, ...params) => {
   return isFunc(method) ? method(...params) : undefined
 }
-
-export { checkCall as ife, checkCall as iife }

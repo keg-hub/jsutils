@@ -1,10 +1,10 @@
 /** @module Extra */
 
-import { isStr } from '../string/isStr'
-import { isNum } from '../number/isNum'
-import { toNum } from '../number/toNum'
-import { isStrBool } from '../boolean/isStrBool'
-import { toBool } from '../boolean/toBool'
+import { isStr } from '@string/isStr'
+import { isNum } from '@number/isNum'
+import { toNum } from '@number/toNum'
+import { isStrBool } from '@boolean/isStrBool'
+import { toBool } from '@boolean/toBool'
 
 /**
  * Converts a string to its own type if possible.

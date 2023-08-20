@@ -1,8 +1,8 @@
 /** @module Url */
 
 import { queryToObj } from './queryToObj'
-import { validate } from '../validation/validate'
-import { isStr } from '../string/isStr'
+import { validate } from '@validation/validate'
+import { isStr } from '@string/isStr'
 
 /**
  * Gets the value for the URL parameter, if it's available.

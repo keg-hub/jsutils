@@ -1,6 +1,6 @@
 /** @module Function */
 
-import { isNum } from '../number'
+import { isNum } from '@number/isNum'
 
 /**
  * Ensures the last call to the throttled function get called.

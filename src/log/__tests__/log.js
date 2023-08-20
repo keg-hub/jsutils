@@ -1,4 +1,4 @@
-const Log = require('../log')
+const Log = require('../')
 
 const overRideConsole = type => {
   const overRide = jest.fn()

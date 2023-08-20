@@ -22,5 +22,3 @@ export const hasDomAccess = () => {
     return false
   }
 }
-
-export { hasDomAccess as isDom }

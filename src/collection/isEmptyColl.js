@@ -1,7 +1,7 @@
 /** @module Collection */
 
 import { isColl } from './isColl'
-import { isArr } from '../array/isArr'
+import { isArr } from '@array/isArr'
 
 /**
  * Checks if passed in obj || array is empty.

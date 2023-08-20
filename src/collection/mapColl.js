@@ -1,8 +1,8 @@
 /** @module Collection */
 
-import { isFunc } from '../method/isFunc'
+import { isFunc } from '@method/isFunc'
 import { isColl } from './isColl'
-import { isArr } from '../array/isArr'
+import { isArr } from '@array/isArr'
 
 /**
  * Loops over a collection and calls a passed in function for each one.

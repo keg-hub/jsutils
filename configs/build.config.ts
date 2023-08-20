@@ -3,6 +3,7 @@ import * as esbuild from 'esbuild'
 import { fileURLToPath } from 'url'
 import { promises as fs } from 'fs'
 import { getEntries } from '../scripts/getEntries'
+import {buildIndexes} from '../scripts/buildIndexes'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.join(dirname, `..`)
@@ -11,11 +12,35 @@ const esmdir = path.join(outdir, `esm`)
 const cjsdir = path.join(outdir, `cjs`)
 const esmNodedir = path.join(outdir, `esm/node`)
 const cjsNodedir = path.join(outdir, `cjs/node`)
-const indexEntry = path.join(rootDir, `src/index.js`)
 const nodeEntry = path.join(rootDir, `src/node/node.js`)
 
+const loopAliases = (content:string, aliases:Record<string, string>) => {
+  return Object.entries(aliases).reduce((acc, [key, val]) => {
+    return acc.replaceAll(`from '${key}`, `from '${val}`)
+      .replaceAll(`from "${key}`, `from "${val}`)
+      .replaceAll(`require('${key}`, `require('${val}`)
+      .replaceAll(`require("${key}`, `require("${val}`)
+
+  }, content)
+}
+
+const aliasReplace = (aliases:Record<string, string>) => {
+  return {
+    name: 'example',
+    setup(build) {
+      build.onLoad({ filter: /\.*/ }, async (args) => {
+        const text = await fs.readFile(args.path, 'utf8')
+        const replaced = loopAliases(text, aliases)
+        return {
+          contents: replaced
+        }
+      })
+    }
+  }
+}
+
 const opts = {
-  bundle: true,
+  // bundle: true,
   minify: false,
   sourcemap: true,
   treeShaking: true,
@@ -24,6 +49,25 @@ const opts = {
   platform: `node` as const,
   logLevel: `silent` as const,
   target: [`node20`],
+  plugins: [
+    aliasReplace({
+      [`@array/`]: `./`,
+      [`@boolean/`]: `./`,
+      [`@collection/`]: `./`,
+      [`@dom/`]: `./`,
+      [`@ext/`]: `./`,
+      [`@log/`]: `./`,
+      [`@method/`]: `./`,
+      [`@node/`]: `./`,
+      [`@number/`]: `./`,
+      [`@object/`]: `./`,
+      [`@promise/`]: `./`,
+      [`@regex/`]: `./`,
+      [`@string/`]: `./`,
+      [`@url/`]: `./`,
+      [`@validation/`]: `./`,
+    }),
+  ],
 }
 
 const buildEsm = async (options:any, type:string) => {
@@ -66,31 +110,36 @@ const buildCjs = async (options:any, type:string) => {
     return true
   })
 
-  const noNodeEntries = [...nonNode, indexEntry]
+  const noNodeEntries = [...nonNode]
 
   // Remove the existing output dir
   await fs.rm(outdir, { recursive: true, force: true })
+
   await buildEsm({
     outdir: esmdir,
     format: `esm` as const,
     entryPoints: noNodeEntries,
   }, `Index`)
+
   await buildCjs({
     outdir: cjsdir,
     format: `cjs` as const,
     entryPoints: noNodeEntries,
   }, `Index`)
-  await buildEsm({
-    outdir: esmNodedir,
-    format: `esm` as const,
-    entryPoints: nodeEntries,
-  }, `Node`)
-  await buildCjs({
-    outdir: cjsNodedir,
-    format: `cjs` as const,
-    entryPoints: nodeEntries,
-  }, `Node`)
 
+  // await buildEsm({
+  //   outdir: esmNodedir,
+  //   format: `esm` as const,
+  //   entryPoints: nodeEntries,
+  // }, `Node`)
+
+  // await buildCjs({
+  //   outdir: cjsNodedir,
+  //   format: `cjs` as const,
+  //   entryPoints: nodeEntries,
+  // }, `Node`)
+  
+  await buildIndexes(entries)
 
 })()
 

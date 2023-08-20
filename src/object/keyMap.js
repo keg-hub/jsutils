@@ -1,7 +1,7 @@
 /** @module Object */
 
-import { isStr } from '../string/isStr'
-import { isArr } from '../array/isArr'
+import { isStr } from '@string/isStr'
+import { isArr } from '@array/isArr'
 
 /**
  * Converts an array of strings to a matching key/value pair object.

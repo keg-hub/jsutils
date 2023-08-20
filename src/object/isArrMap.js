@@ -1,8 +1,8 @@
 /** @module Object */
 
 import { isObj } from './isObj'
-import { isArr } from '../array/isArr'
-import { toBool } from '../boolean/toBool'
+import { isArr } from '@array/isArr'
+import { toBool } from '@boolean/toBool'
 
 /**
  * Returns true if the input is an object and every value is an array

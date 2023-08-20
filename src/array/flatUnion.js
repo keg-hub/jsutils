@@ -3,7 +3,7 @@
 import { isArr } from './isArr'
 import { uniqArr } from './uniqArr'
 import { flatArr } from './flatArr'
-import { isFunc } from '../method/isFunc'
+import { isFunc } from '@method/isFunc'
 
 /**
  * Flattens the passed in array arguments and removes duplicates

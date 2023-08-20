@@ -1,8 +1,8 @@
 /** @module Array */
 
 import { isArr } from './isArr'
-import { isFunc } from '../method/isFunc'
-import { validate } from '../validation'
+import { isFunc } from '@method/isFunc'
+import { validate } from '@validation/validate'
 
 /**
  * Maps each element using mapping function `mapFn`, but returns the result as a flattened array.

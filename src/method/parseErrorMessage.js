@@ -1,8 +1,8 @@
 /** @module Function */
 
-import { isStr } from '../string/isStr'
-import { isObj } from '../object/isObj'
-import { isEmpty } from '../ext/isEmpty'
+import { isStr } from '@string/isStr'
+import { isObj } from '@object/isObj'
+import { isEmpty } from '@ext/isEmpty'
 
 /**
  * Extracts the message from the exception, whether string or object

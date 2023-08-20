@@ -1,8 +1,8 @@
 /** @module String */
 
-import { isFunc } from '../method/isFunc'
-import { isColl } from '../collection/isColl'
-import { get } from '../collection/get'
+import { isFunc } from '@method/isFunc'
+import { isColl } from '@collection/isColl'
+import { get } from '@collection/get'
 import { isStr } from './isStr'
 
 /**

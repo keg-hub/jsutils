@@ -1,7 +1,7 @@
 /** @module Promise */
 
-import { isObj } from '../object/isObj'
-import { isFunc } from '../method/isFunc'
+import { isObj } from '@object/isObj'
+import { isFunc } from '@method/isFunc'
 import { promisify } from './promisify'
 
 /**

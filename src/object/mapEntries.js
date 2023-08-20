@@ -1,8 +1,8 @@
 /** @module Object */
 
-import { isFunc } from '../method/isFunc'
-import { set } from '../collection/set'
-import { isArr } from '../array/isArr'
+import { isFunc } from '@method/isFunc'
+import { set } from '@collection/set'
+import { isArr } from '@array/isArr'
 import { isObj } from './isObj'
 import { isEntry } from './isEntry'
 

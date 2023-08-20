@@ -1,8 +1,8 @@
 /** @module Function */
 
-import { isStr } from '../string'
+import { isStr } from '@string/isStr'
 import { isOrderable } from './isOrderable'
-import { validate } from '../validation'
+import { validate } from '@validation/validate'
 
 /**
  * Generic compare to method that works for strings, numbers, and booleans

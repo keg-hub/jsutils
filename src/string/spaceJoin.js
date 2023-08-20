@@ -1,7 +1,7 @@
 /** @module String */
 
 import { isStr } from './isStr'
-import { isArr } from '../array/isArr'
+import { isArr } from '@array/isArr'
 
 /**
  * Joins strings and array of string together with spaces

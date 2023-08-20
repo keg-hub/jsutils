@@ -1,4 +1,3 @@
-
 /** @module String */
 
 /**
@@ -7,9 +6,8 @@
  * @param {String} str - string to convert
  * @return {String} string without quotes
  */
-export const removeQuotes = (str:string) => (
+export const removeQuotes = str =>
   str
     .trim()
     .replace(/^("|')/, '')
     .replace(/("|')$/, '')
-)

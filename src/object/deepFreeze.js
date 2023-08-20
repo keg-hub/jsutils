@@ -1,6 +1,6 @@
 /** @module Object */
 
-import { isFunc } from '../method/isFunc'
+import { isFunc } from '@method/isFunc'
 
 /**
  * Recursively freezes and object.

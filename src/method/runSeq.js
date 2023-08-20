@@ -1,10 +1,10 @@
 /** @module Function */
 
-import { validate } from '../validation/validate'
-import { isArr } from '../array/isArr'
+import { validate } from '@validation/validate'
+import { isArr } from '@array/isArr'
 import { isFunc } from './isFunc'
 
-import { deepClone } from '../collection/deepClone'
+import { deepClone } from '@collection/deepClone'
 
 /**
  * Calls each promise-returning function in array `asyncFns`,

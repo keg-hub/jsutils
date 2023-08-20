@@ -1,6 +1,6 @@
 /** @module Promise */
 
-import { isFunc } from '../method/isFunc'
+import { isFunc } from '@method/isFunc'
 
 /**
  * Converts a standard callback method into Promise

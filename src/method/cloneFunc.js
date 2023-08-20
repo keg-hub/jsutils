@@ -1,6 +1,6 @@
 /** @module Function */
 
-import { get } from '../collection/get'
+import { get } from '@collection/get'
 
 /**
  * Clones a function using the Function constructor and calling toString on the passed in function

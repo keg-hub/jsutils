@@ -1,7 +1,7 @@
 /** @module Array */
 
 import { isArr } from './isArr'
-import { isObj } from '../object/isObj'
+import { isObj } from '@object/isObj'
 
 /**
  * Creates a copy of the passed in array.

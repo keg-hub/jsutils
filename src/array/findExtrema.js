@@ -1,8 +1,8 @@
 /** @module Array */
 
 import { isArr } from './isArr'
-import { isFunc } from '../method'
-import { validate } from '../validation'
+import { isFunc } from '@method/isFunc'
+import { validate } from '@validation/validate'
 
 /**
  * Finds the extremum (e.g. max, min) element within array `arr` as defined by the `comparator` function

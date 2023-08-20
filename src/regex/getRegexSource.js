@@ -1,7 +1,7 @@
 /** @module RegEx */
 
 import { isRegex } from './isRegex'
-import { isStr } from '../string'
+import { isStr } from '@string/isStr'
 
 /**
  * Attempts to return a regex string from maybeRx.

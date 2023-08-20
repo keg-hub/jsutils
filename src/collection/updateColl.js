@@ -1,7 +1,7 @@
 /** @module Collection */
 
-import { isFunc } from '../method/isFunc'
-import { isArr } from '../array/isArr'
+import { isFunc } from '@method/isFunc'
+import { isArr } from '@array/isArr'
 import { isColl } from './isColl'
 
 /**

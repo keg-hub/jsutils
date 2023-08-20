@@ -1,6 +1,6 @@
 /** @module Object */
 
-import { emptyObj } from '../ext/noOps'
+import { emptyObj } from '@ext/noOps'
 
 /**
  * Transforms the keys of an object to a matching key value in keyMap object
