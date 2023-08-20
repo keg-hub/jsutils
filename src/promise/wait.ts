@@ -1,7 +1,5 @@
 /** @module Promise */
 
-'use strict'
-
 /**
  * Stops execution for a given amount of time
  * @function

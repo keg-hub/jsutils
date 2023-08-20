@@ -38,6 +38,7 @@
     "search": true,
     "collapse": false,
     "typedefs": true,
+    "private": false,
     "removeQuotes": "none",
     "scripts": [],
     "menu": {

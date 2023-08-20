@@ -1,4 +1,3 @@
-'use strict'
 
 const { promisifyAll } = require('../')
 const inputA = 'testA'

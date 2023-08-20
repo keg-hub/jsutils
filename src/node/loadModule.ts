@@ -1,7 +1,5 @@
 /** @module Node */
 
-'use strict'
-
 import path from 'path'
 import { isArr } from '@array/isArr'
 import { isFunc } from '@method/isFunc'
