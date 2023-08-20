@@ -30,10 +30,22 @@ const runCmd = async cmd => {
 const buildDocs = async () => {
   let exitCode = 0
   try {
+    console.log(`Building docs...\n`)
+    await runCmd(`git checkout main`)
+    await runCmd(`git checkout -B js-utils-docs`)
     await runCmd(`rm -rf ./docs`)
-    await runCmd(`./node_modules/.bin/jsdoc -c ./configs/jsdoc.json`)
 
+    await runCmd(`./node_modules/.bin/jsdoc -c ./configs/jsdoc.json`)
     console.log(`Successfully built docs\n`)
+
+    await runCmd(`git add ./docs`)
+    await runCmd(`git commit -m "Build docs"`)
+    await runCmd(`git push origin js-utils-docs --force`)
+    console.log(`Successfully pushed changes to remote\n`)
+
+    await runCmd(`git checkout main`)
+    await runCmd(`git branch -D js-utils-docs`)
+    console.log(`Finished building docs!\n`)
   }
   catch (e) {
     console.error(e)
