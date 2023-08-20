@@ -1,10 +1,12 @@
-const path = require('path')
-const { promisify } = require('util')
-const { exec } = require('child_process')
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { promisify } from 'util'
+import { exec } from 'child_process'
 const docsLoc = `./docs`
 
+const dirname = path.dirname(fileURLToPath(import.meta.url))
 const cmdExec = promisify(exec)
-const rootPath = path.join(__dirname, `../`)
+const rootPath = path.join(dirname, `../`)
 
 /**
  * Executes a command in the docs directory
@@ -31,7 +33,7 @@ const buildDocs = async () => {
     await runCmd(`rm -rf ./docs`)
     await runCmd(`./node_modules/.bin/jsdoc -c ./configs/jsdoc.json`)
 
-    console.log(`Successfully build docs\n`)
+    console.log(`Successfully built docs\n`)
   }
   catch (e) {
     console.error(e)
