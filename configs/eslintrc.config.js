@@ -5,20 +5,16 @@ module.exports = {
     tsconfigRootDir: require('path').join(__dirname, '../'),
   },
   root: true,
-  ignorePatterns: ['build', 'dist', 'node_modules', 'examples', 'scripts'],
+  ignorePatterns: [ 'docs', 'build', 'scripts', 'examples', 'node_modules' ],
   globals: {
     jest: true,
     __DEV__: true,
     expect: true,
-    React: true,
   },
   parserOptions: {
-    requireConfigFile: false,
     ecmaVersion: 6,
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaFeatures: {},
   },
   env: {
     es6: true,
@@ -28,11 +24,12 @@ module.exports = {
   },
   plugins: ['jest'],
   extends: ['plugin:jest/recommended'],
+  settings: {},
   rules: {
     /* General */
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
-    'brace-style': ['error', 'stroustrup'],
-    indent: ['error', 2, { offsetTernaryExpressions: true }],
+    'no-console': [ 'warn', { allow: [ 'warn', 'error' ] }],
+    'brace-style': [ 'error', 'stroustrup' ],
+    indent: [ 'error', 2, { offsetTernaryExpressions: true }],
     quotes: [
       'error',
       'single',
@@ -42,7 +39,7 @@ module.exports = {
       },
     ],
     'id-length': 'off',
-    'one-var': ['error', 'never'],
+    'one-var': [ 'error', 'never' ],
     'keyword-spacing': [
       'error',
       {
@@ -60,9 +57,9 @@ module.exports = {
         objectsInArrays: false,
       },
     ],
-    'space-in-parens': ['error', 'never'],
-    'object-curly-spacing': ['error', 'always'],
-    'func-call-spacing': ['error', 'never'],
+    'space-in-parens': [ 'error', 'never' ],
+    'object-curly-spacing': [ 'error', 'always' ],
+    'func-call-spacing': [ 'error', 'never' ],
     'arrow-spacing': [
       'error',
       {
@@ -85,5 +82,8 @@ module.exports = {
     'jest/prefer-to-have-length': 'off',
     'jest/no-conditional-expect': 'off',
     'jest/valid-expect': 'error',
+    'jest/no-mocks-import': 0,
+    'jest/no-export': 0,
+    'jest/valid-title': 0,
   },
 }

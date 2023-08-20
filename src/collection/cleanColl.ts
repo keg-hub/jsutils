@@ -12,7 +12,10 @@ import { isColl } from './isColl'
  *
  * @returns {Object|Array} - Cleaned collection
  */
-export const cleanColl = <T extends Record<any, any>|any[]=any>(coll:T, recursive:boolean=true): any | any[] => {
+export const cleanColl = <T extends Record<any, any> | any[] = any>(
+  coll: T,
+  recursive: boolean = true
+): any | any[] => {
   return isColl(coll)
     ? Object.keys(coll).reduce((cleaned, key) => {
         const value = coll[key]
@@ -22,7 +25,6 @@ export const cleanColl = <T extends Record<any, any>|any[]=any>(coll:T, recursiv
 
         return cleaned
       }, (isObj(coll) && {}) || [])
-      
     : (() => {
         console.error(`cleanColl requires a collection as the first argument`)
         return coll

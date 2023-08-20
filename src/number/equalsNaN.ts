@@ -15,4 +15,5 @@
  * @param {Number} val - value to check if is NaN
  * @return {Boolean} T/F - if value is a number
  */
-export const equalsNaN = (val: number): boolean => typeof val === 'number' && val != val
+export const equalsNaN = (val: number): boolean =>
+  typeof val === 'number' && val != val

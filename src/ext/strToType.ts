@@ -21,19 +21,18 @@ import { toBool } from '@boolean/toBool'
  * @param {*} val - value to convert
  * @return { any | string } converted value || string if can't convert
  */
-export const strToType = <T=any>(val: any): T => {
+export const strToType = <T = any>(val: any): T => {
   return !val || !isStr(val)
     ? val
     : isStrBool(val)
-      ? toBool(val)
-      : isNum(val)
-        ? toNum(val)
-        : (() => {
-            try {
-              return JSON.parse(val)
-            }
-            catch (e) {
-              return val
-            }
-          })()
+    ? toBool(val)
+    : isNum(val)
+    ? toNum(val)
+    : (() => {
+        try {
+          return JSON.parse(val)
+        } catch (e) {
+          return val
+        }
+      })()
 }

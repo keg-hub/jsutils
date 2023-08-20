@@ -7,7 +7,7 @@ import { toStr } from './toStr'
  * @function
  * @return {String} - built path from arguments
  */
-export const buildPath = <T extends string=string>(...args: any[]): T => {
+export const buildPath = <T extends string = string>(...args: any[]): T => {
   const built = args.reduce((path, arg) => {
     let str = toStr(arg)
 

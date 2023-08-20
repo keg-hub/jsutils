@@ -10,17 +10,14 @@ const cjsIdx = path.join(buildDir, `./cjs/index.js`)
 const esmIdx = path.join(buildDir, `./esm/index.js`)
 const typesBuildDir = path.join(buildDir, `./types`)
 
-const typesIgnore = [
-  `noOps`
-]
+const typesIgnore = [`noOps`]
 
+const buildJSIdx = async (ents?: string[]) => {
+  const entries = ents || (await getEntries())
 
-const buildJSIdx = async (ents?:string[]) => {
-  const entries = ents ||await getEntries()
+  const esmItems: string[] = []
+  const cjsItems: string[] = []
 
-  const esmItems:string[] = []
-  const cjsItems:string[] = []
-  
   entries.forEach(ent => {
     const name = path.basename(ent)
     cjsItems.push(`  ...require("./${name}"),`)
@@ -31,6 +28,6 @@ const buildJSIdx = async (ents?:string[]) => {
   await writeFile(esmIdx, esmItems.join(`\n`))
 }
 
-export const buildIndexes = async (ents?:string[], tys?:string[]) => {
+export const buildIndexes = async (ents?: string[], tys?: string[]) => {
   await buildJSIdx(ents)
 }

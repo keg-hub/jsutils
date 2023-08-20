@@ -20,13 +20,13 @@ import { isNum } from '@number/isNum'
  * @param {*} val - value to check
  * @return {Boolean} if the value is empty
  */
-export const isEmpty = <T=boolean>(val: any): val is T =>
+export const isEmpty = <T = boolean>(val: any): val is T =>
   isObj(val)
     ? Object.keys(val).length === 0
     : isArr(val)
-      ? val.length === 0
-      : isStr(val)
-        ? val.trim().length === 0
-        : isNum(val)
-          ? val < 1
-          : false
+    ? val.length === 0
+    : isStr(val)
+    ? val.trim().length === 0
+    : isNum(val)
+    ? val < 1
+    : false

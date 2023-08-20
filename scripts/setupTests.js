@@ -1,1 +1,1 @@
-const jsdom = require('jsdom').jsdom
+// Stub jest setup file

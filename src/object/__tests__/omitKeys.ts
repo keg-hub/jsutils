@@ -6,10 +6,10 @@ describe('omitKeys', () => {
   it('should return object without keys in passed in array', () => {
     const obj = {
       test: 'I should exist',
-      sub: [ 1, 2, 3 ],
+      sub: [1, 2, 3],
       data: 'I should not exist',
     }
-    const omitted = Obj.omitKeys(obj, [ 'data', 'sub' ])
+    const omitted = Obj.omitKeys(obj, ['data', 'sub'])
 
     expect(omitted.sub).toEqual(undefined)
     expect(omitted.data).toEqual(undefined)

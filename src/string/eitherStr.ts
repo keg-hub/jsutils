@@ -10,4 +10,7 @@ import { isStr } from './isStr'
  * @param {String} str2 - use if first is not a string
  * @returns {String}
  */
-export const eitherStr = <T extends string=string>(str1?: any, str2?: any): T => (isStr(str1) && str1) || str2
+export const eitherStr = <T extends string = string>(
+  str1?: any,
+  str2?: any
+): T => (isStr(str1) && str1) || str2

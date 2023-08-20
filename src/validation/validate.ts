@@ -1,5 +1,5 @@
 /** @module Validation */
-import { ensureArr } from '../array/ensureArr'
+import { ensureArr } from '@array/ensureArr'
 
 /**
  * @type {Object}
@@ -14,25 +14,25 @@ const OPTIONS = {
 const defaultValidator = () => true
 
 export type TValidateOpts = {
-  logs?: boolean,
-  throws?: boolean,
-  prefix?: string,
+  logs?: boolean
+  throws?: boolean
+  prefix?: string
 }
 
 export type TValidateRes = {
-  success: boolean,
-  key: string,
-  value: any,
-  validator: any,
+  success: boolean
+  key: string
+  value: any
+  validator: any
   reason: string
 }
 
 export type TValidateFun = ((
-  argObj:Record<string, any>,
-  validators?:Record<string, any>,
+  argObj: Record<string, any>,
+  validators?: Record<string, any>,
   options?: TValidateOpts
-) => [success:boolean, results:TValidateRes]) & {
-  setOptions: ({ logs, throws, prefix }:TValidateOpts) => void
+) => [success: boolean, results: TValidateRes]) & {
+  setOptions: ({ logs, throws, prefix }: TValidateOpts) => void
   resetOptions: () => void
 }
 
@@ -59,7 +59,11 @@ export type TValidateFun = ((
  *    console.log(isValid) // false
  *    console.log(results.elements.success) // false
  */
-export const validate:TValidateFun = (argObj, validators = {}, options = {}) => {
+export const validate: TValidateFun = (
+  argObj,
+  validators = {},
+  options = {}
+) => {
   const {
     logs = OPTIONS.SHOULD_LOG,
     throws = OPTIONS.SHOULD_THROW,
@@ -69,7 +73,7 @@ export const validate:TValidateFun = (argObj, validators = {}, options = {}) => 
   const validationCaseEntries = Object.entries(argObj)
 
   // validate each argument
-  const validationResults = validationCaseEntries.map(([ argName, argValue ]) =>
+  const validationResults = validationCaseEntries.map(([argName, argValue]) =>
     validateArgument(
       argName,
       argValue,
@@ -86,7 +90,7 @@ export const validate:TValidateFun = (argObj, validators = {}, options = {}) => 
     cases: {},
   })
 
-  return [ success, cases ]
+  return [success, cases]
 }
 
 /**
@@ -98,7 +102,7 @@ export const validate:TValidateFun = (argObj, validators = {}, options = {}) => 
  * @param {Boolean} options.throws - indicates validate() should throw an error when a case fails
  * @param {String} options.prefix - a prefix to any console error logs or to messages of errors thrown
  */
-validate.setOptions = ({ logs, throws, prefix }:TValidateOpts) => {
+validate.setOptions = ({ logs, throws, prefix }: TValidateOpts) => {
   if (logs !== undefined) {
     OPTIONS.SHOULD_LOG = logs
   }
@@ -128,7 +132,11 @@ validate.resetOptions = () => {
  * @returns {Object} of form { success, reason }
  * @ignore
  */
-const validateArgument = (key:string, value:any, validator:(val:any) => boolean) => {
+const validateArgument = (
+  key: string,
+  value: any,
+  validator: (val: any) => boolean
+) => {
   const success = validator(value)
 
   // if validator is a named function, use its name. If it is an inline anonymous arrow function, its name
@@ -157,9 +165,9 @@ const validateArgument = (key:string, value:any, validator:(val:any) => boolean)
  * @ignore
  */
 const validationReducer = (
-  finalResult:any,
-  nextValidation:TValidateRes,
-  { logs, throws, prefix }:TValidateOpts
+  finalResult: any,
+  nextValidation: TValidateRes,
+  { logs, throws, prefix }: TValidateOpts
 ) => {
   // handle the failure
   !nextValidation.success && handleFailure(nextValidation, logs, throws, prefix)
@@ -182,13 +190,13 @@ const validationReducer = (
  * @ignore
  */
 const handleFailure = (
-  validation:TValidateRes,
-  shouldLog?:boolean,
-  shouldThrow?:boolean,
-  prefix?:string
+  validation: TValidateRes,
+  shouldLog?: boolean,
+  shouldThrow?: boolean,
+  prefix?: string
 ) => {
   // prepend the prefix if one is defined
-  const reason = prefix ? [ prefix, ...validation.reason ] : validation.reason
+  const reason = prefix ? [prefix, ...validation.reason] : validation.reason
 
   if (shouldThrow) throw new Error(ensureArr(reason).join())
 

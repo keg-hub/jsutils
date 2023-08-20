@@ -48,7 +48,7 @@ import { isFunc } from './isFunc'
  *   return reducer(state, action)
  *}
  */
-export const match = <T=any>(matchArg: any, ...args: any[]): T => {
+export const match = <T = any>(matchArg: any, ...args: any[]): T => {
   if (!args.length) return null
 
   // check all cases and return a value if a match is found
@@ -62,7 +62,7 @@ export const match = <T=any>(matchArg: any, ...args: any[]): T => {
       )
       break
     }
-    const [ caseValueOrPredicate, valueOnMatch ] = entry
+    const [caseValueOrPredicate, valueOnMatch] = entry
     if (isFunc(caseValueOrPredicate) && caseValueOrPredicate(matchArg))
       return valueOnMatch
     if (caseValueOrPredicate === matchArg) return valueOnMatch

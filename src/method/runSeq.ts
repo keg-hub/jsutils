@@ -26,11 +26,14 @@ import { deepClone } from '@collection/deepClone'
  * @example
  * const results = await runSeq(asyncFunctions, { cloneResults: true, returnOriginal: false })
  */
- 
+
 type TAsyncFuns = ((...params: any[]) => void)[]
 type TAsyncOpts = Record<string, any>
 
-export const runSeq = async (asyncFns: TAsyncFuns=[], options:TAsyncOpts = {}): Promise<any[]> => {
+export const runSeq = async (
+  asyncFns: TAsyncFuns = [],
+  options: TAsyncOpts = {}
+): Promise<any[]> => {
   const [valid] = validate({ asyncFns }, { asyncFns: isArr })
   if (!valid) return []
 
@@ -42,8 +45,8 @@ export const runSeq = async (asyncFns: TAsyncFuns=[], options:TAsyncOpts = {}): 
     const result = isFunc(fn)
       ? await fn(results.length, cloneResults ? deepClone(results) : results)
       : returnOriginal
-        ? fn
-        : undefined
+      ? fn
+      : undefined
     results.push(result)
   }
 

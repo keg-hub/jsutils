@@ -7,7 +7,9 @@
  * @function
  * @returns {Boolean}
  */
-export const isValidUrl = <T extends string=string>(str: string): str is T => {
+export const isValidUrl = <T extends string = string>(
+  str: string
+): str is T => {
   var regexp =
     /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/
 

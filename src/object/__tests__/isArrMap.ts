@@ -2,8 +2,8 @@ import { isArrMap } from '../isArrMap'
 describe('isArrMap', () => {
   it('should return true if input is a valid array map', () => {
     const input = {
-      a: [ 1, 2, 3 ],
-      b: [ 1, 2 ],
+      a: [1, 2, 3],
+      b: [1, 2],
       c: [],
     }
     expect(isArrMap(input)).toEqual(true)
@@ -11,7 +11,7 @@ describe('isArrMap', () => {
 
   it('should reject objects with non-array values', () => {
     const input = {
-      a: [ 1, 2, 3 ],
+      a: [1, 2, 3],
       b: [],
       c: 5,
     }

@@ -8,13 +8,12 @@ import { doIt } from '../doIt'
 import { nanoid } from '../nanoid'
 
 describe(`nanoid`, () => {
-
   test(`it generates a new id`, () => {
     const id = nanoid()
-    
+
     console.log(`------- id-------`)
     console.log(id)
-    
+
     expect(typeof id).toBe(`string`)
     expect(id.length).toBe(12)
   })
@@ -24,7 +23,7 @@ describe(`nanoid`, () => {
       const id = nanoid()
       expect(id).not.toEqual(id)
     }).toThrow()
-    
+
     let ids = []
     doIt(10, {}, () => {
       const id = nanoid()
@@ -49,7 +48,7 @@ describe(`nanoid`, () => {
 
   test(`it allows setting joiner`, () => {
     const id = nanoid({
-      joiner: `-`
+      joiner: `-`,
     })
 
     expect(id.includes(`.`)).toBe(false)
@@ -58,7 +57,7 @@ describe(`nanoid`, () => {
 
   test(`it allows setting parts`, () => {
     const id = nanoid({
-      parts: 10
+      parts: 10,
     })
 
     expect(id.split(`.`).length).toBe(10)
@@ -67,10 +66,9 @@ describe(`nanoid`, () => {
   test(`it allows adding a prefix`, () => {
     const id = nanoid({
       parts: 10,
-      prefix: `utils`
+      prefix: `utils`,
     })
     expect(id.startsWith(`utils`)).toBe(true)
     expect(id.split(`.`).length).toBe(11)
   })
-
 })

@@ -6,12 +6,12 @@ import { isObj } from '@object/isObj'
 import { isStr } from '@string/isStr'
 
 export type TNanoidOpts = {
-  joiner?:string
-  parts?:number
-  prefix?:string
+  joiner?: string
+  parts?: number
+  prefix?: string
 }
 
-const sudoRandomStr = (str:string) => {
+const sudoRandomStr = (str: string) => {
   const times = Math.floor(str.length / 2)
   return doIt(times, {}, () =>
     str.charAt(Math.floor(Math.random() * str.length))
@@ -26,17 +26,15 @@ const sudoRandom = (radix = 36) => {
   return sudoRandomNum().toString(radix)
 }
 
-
 export const nanoid = (
-  base?:string|TNanoidOpts,
-  opts?:TNanoidOpts
-):string => {
+  base?: string | TNanoidOpts,
+  opts?: TNanoidOpts
+): string => {
   if (!isObj(opts)) {
     if (isObj(base)) {
       opts = base
       base = undefined
-    }
-    else opts = emptyObj
+    } else opts = emptyObj
   }
 
   const { parts = 2, prefix = ``, joiner = `.` } = opts
@@ -51,5 +49,7 @@ export const nanoid = (
     return sudoRandomStr((even && salt.pop()) || seed)
   }
 
-  return `${prefix ? `${prefix}${joiner}` : ``}${doIt(parts, {}, gen).join(joiner)}`
+  return `${prefix ? `${prefix}${joiner}` : ``}${doIt(parts, {}, gen).join(
+    joiner
+  )}`
 }

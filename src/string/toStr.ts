@@ -8,9 +8,9 @@ import { isStr } from './isStr'
  * @param {*} val - value to be converted
  * @return {String} - value converted into a string
  */
-export const toStr = <T extends string=string>(val: any): T =>
+export const toStr = <T extends string = string>(val: any): T =>
   val === null || val === undefined
-    ? '' as T
+    ? ('' as T)
     : isStr(val)
-      ? val as T
-      : JSON.stringify(val) as T
+    ? (val as T)
+    : (JSON.stringify(val) as T)

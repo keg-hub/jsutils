@@ -15,14 +15,19 @@ import { validate } from '@validation/validate'
  * @param {Array} arr - array to map across
  * @param {Function} mapFn - function for mapping
  */
-export const flatMap = <T=any>(arr: any[], mapFn: (current:any) => any): T[] => {
+export const flatMap = <T = any>(
+  arr: any[],
+  mapFn: (current: any) => any
+): T[] => {
   const [inputIsValid] = validate({ arr, mapFn }, { arr: isArr, mapFn: isFunc })
   if (!inputIsValid) return arr
 
   // iterate across the array, calling mapFn on each element, then flattening into final array
   return arr.reduce((finalArr, current) => {
     const result = mapFn(current)
-    isArr(result) ? result.map((el:any) => finalArr.push(el)) : finalArr.push(result)
+    isArr(result)
+      ? result.map((el: any) => finalArr.push(el))
+      : finalArr.push(result)
     return finalArr
   }, [])
 }

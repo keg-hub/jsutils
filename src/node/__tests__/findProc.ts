@@ -39,8 +39,7 @@ describe('findProc', () => {
       const resp = await findProc(execCmdNotFound)
       expect(Array.isArray(resp)).toBe(true)
       expect(resp.length).toBe(0)
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err.message)
       throw new Error(`findProc method should not throw`)
     }

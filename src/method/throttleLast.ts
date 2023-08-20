@@ -17,15 +17,14 @@ import { isNum } from '@number/isNum'
  * @return {Function} throttled function
  */
 
-
 export function throttleLast(
   func: (...params: any[]) => any,
   wait?: number
 ): (...params: any[]) => any
 export function throttleLast(
   func: (...params: any[]) => any,
-  cb?: ((...params: any[]) => any)|number,
-  wait?:((...params: any[]) => any)|number
+  cb?: ((...params: any[]) => any) | number,
+  wait?: ((...params: any[]) => any) | number
 ): (...params: any[]) => any {
   let throttleTimeout
 

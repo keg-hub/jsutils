@@ -63,7 +63,9 @@ const addAsync = (object: any): any => {
  * @param {Object} object
  * @return {Object} - promisified object
  */
-export const promisifyAll = <T=Record<string, any>>(object:Record<string, any>):T => {
+export const promisifyAll = <T = Record<string, any>>(
+  object: Record<string, any>
+): T => {
   if (!isObj(object)) return object as T
 
   addAsync(object)

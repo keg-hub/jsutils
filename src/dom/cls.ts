@@ -1,14 +1,19 @@
 /** @module Dom */
 
-export type TClsTypes = string | boolean | undefined;
-export type TClsItems = string | boolean | Record<string, TClsTypes[]> | TClsTypes[] | undefined;
+export type TClsTypes = string | boolean | undefined
+export type TClsItems =
+  | string
+  | boolean
+  | Record<string, TClsTypes[]>
+  | TClsTypes[]
+  | undefined
 
 /**
  * Formats the passed in classes
  * @function
  * @private
  */
-const formatCls = (classes:Array<string|boolean>) =>
+const formatCls = (classes: Array<string | boolean>) =>
   classes
     .filter(item => typeof item === 'string' && Boolean(item))
     .join(` `)
@@ -30,15 +35,15 @@ const formatCls = (classes:Array<string|boolean>) =>
  * cls(`class1`, `class2`, [`class3`], { class4: true }) === `class1 class2 class3 class4`
  * @returns {string} - Formatted class names
  */
-export const cls = (...classGroup:TClsItems[]): string => {
+export const cls = (...classGroup: TClsItems[]): string => {
   return formatCls(
     classGroup.map(classes => {
       return Array.isArray(classes)
         ? cls(...classes)
         : typeof classes !== `object`
-          ? formatCls([classes])
-          : formatCls(
-            Object.entries(classes).map(([ item, val ]) => {
+        ? formatCls([classes])
+        : formatCls(
+            Object.entries(classes).map(([item, val]) => {
               return typeof val === 'boolean'
                 ? val && formatCls([item])
                 : cls(val)

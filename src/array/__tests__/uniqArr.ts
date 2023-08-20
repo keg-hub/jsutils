@@ -4,7 +4,7 @@ describe('uniqArr', () => {
   beforeEach(() => jest.resetAllMocks())
 
   it('should remove duplicates from the passed in array', () => {
-    const arr = [ 1, 4, 'test', 1, 7, 'test' ]
+    const arr = [1, 4, 'test', 1, 7, 'test']
     const uniq = Arr.uniqArr(arr)
 
     expect(uniq.length == arr.length - 2).toBe(true)

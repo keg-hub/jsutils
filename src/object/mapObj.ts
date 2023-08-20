@@ -10,9 +10,12 @@ import { isObj } from './isObj'
  * @param {Function} cb - Method to call for each entry in the passed in obj
  * @return {Array} -  returned values from callback || The entries of the passed in obj
  */
-export const mapObj = (obj: Record<string, any>, cb: (key:string, values:string) => any): any[] => {
+export const mapObj = (
+  obj: Record<string, any>,
+  cb: (key: string, values: string) => any
+): any[] => {
   if (!isObj(obj)) return []
 
   const entries = Object.entries(obj)
-  return isFunc(cb) ? entries.map(([ key, value ]) => cb(key, value)) : entries
+  return isFunc(cb) ? entries.map(([key, value]) => cb(key, value)) : entries
 }

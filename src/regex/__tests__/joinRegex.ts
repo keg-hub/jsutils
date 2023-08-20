@@ -17,20 +17,20 @@ describe('joinRegex', () => {
   it('should accept an options string', () => {
     const joined = joinRegex(expA, expB, 'g')
     expect('123 foo 456'.match(joined)).toEqual(
-      expect.arrayContaining([ '123', 'foo', '456' ])
+      expect.arrayContaining(['123', 'foo', '456'])
     )
   })
 
   it('should also accept an array of expressions', () => {
-    const joined = joinRegex([ expA, expB ], 'g')
+    const joined = joinRegex([expA, expB], 'g')
     expect('123 foo 456'.match(joined)).toEqual(
-      expect.arrayContaining([ '123', 'foo', '456' ])
+      expect.arrayContaining(['123', 'foo', '456'])
     )
   })
 
   it('should work with > 2 expressions', () => {
     const joined = joinRegex(expA, expB, /\=/, 'g')
-    expect('abc ='.match(joined)).toEqual(expect.arrayContaining([ 'abc', '=' ]))
+    expect('abc ='.match(joined)).toEqual(expect.arrayContaining(['abc', '=']))
   })
 
   it('should work with regex strings', () => {

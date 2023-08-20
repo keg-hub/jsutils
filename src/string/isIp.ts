@@ -10,7 +10,7 @@ import { isIp6 } from './isIp6'
  * @param {String} string to check
  * @return {Boolean} - if it's an Ip address
  */
-export const isIp = <T extends string=string>(str: string):str is T => {
+export const isIp = <T extends string = string>(str: string): str is T => {
   if (!str || !isStr(str)) return false
 
   return isIp4(str) || isIp6(str)

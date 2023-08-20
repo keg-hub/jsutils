@@ -13,4 +13,4 @@ import { isArr } from './isArr'
  * const foo = eitherArr('hi', 1) // returns 1
  * const bar = eitherArr([ 2 ], 1) // returns [ 2 ]
  */
-export const eitherArr = <T=any>(a?: any, b?: any): T => (isArr(a) ? a : b)
+export const eitherArr = <T = any>(a?: any, b?: any): T => (isArr(a) ? a : b)

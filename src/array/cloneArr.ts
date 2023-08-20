@@ -13,7 +13,7 @@ import { isObj } from '@object/isObj'
  * @param {Array} arr - array to be copied
  * @return {Array} - copy of passed in array
  */
-export const cloneArr = <T=any>(arr: T[]): T[] =>
+export const cloneArr = <T = any>(arr: T[]): T[] =>
   Array.from([
     // If arr is not an array or object, just use empty array, so we don't throw!
     ...((isArr(arr) && arr) || (isObj(arr) && Object.entries(arr)) || []),

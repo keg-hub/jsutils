@@ -12,11 +12,10 @@ import fs from 'fs'
  * const module = tryRequireSync('/keg/tap/foo/bar.js')
  * if (!module) console.log('bar.js module does not exist')
  */
-export const tryRequireSync = <T=any>(filePath: string): T => {
+export const tryRequireSync = <T = any>(filePath: string): T => {
   try {
     return fs.existsSync(filePath) ? require(filePath) : null
-  }
-  catch (err) {
+  } catch (err) {
     return null
   }
 }
@@ -31,15 +30,14 @@ export const tryRequireSync = <T=any>(filePath: string): T => {
  * const module = await tryRequire('/keg/tap/foo/bar.js')
  * if (!module) console.log('bar.js module does not exist')
  */
-export const tryRequire = <T=any>(filePath: string): Promise<T> => {
+export const tryRequire = <T = any>(filePath: string): Promise<T> => {
   return new Promise(resolve => {
     fs.access(filePath, err => {
       if (err) return resolve(null)
       try {
         const module = require(filePath)
         return resolve(module)
-      }
-      catch (err) {
+      } catch (err) {
         return resolve(null)
       }
     })

@@ -4,7 +4,7 @@ describe('cloneArr', () => {
   beforeEach(() => jest.resetAllMocks())
 
   it('should create a copy of the passed in array', () => {
-    const arr = [ 1, 2, 3 ]
+    const arr = [1, 2, 3]
     const cloned = Arr.cloneArr(arr)
 
     expect(Array.isArray(cloned)).toBe(true)
@@ -27,6 +27,6 @@ describe('cloneArr', () => {
 
     expect(Array.isArray(cloned)).toBe(true)
     expect(cloned === arr).toBe(false)
-    cloned.map(([ key, value ], index) => expect(arr[key]).toEqual(value))
+    cloned.map(([key, value], index) => expect(arr[key]).toEqual(value))
   })
 })

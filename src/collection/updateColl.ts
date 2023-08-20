@@ -14,7 +14,12 @@ import { isColl } from './isColl'
  * @param {*} val - Value to set or return based on the type argument
  * @returns {*} - Relative to the type argument
  */
-export const updateColl = <T extends Record<any, any>|any[]=any>(obj:T, path:string|string[], type:string, val?:any):undefined => {
+export const updateColl = <T extends Record<any, any> | any[] = any>(
+  obj: T,
+  path: string | string[],
+  type: string,
+  val?: any
+): undefined => {
   const org = obj
   if (!isColl(obj) || !obj || !path) return (type !== 'set' && val) || undefined
 
@@ -28,7 +33,7 @@ export const updateColl = <T extends Record<any, any>|any[]=any>(obj:T, path:str
     const next = obj[prop]
 
     isColl(next) || isFunc(next)
-      ? (obj = next)
+      ? (obj = next as any)
       : (() => {
           if (type === 'set') obj[prop] = {}
           else breakPath = true
@@ -40,12 +45,12 @@ export const updateColl = <T extends Record<any, any>|any[]=any>(obj:T, path:str
 
   return type === 'get'
     ? // Get return the value
-    key in obj
+      key in obj
       ? obj[key]
       : val
     : type === 'unset'
-      ? // Unset, return if the key was removed
+    ? // Unset, return if the key was removed
       delete obj[key]
-      : // Set, updated object
-        ((obj[key] = val) && org) || org
+    : // Set, updated object
+      ((obj[key] = val) && org) || org
 }

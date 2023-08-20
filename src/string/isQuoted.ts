@@ -2,7 +2,7 @@
 
 import { isStr } from './isStr'
 
-const quoteSymbols = [ '"', "'" ]
+const quoteSymbols = ['"', "'"]
 
 /**
  * Checks if the string contains quoted text
@@ -15,7 +15,10 @@ const quoteSymbols = [ '"', "'" ]
  * @example
  * isQuoted('"foo"') // true
  */
-export const isQuoted = <T extends string=string>(str: string, quotes:string[]=quoteSymbols): str is T => {
+export const isQuoted = <T extends string = string>(
+  str: string,
+  quotes: string[] = quoteSymbols
+): str is T => {
   return (
     isStr(str) &&
     quotes.some(quote => str.startsWith(quote) && str.endsWith(quote))

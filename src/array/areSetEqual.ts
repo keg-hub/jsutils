@@ -17,8 +17,8 @@ export const areSetEqual = (arr: any[], otherArr: any[]): boolean => {
 
   if (arr === otherArr) return true
 
-  const [ longest, shortest ] =
-    arr.length > otherArr.length ? [ arr, otherArr ] : [ otherArr, arr ]
+  const [longest, shortest] =
+    arr.length > otherArr.length ? [arr, otherArr] : [otherArr, arr]
 
   const arrSet = new Set(shortest)
 

@@ -12,9 +12,9 @@ import { isBool } from './isBool'
  * @param {*} val - value to convert to string boolean
  * @return {String} 'true' || 'false' based on passed in value
  */
-export const convertToStrBool = (val: any): 'true'|'false' =>
+export const convertToStrBool = (val: any): 'true' | 'false' =>
   isBool(val)
     ? toStr(val)
     : !val || val === 'false' || val === '0'
-        ? 'false'
-        : 'true'
+    ? 'false'
+    : 'true'

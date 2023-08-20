@@ -11,5 +11,5 @@ import { isArr } from './isArr'
  * @param {Array} arr - array to randomly sorted
  * @return {Array} - randomly sorted array
  */
-export const randomizeArr = <T=any>(arr: any[]): T[] =>
+export const randomizeArr = <T = any>(arr: any[]): T[] =>
   (!isArr(arr) && arr) || arr.sort(() => 0.5 - Math.random())

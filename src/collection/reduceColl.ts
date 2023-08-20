@@ -15,12 +15,21 @@ import { isArr } from '@array/isArr'
  * @param {*} [reduce] - Starting data passed to reduce method
  * @return {Object} - Last returned data from the loop
  */
-export const reduceColl = <T=any>(coll: Record<any, any>|any[], cb: (key:string, value:any, coll:Record<any, any>|any[], data:any) => any, reduce?: any): T =>
+export const reduceColl = <T = any>(
+  coll: Record<any, any> | any[],
+  cb: (
+    key: string,
+    value: any,
+    coll: Record<any, any> | any[],
+    data: any
+  ) => any,
+  reduce?: any
+): T =>
   isFunc(cb) && isColl(coll)
     ? Object.keys(coll).reduce(
-      (data, key) => cb(key, coll[key], coll, data),
-      reduce
-    )
+        (data, key) => cb(key, coll[key], coll, data),
+        reduce
+      )
     : isArr(coll)
-      ? []
-      : {}
+    ? []
+    : {}

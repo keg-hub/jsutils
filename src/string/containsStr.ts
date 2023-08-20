@@ -11,7 +11,11 @@ import { toStr } from './toStr'
  * @param {Number} [fromIndex] - Index of the string to search from
  * @return {Boolean} - if the substring exists string
  */
-export const containsStr =(str: string, substring: string, fromIndex?: number): boolean => {
+export const containsStr = (
+  str: string,
+  substring: string,
+  fromIndex?: number
+): boolean => {
   str = (!isStr(str) && toStr(str)) || str
   substring = (!isStr(substring) && toStr(substring)) || substring
 

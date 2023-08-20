@@ -13,10 +13,10 @@ import { reduceObj } from './reduceObj'
  * @returns {Object} - Object consisting of a subset of the entries from obj
  * @example: filterObj({a: 2, b: 3}, (k, v) => (v > 2)) returns: {b: 3}
  */
-export const filterObj = <T=Record<any, any>>(
+export const filterObj = <T = Record<any, any>>(
   obj: Record<any, any>,
-  predicate: (key:string, value:string) => boolean,
-  logError:boolean=true
+  predicate: (key: string, value: string) => boolean,
+  logError: boolean = true
 ): T => {
   if (!isObj(obj)) {
     logError && console.error(`First argument ${obj} must be an object.`)
@@ -30,7 +30,7 @@ export const filterObj = <T=Record<any, any>>(
 
   return reduceObj(
     obj,
-    (key:string, value:any, data:Record<any, any>) => {
+    (key: string, value: any, data: Record<any, any>) => {
       if (predicate(key, value)) data[key] = value
       return data
     },

@@ -2,8 +2,10 @@ import path from 'path'
 import * as esbuild from 'esbuild'
 import { fileURLToPath } from 'url'
 import { promises as fs } from 'fs'
+import { dtsPlugin } from 'esbuild-plugin-d.ts'
 import { getEntries } from '../scripts/getEntries'
 import {buildIndexes} from '../scripts/buildIndexes'
+import { typecheckPlugin } from '@jgoz/esbuild-plugin-typecheck'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.join(dirname, `..`)

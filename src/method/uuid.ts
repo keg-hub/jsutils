@@ -12,5 +12,5 @@
 export const uuid = (start?: number): string =>
   start
     ? (start ^ ((Math.random() * 16) >> (start / 4))).toString(16)
-    // @ts-ignore
-    : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid)
+    : // @ts-ignore
+      ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid)

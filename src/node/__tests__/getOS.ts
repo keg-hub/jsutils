@@ -8,7 +8,7 @@ jest.setMock('os', {
 const osMap = {
   lin: [`linux`],
   mac: [`darwin`],
-  win: [ `win32`, `win64` ],
+  win: [`win32`, `win64`],
 }
 
 const { getOS } = require('../getOS')

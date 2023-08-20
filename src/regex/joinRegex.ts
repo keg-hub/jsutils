@@ -13,11 +13,11 @@ import { getRegexSource } from './getRegexSource'
  * ]
  */
 const parseArgs = (args: Array<any>) => {
-  if (isArr(args[0])) return [ args[0], args[1] ]
+  if (isArr(args[0])) return [args[0], args[1]]
   const last = args[args.length - 1]
   const options = isStr(last) ? last : undefined
   const expressions = options ? args.splice(0, args.length - 1) : args
-  return [ expressions, options ]
+  return [expressions, options]
 }
 
 /**
@@ -35,17 +35,17 @@ const parseArgs = (args: Array<any>) => {
  * // calling with an array
  * const joined = joinRegex([ ...allMyRegEx ], 'gi')
  */
-export const joinRegex = (...args: [RegExp|string]): RegExp => {
-  const [ expressions, options ] = parseArgs(args)
+export const joinRegex = (...args: [RegExp | string]): RegExp => {
+  const [expressions, options] = parseArgs(args)
 
   // join the regex together in a capture group with the | operator
-  const source = expressions.reduce((joined:string, next:RegExp|string) => {
+  const source = expressions.reduce((joined: string, next: RegExp | string) => {
     const nextSource = getRegexSource(next)
     return !nextSource
       ? joined
       : joined === ''
-        ? nextSource
-        : `${joined}|${nextSource}`
+      ? nextSource
+      : `${joined}|${nextSource}`
   }, '')
 
   return new RegExp(`(${source})`, options)

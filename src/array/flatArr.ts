@@ -15,15 +15,19 @@ import { exists } from '@ext/exists'
  *
  * @return {Array} - Mutated arr or result, but flattened based on options
  */
-const flatten = <T=any>(arr:any[], result:T[], opts?: {truthy?: boolean, exists?: boolean, mutate?: boolean}) => {
+const flatten = <T = any>(
+  arr: any[],
+  result: T[],
+  opts?: { truthy?: boolean; exists?: boolean; mutate?: boolean }
+) => {
   for (let i = 0; i < arr.length; i++) {
     const value = arr[i]
 
     isArr(value)
       ? flatten(value, result, opts)
       : (opts.exists && !exists(value)) || (opts.truthy && !value)
-          ? result
-          : result.push(value)
+      ? result
+      : result.push(value)
   }
 
   if (!opts.mutate) return result
@@ -52,5 +56,7 @@ const flatten = <T=any>(arr:any[], result:T[], opts?: {truthy?: boolean, exists?
  *
  * @return {Array} - Mutated original array now flattened, or a new flattened array based on options
  */
-export const flatArr = <T=any>(arr: any[], opts?: {truthy?: boolean, exists?: boolean, mutate?: boolean}): T[] =>
-  flatten(arr, [], isObj(opts) ? opts : noOpObj)
+export const flatArr = <T = any>(
+  arr: any[],
+  opts?: { truthy?: boolean; exists?: boolean; mutate?: boolean }
+): T[] => flatten(arr, [], isObj(opts) ? opts : noOpObj)

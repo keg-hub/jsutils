@@ -20,7 +20,11 @@ import { isStr } from '@string/isStr'
  * @param {*} [fallback] - Separated string to search the object
  * @return {*} - The final value found from the path
  */
-export const get =<T=any>(obj: Record<any, any>|any[], path: string | string[], fallback?: T): T => {
+export const get = <T = any>(
+  obj: Record<any, any> | any[],
+  path: string | string[],
+  fallback?: T
+): T => {
   const isPathArr = isArr(path)
   if (!isStr(path) && !isPathArr) return exists(fallback) ? fallback : undefined
 
@@ -32,8 +36,8 @@ export const get =<T=any>(obj: Record<any, any>|any[], path: string | string[], 
       return undefined
 
     prop = prop.startsWith('[') ? prop.replace(/\D/g, '') : prop
-    return obj[prop]
+    return obj[prop] as T
   }, obj)
 
-  return exists(result) ? result : fallback
+  return exists(result) ? (result as T) : (fallback as T)
 }

@@ -16,8 +16,11 @@ import { isObj } from './isObj'
  * @param {Function} mutatorCb - a callback that accepts one argument, the cloned obj, and mutates it in some way
  * @returns {Object|Array} the mutated clone
  */
-export const applyToCloneOf = (obj: Record<any, any>, mutatorCb: (obj:Record<any, any>) => void): Record<any, any> => {
-  let error:string=undefined
+export const applyToCloneOf = (
+  obj: Record<any, any>,
+  mutatorCb: (obj: Record<any, any>) => void
+): Record<any, any> => {
+  let error: string = undefined
 
   if (!obj) error = 'object (Argument 1) in applyToCloneOf, must be defined!'
 

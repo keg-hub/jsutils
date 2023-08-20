@@ -9,4 +9,5 @@ import { isNum } from './isNum'
  * @example isNegative(-1) // true
  * @example isNegative(0) // false
  */
-export const isNegative = <T=number>(val: any): val is T => isNum(val) && val < 0
+export const isNegative = <T = number>(val: any): val is T =>
+  isNum(val) && val < 0

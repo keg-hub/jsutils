@@ -26,10 +26,13 @@ export const buildElementCountMap = (arr: any[]): Map<any, number> => {
  * @param {Map<*, number>} mapB
  * @returns {Boolean} - True if the item count it equal between mapA and mapB
  */
-export const areCountMapsEqual = (mapA: Map<any, number>, mapB: Map<any, number>): boolean => {
+export const areCountMapsEqual = (
+  mapA: Map<any, number>,
+  mapB: Map<any, number>
+): boolean => {
   if (mapA.size !== mapB.size) return false
 
-  for (let [ key, count ] of mapA) {
+  for (let [key, count] of mapA) {
     const otherCount = mapB.get(key)
     if (otherCount !== count) return false
   }

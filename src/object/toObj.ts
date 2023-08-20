@@ -12,7 +12,11 @@ import { strToType } from '@ext/strToType'
  * @param {String} [split] - if string, what splits each key/value pair
  * @return {Object} - Converted object
  */
-export const toObj = <T=Record<string, any>>(val: string[]|string, divider?: string, split?: string): T => {
+export const toObj = <T = Record<string, any>>(
+  val: string[] | string,
+  divider?: string,
+  split?: string
+): T => {
   if (isArr(val))
     return Object.keys(val).reduce((obj, key) => {
       obj[key] = val[key]

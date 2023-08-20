@@ -11,14 +11,14 @@ import { emptyObj } from '@ext/noOps'
  * const opts = { strict: true }
  * transformKeys({my_key: `1234`, other_key: `4321`}, {my_key: `myKey`}, opts) === { myKey: `1234` }
  */
-export const transformKeys = <T=Record<string, any>>(
+export const transformKeys = <T = Record<string, any>>(
   obj: Record<string, any> = emptyObj,
   keyMap: Record<string, any> = emptyObj,
   opts: Record<string, any> = emptyObj
 ) => {
   const { strict = false } = opts
 
-  return Object.entries(obj).reduce((acc, [ key, value ]) => {
+  return Object.entries(obj).reduce((acc, [key, value]) => {
     const ref = keyMap[key] || (!strict ? key : undefined)
     ref && (acc[ref] = value)
 

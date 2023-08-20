@@ -18,22 +18,25 @@ import { isEntry } from './isEntry'
  *
  * @returns {Object} - new object with mapping applied, or the original obj if input was invalid
  */
-export const mapEntries =<T=Record<string, any>>(obj: any | any[], cb: (key:string, value:any) => [string, any]): T => {
+export const mapEntries = <T = Record<string, any>>(
+  obj: any | any[],
+  cb: (key: string, value: any) => [string, any]
+): T => {
   if (!isArr(obj) && !isObj(obj)) {
     console.error(obj, `Expected array or object for obj. Found ${typeof obj}`)
-    return obj
+    return obj as T
   }
 
   if (!isFunc(cb)) {
     console.error(`Expected function for cb. Found ${typeof cb}`)
-    return obj
+    return obj as T
   }
 
   const entries = Object.entries(obj)
 
   const initialValue = isArr(obj) ? [] : {}
 
-  return entries.reduce((obj, [ key, value ]) => {
+  return entries.reduce((obj, [key, value]) => {
     const result = cb(key, value)
     if (!isEntry(result)) {
       console.error(

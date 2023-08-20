@@ -9,11 +9,14 @@ import { isObj } from './isObj'
  * @param {Array} keys - keys to add to new object
  * @return {Object} new object with only keys from passed in keys array
  */
-export const pickKeys = <T=Record<string, any>>(obj: Record<string, any>={}, keys: string[]=[]): T =>
+export const pickKeys = <T = Record<string, any>>(
+  obj: Record<string, any> = {},
+  keys: string[] = []
+): T =>
   (isObj(obj) &&
     keys.reduce((updated, key) => {
       key in obj && (updated[key] = obj[key])
 
       return updated
     }, {} as T)) ||
-  {} as T
+  ({} as T)

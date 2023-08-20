@@ -8,14 +8,13 @@ import os from 'os'
  *
  * @returns {String} - The current operating system
  */
-export const getOS = (): string|boolean => {
+export const getOS = (): string | boolean => {
   const system = (process.platform || os.platform()).toLowerCase()
   return system === `darwin`
     ? `mac`
     : system === `win32` || system === `win64`
-      ? `win`
-      : system === `linux`
-        ? `lin`
-        : false
+    ? `win`
+    : system === `linux`
+    ? `lin`
+    : false
 }
-

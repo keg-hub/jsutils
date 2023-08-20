@@ -1,6 +1,6 @@
 /** @module Function */
 
-const { isStr } = require('@string/isStr')
+import { isStr } from '@string/isStr'
 
 /**
  * Throws an Error from the passed in error
@@ -9,8 +9,8 @@ const { isStr } = require('@string/isStr')
  * @param {Object|string} error - The Error message or Object to throw
  *
  */
-export const throwError = (error:string|Error) => {
-  if(isStr(error)) throw new Error(error as string)
+export const throwError = (error: string | Error) => {
+  if (isStr(error)) throw new Error(error as string)
 
   throw error
 }

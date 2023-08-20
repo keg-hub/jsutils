@@ -5,15 +5,13 @@ import { isColl } from '@collection/isColl'
 import { get } from '@collection/get'
 import { isStr } from './isStr'
 
-
-type TTempFun = (<T extends string=string>(
+type TTempFun = (<T extends string = string>(
   tempStr: string,
-  data: Record<any, any>|any[],
-  fallback:any,
+  data: Record<any, any> | any[],
+  fallback: any
 ) => T) & {
   regex?: RegExp
 }
-
 
 /**
  * Helper to wrap the template method, and allow passing a custom regex argument
@@ -29,12 +27,12 @@ type TTempFun = (<T extends string=string>(
  *
  * @returns {String} - template with placeholder values filled
  */
-export const templateRx = <T extends string=string>(
+export const templateRx = <T extends string = string>(
   tempStr: string,
-  data: Record<any, any>|any[],
-  fallback:any=``,
-  rx?:RegExp
-):T => {
+  data: Record<any, any> | any[],
+  fallback: any = ``,
+  rx?: RegExp
+): T => {
   const orgRx = template.regex
   template.regex = rx || /{{([^}]*)}}/g
   const resp = template(tempStr, data, fallback)
@@ -55,24 +53,24 @@ export const templateRx = <T extends string=string>(
  *
  * @returns {String} - template with placeholder values filled
  */
-export const template:TTempFun = <T extends string=string>(
+export const template: TTempFun = <T extends string = string>(
   tempStr: string,
-  data: Record<any, any>|any[],
-  fallback:any=``,
-):T => {
+  data: Record<any, any> | any[],
+  fallback: any = ``
+): T => {
   data = (isColl(data) && data) || {}
   const regex = template.regex || /\${(.*?)\}/g
 
   return isStr(tempStr)
-    ? tempStr.replace(regex, (match, exact) => {
+    ? (tempStr.replace(regex, (match, exact) => {
         const path = (exact || match.substring(2, match.length - 3)).trim()
         const replaceWith = get(data, path, fallback)
         return isFunc(replaceWith)
           ? replaceWith(data, path, fallback)
           : replaceWith
-      }) as T
+      }) as T)
     : (() => {
         console.error(`template requires a string as the first argument`)
         return tempStr as T
       })()
-} 
+}

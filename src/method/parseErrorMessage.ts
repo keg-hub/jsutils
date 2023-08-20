@@ -21,6 +21,6 @@ export const parseErrorMessage = (exception: any): string => {
   return isStr(exception) && !isEmpty(exception)
     ? exception
     : isObj(exception)
-      ? exception.message
-      : null
+    ? exception.message
+    : null
 }

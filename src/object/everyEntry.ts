@@ -15,7 +15,7 @@ import { isObj } from './isObj'
 export const everyEntry = (
   obj: Record<any, any>,
   predicate: (...params: any[]) => any,
-  logError:boolean=true
+  logError: boolean = true
 ): boolean => {
   if (!isObj(obj)) {
     logError && console.error(`First argument ${obj} must be an object.`)
@@ -28,6 +28,6 @@ export const everyEntry = (
   }
 
   return pipeline(obj, Object.entries, entries =>
-    entries.every(([ key, value ]) => predicate(key, value))
+    entries.every(([key, value]) => predicate(key, value))
   )
 }

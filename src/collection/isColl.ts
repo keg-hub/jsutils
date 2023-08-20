@@ -15,4 +15,5 @@
  * @param {*} val - Value to check
  * @return {Boolean} True if the value is a collection (Object || Array)
  */
-export const isColl = <T=Record<any, any>|any[]>(val: any): val is T => typeof val === 'object' && val !== null
+export const isColl = <T = Record<any, any> | any[]>(val: any): val is T =>
+  typeof val === 'object' && val !== null

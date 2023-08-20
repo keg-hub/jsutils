@@ -12,12 +12,12 @@ import { exec } from 'child_process'
  *
  * @returns {Object} - Status of the found process
  */
-const parseOutput = (procName:string, output:string) => {
+const parseOutput = (procName: string, output: string) => {
   return output
     .trim()
     .split(/\n|\r|\r\n/)
     .reduce((acc, line) => {
-      const [ pid, tty, time, ...rest ] = line
+      const [pid, tty, time, ...rest] = line
         .trim()
         .split(' ')
         .filter(part => part)
@@ -47,17 +47,17 @@ const parseOutput = (procName:string, output:string) => {
  *
  * @returns {String} - Search command to use
  */
-const getPlatformCmd = (procName:string, platform:string) => {
+const getPlatformCmd = (procName: string, platform: string) => {
   const proc = `"[${procName[0]}]${procName.substring(1)}"`
 
   switch (platform) {
-  case 'linux':
-  case 'darwin':
-    return `ps -A | grep ${proc}`
-  case 'win32':
-    return `tasklist`
-  default:
-    return false
+    case 'linux':
+    case 'darwin':
+      return `ps -A | grep ${proc}`
+    case 'win32':
+      return `tasklist`
+    default:
+      return false
   }
 }
 
@@ -71,8 +71,10 @@ const getPlatformCmd = (procName:string, platform:string) => {
  * @returns {Object} - Status of the found process
  */
 
-
-export const findProc = <T=any>(procName: string, opts:any={}): Promise<T> => {
+export const findProc = <T = any>(
+  procName: string,
+  opts: any = {}
+): Promise<T> => {
   return new Promise((res, rej) => {
     const platform = process.platform
     // Use the platform to know the correct search command

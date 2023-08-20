@@ -12,7 +12,10 @@ import { isStr } from './isStr'
  * @example
  *  mapString("hello", c => c === 'h' ? 'x' : c) // returns 'xello'
  */
-export const mapString = (str: string, charMapper: (char:string) => any): string => {
+export const mapString = (
+  str: string,
+  charMapper: (char: string) => any
+): string => {
   if (!isStr(str)) return str
   if (!isFunc(charMapper)) return str
   let result = ''

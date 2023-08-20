@@ -19,9 +19,9 @@ import { ensureArr } from '@array/ensureArr'
  * @return {Array<Object>} - First object contains keys matching keys of the keys argument
  *                          - Second object contains keys not matching keys of the keys argument
  */
-export const splitByKeys = <T=Record<string, any>,S=Record<string, any>>(
-  obj: Record<string, any>={},
-  keys:string[]
+export const splitByKeys = <T = Record<string, any>, S = Record<string, any>>(
+  obj: Record<string, any> = {},
+  keys: string[]
 ): [T, S] => {
   if (!keys) return [{}, { ...obj }] as [T, S]
 
@@ -30,15 +30,15 @@ export const splitByKeys = <T=Record<string, any>,S=Record<string, any>>(
 
   return isObj(obj)
     ? reduceObj(
-      obj,
-      (key, _, updated) => {
-        exists(compareKeys.find(k => exists(k) && toStr(k) === key))
-          ? (updated[0][key] = obj[key])
-          : (updated[1][key] = obj[key])
+        obj,
+        (key, _, updated) => {
+          exists(compareKeys.find(k => exists(k) && toStr(k) === key))
+            ? (updated[0][key] = obj[key])
+            : (updated[1][key] = obj[key])
 
-        return updated
-      },
-      intersect
-    )
-    : intersect as [T, S]
+          return updated
+        },
+        intersect
+      )
+    : (intersect as [T, S])
 }

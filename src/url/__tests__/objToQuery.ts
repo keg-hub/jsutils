@@ -52,7 +52,7 @@ describe('objToQuery', () => {
   it('should convert array object for commas', () => {
     const obj = {
       name: 'daniel',
-      groups: [ 1, 2, 3 ],
+      groups: [1, 2, 3],
     }
     const result = Url.objToQuery(obj)
     expect(result).toEqual('?name=daniel&groups=1%2C2%2C3')

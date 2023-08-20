@@ -17,7 +17,7 @@ import { validate } from '@validation/validate'
 const mapFindArr = (
   arr: any[],
   mapper: (...params: any[]) => any,
-  testFunc:(...params: any[]) => any=exists
+  testFunc: (...params: any[]) => any = exists
 ) => {
   // iterate over each value in the array,
   // returning when a mapped value is found that passes `testFunc`
@@ -40,7 +40,7 @@ const mapFindArr = (
 const mapFindObj = (
   obj: Record<any, any>,
   mapper: (...params: any[]) => any,
-  testFunc:(...params: any[]) => any=exists
+  testFunc: (...params: any[]) => any = exists
 ): any => {
   let idx = 0
 
@@ -85,9 +85,9 @@ const mapFindObj = (
  * const loadedFile = mapFind(filePaths, (value, key) => tryRequireSync(value), isObj)
  */
 export const mapFind = (
-  coll: Record<any, any>|any[],
+  coll: Record<any, any> | any[],
   mapper: (...params: any[]) => any,
-  testFunc:(...params: any[]) => any=exists
+  testFunc: (...params: any[]) => any = exists
 ): any => {
   const [valid] = validate(
     { coll, mapper, testFunc },

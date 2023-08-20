@@ -13,9 +13,12 @@ import { isArr } from '@array/isArr'
  * @param {Array|Object} coll - Collection to loop over
  * @return {Array|Object} returns the same type of collection passed in
  */
-export const mapColl = <T=Record<any, any>|any[]>(coll: Record<any, any>|any[], cb:(key:string, val:any, col:typeof coll) => any): T =>
+export const mapColl = <T = Record<any, any> | any[]>(
+  coll: Record<any, any> | any[],
+  cb: (key: string, val: any, col: typeof coll) => any
+): T =>
   isFunc(cb) && isColl(coll)
-    ? Object.keys(coll).map(key => cb(key, coll[key], coll)) as T
+    ? (Object.keys(coll).map(key => cb(key, coll[key], coll)) as T)
     : isArr(coll)
-      ? [] as T
-      : {} as T
+    ? ([] as T)
+    : ({} as T)

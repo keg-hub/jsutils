@@ -9,4 +9,4 @@
  * @param {any} value - value to be check if is an array
  * @return {Boolean} - T/F value is an array
  */
-export const isArr = <T=any[]>(value: any): value is T => Array.isArray(value)
+export const isArr = <T = any[]>(value: any): value is T => Array.isArray(value)

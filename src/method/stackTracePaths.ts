@@ -1,9 +1,9 @@
 /** @module Function */
 
 import { isFunc } from './isFunc'
-import { ensureArr } from '../array/ensureArr'
+import { ensureArr } from '@array/ensureArr'
 
-const defFilters = [ `node:internal`, `node_modules/jest` ]
+const defFilters = [`node:internal`, `node_modules/jest`]
 
 /**
  * Gets the paths from a stacktrace as CallSites and returns them
@@ -13,13 +13,19 @@ const defFilters = [ `node:internal`, `node_modules/jest` ]
  * @returns {Array<string>} - List of paths from the stackTrace
  */
 export const stackTracePaths = (
-  filter:string[]|((location:string,cs?:Record<any, any>,stack?:Record<any, any>[])=> boolean) = defFilters
-):string[] => {
+  filter:
+    | string[]
+    | ((
+        location: string,
+        cs?: Record<any, any>,
+        stack?: Record<any, any>[]
+      ) => boolean) = defFilters
+): string[] => {
   const orgPreStackTrace = Error.prepareStackTrace
   Error.prepareStackTrace = (_, stack) => stack
 
   const stack = ensureArr(new Error().stack.slice(1))
-  
+
   Error.prepareStackTrace = orgPreStackTrace
 
   return stack.reduce((acc, cs) => {
@@ -29,8 +35,8 @@ export const stackTracePaths = (
     const ignore = isFunc(filter)
       ? filter(loc, cs, stack)
       : Boolean(
-        filter.length && filter.find(filterLoc => loc.includes(filterLoc))
-      )
+          filter.length && filter.find(filterLoc => loc.includes(filterLoc))
+        )
 
     !ignore && acc.push(loc)
 

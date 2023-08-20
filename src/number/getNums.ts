@@ -11,4 +11,5 @@ import { toStr } from '@string/toStr'
  * @param {*} val - value to pull numbers from
  * @return {String} Numbers found in value
  */
-export const getNums = (val: any): string => toStr(val).replace(/([^.\d])/gm, '')
+export const getNums = (val: any): string =>
+  toStr(val).replace(/([^.\d])/gm, '')

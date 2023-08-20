@@ -8,11 +8,10 @@ import { logData } from '@log/logData'
  * @param {Object} obj - object to clone
  * @returns {Object} copy of original object
  */
-export const cloneJson = <T=any>(obj: any): T => {
+export const cloneJson = <T = any>(obj: any): T => {
   try {
     return JSON.parse(JSON.stringify(obj))
-  }
-  catch (e) {
+  } catch (e) {
     logData(e.message, 'error')
     return null
   }

@@ -21,7 +21,13 @@ const hasProp = Object.prototype.hasOwnProperty
  * @param {Object|Array} a - Object to check
  * @param {Object|Array} b - Object to check against
  */
-export const deepEqual = <T=Record<any, any>|any[], M=Record<any, any>|any[]>(a: T, b: M): boolean => {
+export const deepEqual = <
+  T = Record<any, any> | any[],
+  M = Record<any, any> | any[]
+>(
+  a: T,
+  b: M
+): boolean => {
   if ((a as any) === b) return true
 
   if (!a || !b || typeof a != 'object' || typeof b != 'object')
@@ -29,9 +35,9 @@ export const deepEqual = <T=Record<any, any>|any[], M=Record<any, any>|any[]>(a:
 
   const arrA = isArray(a)
   const arrB = isArray(b)
-  let i:number
-  let length:number
-  let key:string
+  let i: number
+  let length: number
+  let key: string
 
   // If both are arrays
   if (arrA && arrB) {
@@ -39,7 +45,7 @@ export const deepEqual = <T=Record<any, any>|any[], M=Record<any, any>|any[]>(a:
     // If unequal length, then not equal
     if (length != b.length) return false
     // Loop the arrays and check the contents of both
-    for (i = length; i-- !== 0;) if (!deepEqual(a[i], b[i])) return false
+    for (i = length; i-- !== 0; ) if (!deepEqual(a[i], b[i])) return false
 
     return true
   }
@@ -67,10 +73,10 @@ export const deepEqual = <T=Record<any, any>|any[], M=Record<any, any>|any[]>(a:
   if (length !== keyList(b).length) return false
 
   // Ensure both objects have the same keys
-  for (i = length; i-- !== 0;) if (!hasProp.call(b, keys[i])) return false
+  for (i = length; i-- !== 0; ) if (!hasProp.call(b, keys[i])) return false
 
   // Check the value of the object keys
-  for (i = length; i-- !== 0;) {
+  for (i = length; i-- !== 0; ) {
     key = keys[i]
     if (!deepEqual(a[key], b[key])) return false
   }

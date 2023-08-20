@@ -1,12 +1,12 @@
 /** @module Object */
 
-const pad = (hash:any, len:number) => {
+const pad = (hash: any, len: number) => {
   while (hash.length < len) hash = '0' + hash
 
   return hash
 }
 
-const fold = (hash:any, text:string) => {
+const fold = (hash: any, text: string) => {
   if (text.length === 0) return hash
 
   let i
@@ -22,19 +22,14 @@ const fold = (hash:any, text:string) => {
   return hash < 0 ? hash * -2 : hash
 }
 
-const foldObject = (hash:any, obj:Record<string, any>, seen:any[]) => {
-  const foldKey = (hash:any, key:string) => foldValue(hash, obj[key], key, seen)
+const foldObject = (hash: any, obj: Record<string, any>, seen: any[]) => {
+  const foldKey = (hash: any, key: string) =>
+    foldValue(hash, obj[key], key, seen)
 
-  return Object.keys(obj).sort()
-    .reduce(foldKey, hash)
+  return Object.keys(obj).sort().reduce(foldKey, hash)
 }
 
-const foldValue = (
-  input:number,
-  value:any,
-  key:string,
-  seen:any[]
-) => {
+const foldValue = (input: number, value: any, key: string, seen: any[]) => {
   const hash = fold(fold(fold(input, key), toString(value)), typeof value)
 
   if (value === null) return fold(hash, 'null')
@@ -52,8 +47,7 @@ const foldValue = (
 
     try {
       return fold(objHash, String(value.valueOf()))
-    }
-    catch (err) {
+    } catch (err) {
       return fold(objHash, '[valueOf exception]' + (err.stack || err.message))
     }
   }
@@ -68,4 +62,5 @@ const toString = (obj: Record<any, any>) => Object.prototype.toString.call(obj)
  * <br/>Not intended to be secure
  * <br/>Given the same input keys and values, it will always return the same output hash
  */
-export const hashObj = (obj: Record<any, any>): string => pad(foldValue(0, obj, '', []).toString(16), 8)
+export const hashObj = (obj: Record<any, any>): string =>
+  pad(foldValue(0, obj, '', []).toString(16), 8)

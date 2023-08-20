@@ -11,14 +11,17 @@ const homeDir = os.homedir()
  *
  * @returns {string} - Resolved location
  */
-export const resolvePath = (location:string, rootDir:string=process.cwd()):string => {
+export const resolvePath = (
+  location: string,
+  rootDir: string = process.cwd()
+): string => {
   return location.startsWith(`~`)
     ? path.resolve(path.join(homeDir, location.replace(`~`, '')))
     : location === `.`
-      ? rootDir
-      : location.startsWith(`./`)
-        ? path.resolve(path.join(`${rootDir}/`, location.replace(`./`, ``)))
-        : location.startsWith(`/`)
-          ? path.resolve(location)
-          : path.resolve(path.join(rootDir, location))
+    ? rootDir
+    : location.startsWith(`./`)
+    ? path.resolve(path.join(`${rootDir}/`, location.replace(`./`, ``)))
+    : location.startsWith(`/`)
+    ? path.resolve(location)
+    : path.resolve(path.join(rootDir, location))
 }

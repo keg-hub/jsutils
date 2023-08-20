@@ -19,7 +19,10 @@ import { isArr } from '@array/isArr'
  * @param {Object} obj - Object to clone
  * @return {Object} - Cloned Object
  */
-export const deepClone = <T=Record<any, any>|any[]>(obj: any, hash:any=new WeakMap()): T => {
+export const deepClone = <T = Record<any, any> | any[]>(
+  obj: any,
+  hash: any = new WeakMap()
+): T => {
   if (Object(obj) !== obj) return obj
   if (obj instanceof Set) return new Set(obj) as T
   if (hash.has(obj)) return hash.get(obj)
@@ -30,10 +33,10 @@ export const deepClone = <T=Record<any, any>|any[]>(obj: any, hash:any=new WeakM
     obj instanceof Date
       ? new Date(obj)
       : obj instanceof RegExp
-        ? new RegExp(obj.source, obj.flags)
-        : !obj.constructor
-            ? Object.create(null)
-            : null
+      ? new RegExp(obj.source, obj.flags)
+      : !obj.constructor
+      ? Object.create(null)
+      : null
 
   // if result is null, object has a constructor and wasn't an instance of Date nor RegExp
   if (result === null) return cloneObjWithPrototypeAndProperties(obj)
@@ -41,7 +44,7 @@ export const deepClone = <T=Record<any, any>|any[]>(obj: any, hash:any=new WeakM
   hash.set(obj, result)
 
   if (obj instanceof Map)
-    return Array.from(obj, ([ key, val ]) =>
+    return Array.from(obj, ([key, val]) =>
       result.set(key, deepClone(val, hash))
     ) as T
 
@@ -58,14 +61,18 @@ export const deepClone = <T=Record<any, any>|any[]>(obj: any, hash:any=new WeakM
  * @param {Object} objectWithPrototype - any object that has a prototype
  * @returns {Object} the cloned object
  */
-export const cloneObjWithPrototypeAndProperties = <T=Record<any, any>|any[]>(objectWithPrototype: any): T => {
+export const cloneObjWithPrototypeAndProperties = <
+  T = Record<any, any> | any[]
+>(
+  objectWithPrototype: any
+): T => {
   if (!objectWithPrototype) return objectWithPrototype
 
   const prototype = Object.getPrototypeOf(objectWithPrototype)
   const sourceDescriptors =
     Object.getOwnPropertyDescriptors(objectWithPrototype)
 
-  for (const [ key, descriptor ] of Object.entries(sourceDescriptors)) {
+  for (const [key, descriptor] of Object.entries(sourceDescriptors)) {
     descriptor.value &&
       (sourceDescriptors[key].value = deepClone(descriptor.value))
   }

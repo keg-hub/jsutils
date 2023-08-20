@@ -13,15 +13,15 @@ import { get } from '@collection/get'
  *
  * @returns {Object} cloned function
  */
-export const cloneFunc = <T=any>(func: (...params: any[]) => any): T => {
-  const funcClone = function (...args:any[]) {
+export const cloneFunc = <T = any>(func: (...params: any[]) => any): T => {
+  const funcClone = function (...args: any[]) {
     return func instanceof funcClone
       ? (() => {
           return new (func as any)(...args)
         })()
       : get(func.prototype, 'constructor.name')
-        ? new (func as any)(...args)
-        : func.apply(func, args)
+      ? new (func as any)(...args)
+      : func.apply(func, args)
   }
 
   for (let key in func) func.hasOwnProperty(key) && (funcClone[key] = func[key])

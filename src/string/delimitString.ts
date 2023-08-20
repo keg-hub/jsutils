@@ -16,16 +16,16 @@ import { isUpperCase } from './isUpperCase'
  * @example
  * delimitString('fooBar', '_') === 'foo_Bar'
  */
-export const delimitString = <T extends string=string>(
-  str:string,
-  delimiter:string,
-  delimiters:string[]=[ '-', '_', ' ' ]
+export const delimitString = <T extends string = string>(
+  str: string,
+  delimiter: string,
+  delimiters: string[] = ['-', '_', ' ']
 ): T => {
   if (!isStr(str)) return str as T
 
-  const isDelimiter = (c:string) => delimiters.some(del => del === c)
+  const isDelimiter = (c: string) => delimiters.some(del => del === c)
   let prevChar = '_'
-  return mapString(str, (char:string) => {
+  return mapString(str, (char: string) => {
     if (isDelimiter(char)) {
       prevChar = delimiter
       return delimiter
@@ -38,5 +38,5 @@ export const delimitString = <T extends string=string>(
 
     prevChar = char
     return char
-  })
+  }) as T
 }

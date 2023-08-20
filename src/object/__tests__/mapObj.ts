@@ -6,7 +6,7 @@ describe('mapObj', () => {
   it('should call the callback on all object properties', () => {
     const obj = {
       test: 'I should freeze',
-      sub: [ 1, 2, 3 ],
+      sub: [1, 2, 3],
       data: { test: 'I should freeze' },
     }
     const keys = []
@@ -23,7 +23,7 @@ describe('mapObj', () => {
   it('should return array of values returned from the callback', () => {
     const obj = {
       test: 'I should freeze',
-      sub: [ 1, 2, 3 ],
+      sub: [1, 2, 3],
       data: { test: 'I should freeze' },
     }
     const callBack = jest.fn((key, value) => key)
@@ -39,13 +39,13 @@ describe('mapObj', () => {
   it('should return array of entries if no callback is passed', () => {
     const obj = {
       test: 'I should freeze',
-      sub: [ 1, 2, 3 ],
+      sub: [1, 2, 3],
       data: { test: 'I should freeze' },
     }
     const entries = Obj.mapObj(obj)
 
     expect(entries.length).toEqual(3)
-    entries.map(([ key, val ]) => expect(obj[key]).toEqual(val))
+    entries.map(([key, val]) => expect(obj[key]).toEqual(val))
   })
 
   it('should return an empty array it the first argument is not an object', () => {

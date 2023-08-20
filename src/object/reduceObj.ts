@@ -11,15 +11,15 @@ import { isObj } from './isObj'
  * @param {Object} [start] - Starting accumulator object passed to the reduce method
  * @return {Object} - updated object after running the reduce method
  */
-export const reduceObj = <T=any>(
-  obj:Record<string, any>,
-  cb:(key: string, value: any, data: any) => any,
-  start:any={}
+export const reduceObj = <T = any>(
+  obj: Record<string, any>,
+  cb: (key: string, value: any, data: any) => any,
+  start: any = {}
 ): T =>
   (isObj(obj) &&
     isFunc(cb) &&
     Object.entries(obj).reduce(
-      (data, [ key, value ]) => cb(key, value, data),
+      (data, [key, value]) => cb(key, value, data),
       start
     )) ||
   start

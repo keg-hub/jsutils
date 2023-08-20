@@ -10,4 +10,5 @@
  * isRegex(/a/) // true
  * isRegex('a') // false
  */
-export const isRegex = (val: any): val is RegExp => Boolean(val && val instanceof RegExp)
+export const isRegex = (val: any): val is RegExp =>
+  Boolean(val && val instanceof RegExp)

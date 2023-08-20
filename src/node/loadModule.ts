@@ -3,12 +3,11 @@
 'use strict'
 
 import path from 'path'
-import { isArr } from '../array/isArr'
-import { isFunc } from '../method/isFunc'
-import { isObj } from '../object/isObj'
-import { isStr } from '../string/isStr'
-import { logData } from '../log/logData'
-
+import { isArr } from '@array/isArr'
+import { isFunc } from '@method/isFunc'
+import { isObj } from '@object/isObj'
+import { isStr } from '@string/isStr'
+import { logData } from '@log/logData'
 
 /**
  * Gets the relative path from the passed in pathToModule
@@ -34,17 +33,19 @@ const getRelativePath = (pathToModule: string): string => {
  *
  * @returns {Object|Function} - Loaded module
  */
-const requireModule = (pathToModule:string, config:Record<string, any>={}) => {
+const requireModule = (
+  pathToModule: string,
+  config: Record<string, any> = {}
+) => {
   const { rootDir, logErrors } = config
   try {
     // Check if a rootDir exists
     return rootDir
       ? // If rootDir exists, use it to load the module
-      require(path.join(rootDir, pathToModule))
+        require(path.join(rootDir, pathToModule))
       : // If no rootDir, try to load the module without it
-      require(getRelativePath(pathToModule))
-  }
-  catch (err) {
+        require(getRelativePath(pathToModule))
+  } catch (err) {
     // Show errors if set to true
     logErrors && logData(err.message, `error`)
 
@@ -61,15 +62,15 @@ const requireModule = (pathToModule:string, config:Record<string, any>={}) => {
  *
  * @returns {any} - Loaded modules or undefined
  */
-const loadByType = (foundModule:any, params:any[]) => {
+const loadByType = (foundModule: any, params: any[]) => {
   // Check the type of the foundModule
   return isFunc(foundModule)
     ? // If it's a function call it with params
-    foundModule(...params)
+      foundModule(...params)
     : // If it's an object just return it
     isObj(foundModule) || isArr(foundModule)
-      ? foundModule
-      : // If it's not a function or object, return undefined
+    ? foundModule
+    : // If it's not a function or object, return undefined
       undefined
 }
 
@@ -84,9 +85,9 @@ const loadByType = (foundModule:any, params:any[]) => {
  * @returns {Object} - Loaded module object
  */
 const loopLoad = (
-  pathsToModule:string[],
-  config:Record<string, any>={},
-  params:any[]
+  pathsToModule: string[],
+  config: Record<string, any> = {},
+  params: any[]
 ) => {
   try {
     const modulePath = pathsToModule.shift()
@@ -96,8 +97,7 @@ const loopLoad = (
     if (!loadedModule) throw new Error(`No Module!`)
 
     return loadedModule
-  }
-  catch (err) {
+  } catch (err) {
     if (!isArr(pathsToModule) || !pathsToModule.length) return undefined
 
     return loopLoad(pathsToModule, config, params)
@@ -128,25 +128,24 @@ const loopLoad = (
  * @returns {Object} - Loaded module object
  */
 export const loadModule = (
-  pathsToModule:string|string[],
-  config:Record<string, any>={},
-  ...params:any[]
+  pathsToModule: string | string[],
+  config: Record<string, any> = {},
+  ...params: any[]
 ) => {
   // Check If a string is passed in
   pathsToModule = isStr(pathsToModule)
     ? // If it's a string, convert to an array
-      [pathsToModule] as string[]
+      ([pathsToModule] as string[])
     : // Otherwise check if it's and array
-    isArr(pathsToModule) && pathsToModule as string[]
+      isArr(pathsToModule) && (pathsToModule as string[])
 
   // Check if there are paths to load
   return pathsToModule
     ? // Call loopLoad to load the module
-    loopLoad(pathsToModule, config, params)
+      loopLoad(pathsToModule, config, params)
     : // If not paths, log an error
-    logData(
-      `loadModule requires an array or string as the first argument.`,
-      `error`
-    )
+      logData(
+        `loadModule requires an array or string as the first argument.`,
+        `error`
+      )
 }
-

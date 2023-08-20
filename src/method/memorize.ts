@@ -17,8 +17,12 @@ import { noOp } from './noOp'
  *
  * @return {Function} memorized function with cache
  */
-export const memorize = (func: (...params: any[]) => any, getCacheKey: (...params: any[]) => any, limit=1): (...params: any[]) => any => {
-  if (!isFunc(func) || (getCacheKey && !isFunc(getCacheKey))){
+export const memorize = (
+  func: (...params: any[]) => any,
+  getCacheKey: (...params: any[]) => any,
+  limit = 1
+): ((...params: any[]) => any) => {
+  if (!isFunc(func) || (getCacheKey && !isFunc(getCacheKey))) {
     console.error('Error: Expected a function', func, getCacheKey)
     return noOp
   }

@@ -13,7 +13,10 @@ import { updateColl } from './updateColl'
  *
  * @return {Object} - The passed in object, with the attribute found at the path removed
  */
-export const unset = <T=Record<any, any>|any[]>(obj: T, path: string|string[]): T => {
+export const unset = <T = Record<any, any> | any[]>(
+  obj: T,
+  path: string | string[]
+): T => {
   updateColl(obj, path, 'unset')
 
   return obj

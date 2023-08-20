@@ -10,7 +10,7 @@ import { isStr } from './isStr'
  * @example
  * reverseStr('foo') // 'oof'
  */
-export const reverseStr = <T extends string=string>(str: string): T => {
+export const reverseStr = <T extends string = string>(str: string): T => {
   if (!isStr(str)) return undefined
   let reversed = ''
   for (let char of str) {

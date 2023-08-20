@@ -8,6 +8,6 @@ import { removeDot } from './removeDot'
  * @param {String} string to be converted
  * @return {String} - cleaned string
  */
-export const cleanStr = <T extends string=string>(str: string): T => {
-  return (str && removeDot(str).replace(/[-_]/gm, ' ')) as T || str as T
+export const cleanStr = <T extends string = string>(str: string): T => {
+  return ((str && removeDot(str).replace(/[-_]/gm, ' ')) as T) || (str as T)
 }

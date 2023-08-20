@@ -20,7 +20,11 @@ import { updateColl } from './updateColl'
  *
  * @return {Object} - The obj with the passed in value set to the passed in path
  */
-export const set = <T=Record<any, any>|any[], V=any>(obj: T, path: string | string[], val: V): T => {
+export const set = <T = Record<any, any> | any[], V = any>(
+  obj: T,
+  path: string | string[],
+  val: V
+): T => {
   updateColl(obj, path, 'set', val)
 
   return obj

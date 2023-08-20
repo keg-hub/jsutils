@@ -3,7 +3,7 @@
 export let SHOW_LOGS
 export let METH_DEF = 'dir'
 export let PREFIX = 'type'
-export const LOG_TYPES = [ 'error', 'info', 'log', 'dir', 'warn' ]
+export const LOG_TYPES = ['error', 'info', 'log', 'dir', 'warn']
 export const isTest = process.env.NODE_ENV === 'test'
 
 /**
@@ -18,7 +18,11 @@ export const isTest = process.env.NODE_ENV === 'test'
  * @param {String} [prefix] - string to add to all logs
  * @return { void }
  */
-export const setLogs = (log: boolean, methDef?: string, prefix?: string): void => {
+export const setLogs = (
+  log: boolean,
+  methDef?: string,
+  prefix?: string
+): void => {
   SHOW_LOGS = log
   METH_DEF = methDef || METH_DEF || 'log'
   PREFIX = prefix || PREFIX || 'type'

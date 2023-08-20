@@ -24,10 +24,10 @@ export const objToQuery = <T extends string>(obj: Record<string, any>): T => {
         isStr(value) || isNum(value) || isBool(value)
           ? value
           : isColl(value)
-            ? isArr(value)
-              ? value.join(',')
-              : JSON.stringify(value)
-            : null
+          ? isArr(value)
+            ? value.join(',')
+            : JSON.stringify(value)
+          : null
 
       if (!useVal) return urlStr
 

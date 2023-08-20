@@ -37,13 +37,13 @@ describe('runSeq', () => {
 
     const results = await runSeq(fns, { cloneResults: true })
 
-    ;[ 0, 1, 2 ].map(index =>
+    ;[0, 1, 2].map(index =>
       expect(results[index]).toMatchObject(expectedResults[index])
     )
   })
 
   it('should return the returnOriginal item at the index of any non-function', async () => {
-    const input = [ 'not a function', 123 ]
+    const input = ['not a function', 123]
     let results = await runSeq(input, { returnOriginal: false })
     results.map(result => expect(result).toBeUndefined())
 

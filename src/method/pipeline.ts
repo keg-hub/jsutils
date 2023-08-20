@@ -13,6 +13,9 @@ import { applyToFunc } from './applyToFunc'
  * @param {...Function} functions - Functions to be iterated over one after the other
  * @returns {*} - the final result of calling the pipeline of functions , starting with item as input
  */
-export const pipeline = (item: any, ...functions: ((...params: any[]) => any)[]): any => {
+export const pipeline = (
+  item: any,
+  ...functions: ((...params: any[]) => any)[]
+): any => {
   return functions.reduce((result, fn) => applyToFunc(result, fn), item)
 }

@@ -10,15 +10,13 @@ import { isFunc } from './isFunc'
  * @param {*} item
  * @param {*} expression
  */
-export const applyToFunc = <T=any>(item: any, expression: any): T => {
+export const applyToFunc = <T = any>(item: any, expression: any): T => {
   if (isArr(expression)) {
-    const [ func, ...args ] = expression
+    const [func, ...args] = expression
     return func(item, ...args)
-  }
-  else if (isFunc(expression)) {
+  } else if (isFunc(expression)) {
     return expression(item)
-  }
-  else {
+  } else {
     console.error(
       `Pipeline expected either a function or an array (for function expressions). Found ${typeof expression}`
     )
