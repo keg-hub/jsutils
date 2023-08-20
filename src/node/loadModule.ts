@@ -134,11 +134,12 @@ export const loadModule = (
   config: Record<string, any> = {},
   ...params: any[]
 ) => {
-
   // Check if there are paths to load
   // Call loopLoad to load the module
   // If not paths, log an error
   return isStr(pathsToModule) || isArr(pathsToModule)
     ? loopLoad(ensureArr<string>(pathsToModule), config, params)
-    : console.error(`loadModule requires a string or an array of strings as the first argument.`)
+    : console.error(
+        `loadModule requires a string or an array of strings as the first argument.`
+      )
 }
