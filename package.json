@@ -62,12 +62,10 @@
     "docs:deploy": "pnpm build && pnpm build:docs && gh-pages -d docs",
     "entries": "node -r esbuild-register ./scripts/getEntries.ts",
     "format:eslint": "eslint --config ./configs/eslintrc.config.js . --fix --quiet",
-    "format:prettier": "prettier --config ./configs/prettier.config.js --ignore-path .eslintignore --write '**/*.ts'",
-    "format": "pnpm format:prettier && pnpm format:eslint",
+    "format": "pnpm format:eslint",
     "json:rm": "dot-json package.json devDependencies -d",
     "json:reset": "git checkout ./package.json",
     "test": "NODE_ENV=test jest --verbose --config=./configs/jest.config.js  --maxWorkers=50%",
-    "prettier": "prettier",
     "prepack": "pnpm json:rm",
     "types": "tsc && pnpm types:fix",
     "types:fix": "node --enable-source-maps -r esbuild-register scripts/fixTypes.ts",
@@ -92,7 +90,6 @@
     "gh-pages": "5.0.0",
     "glob": "10.3.3",
     "jest": "29.5.0",
-    "prettier": "2.7.1",
     "typescript": "5.1.6"
   },
   "directories": {

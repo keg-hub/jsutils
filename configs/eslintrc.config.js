@@ -29,6 +29,7 @@ module.exports = {
     /* General */
     'no-console': [ 'warn', { allow: [ 'warn', 'error' ] }],
     'brace-style': [ 'error', 'stroustrup' ],
+    semi: [ `error`, `never` ],
     indent: [ 'error', 2, { offsetTernaryExpressions: true }],
     quotes: [
       'error',
