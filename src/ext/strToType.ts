@@ -31,7 +31,8 @@ export const strToType = <T = any>(val: any): T => {
     : (() => {
         try {
           return JSON.parse(val)
-        } catch (e) {
+        }
+        catch (e) {
           return val
         }
       })()

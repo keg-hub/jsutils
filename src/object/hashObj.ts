@@ -47,7 +47,8 @@ const foldValue = (input: number, value: any, key: string, seen: any[]) => {
 
     try {
       return fold(objHash, String(value.valueOf()))
-    } catch (err) {
+    }
+    catch (err) {
       return fold(objHash, '[valueOf exception]' + (err.stack || err.message))
     }
   }
