@@ -78,8 +78,6 @@
     "docdash": "1.2.0",
     "esbuild": "0.18.17",
     "esbuild-jest": "0.5.0",
-    "esbuild-plugin-d.ts": "1.1.0",
-    "esbuild-plugin-path-alias": "1.0.7",
     "esbuild-register": "3.4.2",
     "eslint": "8.44.0",
     "eslint-plugin-jest": "27.0.1",
