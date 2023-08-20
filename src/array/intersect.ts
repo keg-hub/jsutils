@@ -12,9 +12,9 @@ import { isArr } from './isArr'
  *
  * @returns {Array<any>} - Array of matching items
  */
-export const intersect = (arrA, arrB) => {
+export const intersect = <T=any, M=any[], N=any[]>(arrA: M, arrB:N):T[] => {
   if (!isArr(arrA) || !isArr(arrB)) return []
 
-  const setB = new Set(arrB)
-  return [...new Set(arrA)].filter(x => setB.has(x))
+  const setB = new Set(arrB as any[])
+  return [...new Set(arrA as any[])].filter(x => setB.has(x)) as T[]
 }

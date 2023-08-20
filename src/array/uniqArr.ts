@@ -11,7 +11,7 @@ import { isArr } from './isArr'
  * @param {array} arr - array to remove duplicates from
  * @return {array} copy of passed in array, with duplicates removed
  */
-export const uniqArrByReference = arr => {
+export const uniqArrByReference = <T=any>(arr: any[]): T[] => {
   return !isArr(arr) ? arr : arr.filter((e, i, arr) => arr.indexOf(e) == i)
 }
 
@@ -33,7 +33,7 @@ export const uniqArrByReference = arr => {
  * @param {Function} [selector] - optional function to specify the property uniqArr should use to check if another element exists
  * @return {array} copy of passed in array, with duplicates removed
  */
-export const uniqArr = (arr, selector) => {
+export const uniqArr = <T=any>(arr: any[], selector?: (element: any, idx?:number) => any): T[] => {
   if (!selector) return uniqArrByReference(arr)
 
   // loop over each element in one pass,

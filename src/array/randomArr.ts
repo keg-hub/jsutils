@@ -12,7 +12,7 @@ import { isArr } from './isArr'
  * @param {Number} [amount] - number of values to select from the array
  * @return {Array} - randomly sorted array
  */
-export const randomArr = (arr, amount) => {
+export const randomArr = <T=any>(arr: any[], amount?: number): T[] => {
   if (!isArr(arr)) return arr
 
   const useAmount = amount || 1

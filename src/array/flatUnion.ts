@@ -21,7 +21,7 @@ import { isFunc } from '@method/isFunc'
  *
  * @return {Array} - Flattened copy of passed in array arguments, with duplicates removed
  */
-export const flatUnion = (...args) => {
+export const flatUnion = <T=any>(...args: any[]): T[] => {
   const last = args.pop()
   const opts = { exists: true }
   const compare = isFunc(last) ? last : args.push(last) && undefined

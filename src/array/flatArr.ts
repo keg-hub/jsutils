@@ -15,7 +15,7 @@ import { exists } from '@ext/exists'
  *
  * @return {Array} - Mutated arr or result, but flattened based on options
  */
-const flatten = (arr, result, opts) => {
+const flatten = <T=any>(arr:any[], result:T[], opts?: {truthy?: boolean, exists?: boolean, mutate?: boolean}) => {
   for (let i = 0; i < arr.length; i++) {
     const value = arr[i]
 
@@ -52,5 +52,5 @@ const flatten = (arr, result, opts) => {
  *
  * @return {Array} - Mutated original array now flattened, or a new flattened array based on options
  */
-export const flatArr = (arr, opts) =>
+export const flatArr = <T=any>(arr: any[], opts?: {truthy?: boolean, exists?: boolean, mutate?: boolean}): T[] =>
   flatten(arr, [], isObj(opts) ? opts : noOpObj)

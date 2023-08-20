@@ -28,7 +28,7 @@ import { validate } from '@validation/validate'
 //     : null
 // }
 
-export const findExtrema = (arr, comparator) => {
+export const findExtrema = (arr: any[], comparator: (extremaSoFar: any, next: any) => any): any => {
   const [valid] = validate(
     { arr, comparator },
     { arr: isArr, $default: isFunc }

@@ -11,7 +11,7 @@ import { isArr } from './isArr'
  * @param {Number} startIndex
  * @param {Number} count
  */
-export const omitRange = (arr, startIndex, count) => {
+export const omitRange = <T=any[]>(arr: any[], startIndex: number, count: number): T[] => {
   const [inputIsValid] = validate(
     { arr, startIndex, count },
     { arr: isArr, $default: isNonNegative }

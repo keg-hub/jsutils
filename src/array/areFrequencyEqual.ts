@@ -9,7 +9,7 @@ import { isArr } from './isArr'
  * @param {Array<*>} arr
  * @return {Map<*, number>}
  */
-export const buildElementCountMap = arr => {
+export const buildElementCountMap = (arr: any[]): Map<any, number> => {
   const counts = new Map()
   for (let i = 0; i < arr.length; i++) {
     const element = arr[i]
@@ -26,7 +26,7 @@ export const buildElementCountMap = arr => {
  * @param {Map<*, number>} mapB
  * @returns {Boolean} - True if the item count it equal between mapA and mapB
  */
-export const areCountMapsEqual = (mapA, mapB) => {
+export const areCountMapsEqual = (mapA: Map<any, number>, mapB: Map<any, number>): boolean => {
   if (mapA.size !== mapB.size) return false
 
   for (let [ key, count ] of mapA) {
@@ -45,7 +45,7 @@ export const areCountMapsEqual = (mapA, mapB) => {
  * @param {Array<*>} otherArr
  * @returns {Boolean} - True if otherArr contains exactly the same elements as arr, where order does not matter, but frequency does
  */
-export const areFrequencyEqual = (arr, otherArr) => {
+export const areFrequencyEqual = (arr: any[], otherArr: any[]): boolean => {
   const [valid] = validate({ arr, otherArr }, { $default: isArr })
   if (!valid) return null
 

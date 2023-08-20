@@ -11,7 +11,7 @@ import { isArr } from './isArr'
  * @param {Array<*>} arr
  * @param {Array<*>} otherArr
  */
-export const areSetEqual = (arr, otherArr) => {
+export const areSetEqual = (arr: any[], otherArr: any[]): boolean => {
   const [valid] = validate({ arr, otherArr }, { $default: isArr })
   if (!valid) return null
 

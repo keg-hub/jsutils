@@ -13,4 +13,4 @@ import { isArr } from './isArr'
  *
  * @returns {Array} val if it's an array, or val in an array
  */
-export const ensureArr = val => (isArr(val) ? val : [val])
+export const ensureArr = <T=any>(val: any[] | any): T[] => (isArr(val) ? val : [val])
