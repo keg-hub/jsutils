@@ -8,7 +8,7 @@ import { isStr } from './isStr'
  * @param {String} string to check
  * @return {Boolean} - if it's a email
  */
-export const isEmail = str => {
+export const isEmail = <T extends string=string>(str: string):str is T => {
   if (!str || !isStr(str)) return false
   const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
   return Boolean(regex.test(str))

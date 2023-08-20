@@ -6,7 +6,7 @@
  * @param {String} string
  * @return {Object} - JSON object
  */
-export const parseJSON = (str, logErr = true) => {
+export const parseJSON = <T=any>(str: string, logErr:boolean=true): T => {
   try {
     return JSON.parse(str)
   }

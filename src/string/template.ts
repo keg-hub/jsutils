@@ -5,6 +5,16 @@ import { isColl } from '@collection/isColl'
 import { get } from '@collection/get'
 import { isStr } from './isStr'
 
+
+type TTempFun = (<T extends string=string>(
+  tempStr: string,
+  data: Record<any, any>|any[],
+  fallback:any,
+) => T) & {
+  regex?: RegExp
+}
+
+
 /**
  * Helper to wrap the template method, and allow passing a custom regex argument
  * Custom regex is used instead the default regex of the template method
@@ -19,13 +29,18 @@ import { isStr } from './isStr'
  *
  * @returns {String} - template with placeholder values filled
  */
-export const templateRx = (tempStr, data, fallback = '', rx) => {
+export const templateRx = <T extends string=string>(
+  tempStr: string,
+  data: Record<any, any>|any[],
+  fallback:any=``,
+  rx?:RegExp
+):T => {
   const orgRx = template.regex
   template.regex = rx || /{{([^}]*)}}/g
   const resp = template(tempStr, data, fallback)
   template.regex = orgRx
 
-  return resp
+  return resp as T
 }
 
 /**
@@ -40,18 +55,24 @@ export const templateRx = (tempStr, data, fallback = '', rx) => {
  *
  * @returns {String} - template with placeholder values filled
  */
-export const template = (tempStr, data, fallback = '') => {
+export const template:TTempFun = <T extends string=string>(
+  tempStr: string,
+  data: Record<any, any>|any[],
+  fallback:any=``,
+):T => {
   data = (isColl(data) && data) || {}
   const regex = template.regex || /\${(.*?)\}/g
 
   return isStr(tempStr)
     ? tempStr.replace(regex, (match, exact) => {
-      const path = (exact || match.substr(2, match.length - 3)).trim()
-      const replaceWith = get(data, path, fallback)
-      return isFunc(replaceWith)
-        ? replaceWith(data, path, fallback)
-        : replaceWith
-    })
-    : console.error(`template requires a string as the first argument`) ||
-        tempStr
-}
+        const path = (exact || match.substring(2, match.length - 3)).trim()
+        const replaceWith = get(data, path, fallback)
+        return isFunc(replaceWith)
+          ? replaceWith(data, path, fallback)
+          : replaceWith
+      }) as T
+    : (() => {
+        console.error(`template requires a string as the first argument`)
+        return tempStr as T
+      })()
+} 

@@ -19,7 +19,7 @@ const hyphenCache = {}
  *
  * @returns {String} - Lowercase style rule with hyphen at the start
  */
-const toHyphenLower = match => '-' + match.toLowerCase()
+const toHyphenLower = (match:string) => '-' + match.toLowerCase()
 
 /**
  * Converts a camelCase style rule into a hyphenated style rule
@@ -29,9 +29,9 @@ const toHyphenLower = match => '-' + match.toLowerCase()
  *
  * @returns {String} - Hyphenated style rule
  */
-export const hyphenator = rule => {
-  if (hyphenCache.hasOwnProperty(rule)) return hyphenCache[rule]
+export const hyphenator = <T extends string=string>(str: string): T => {
+  if (hyphenCache.hasOwnProperty(str)) return hyphenCache[str]
 
-  const hRule = rule.replace(uppercasePattern, toHyphenLower)
-  return (hyphenCache[rule] = msPattern.test(hRule) ? '-' + hRule : hRule)
+  const hRule = str.replace(uppercasePattern, toHyphenLower)
+  return (hyphenCache[str] = msPattern.test(hRule) ? '-' + hRule : hRule) as T
 }

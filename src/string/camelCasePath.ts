@@ -12,11 +12,11 @@ import { capitalize } from './capitalize'
  * camelCasePath('settings.agendaMap.Count') -> 'settingsAgendaMapCount'
  * camelCasePath('settings') -> 'settings'
  */
-export const camelCasePath = path => {
+export const camelCasePath = <T extends string=string>(path: string): T => {
   const split = path.split('.')
   const camelCasedSplit = split.map((str, idx) =>
     idx > 0 ? capitalize(str, false) : str
   )
 
-  return camelCasedSplit.length > 1 ? camelCasedSplit.join('') : path
+  return camelCasedSplit.length > 1 ? camelCasedSplit.join('') as T : path as T
 }

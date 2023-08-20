@@ -14,13 +14,13 @@ import { isNonNegative } from '@number/isNonNegative'
  *
  * @returns {String} - Hashed version of the string
  */
-export const hashString = (str, maxLength) => {
-  if (!isStr(str) || str.length == 0) return 0
+export const hashString = <T extends string=string>(str: string, maxLength?: number): T => {
+  if (!isStr(str) || str.length == 0) return `0` as T
 
   str = str.split('').reverse()
     .join('')
 
-  let hash = 0
+  let hash:any = 0
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i)
     hash = (hash << 5) - hash + char
@@ -28,5 +28,5 @@ export const hashString = (str, maxLength) => {
     hash = `${Math.abs(hash & hash)}`
   }
 
-  return isNonNegative(maxLength) ? hash.slice(0, maxLength) : hash
+  return isNonNegative(maxLength) ? hash.slice(0, maxLength) as T : hash as T
 }

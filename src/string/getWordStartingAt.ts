@@ -9,7 +9,11 @@
  * @param {Number} index
  * @param {Array<string>} delimiters
  */
-export const getNearestDelimiterIndex = (text, index, delimiters = [' ']) => {
+export const getNearestDelimiterIndex = (
+  text: string,
+  index: number,
+  delimiters:string[]=[' ']
+) => {
   const indices = delimiters.map(str => text.indexOf(str, index)).sort()
   return indices.find(idx => idx >= 0)
 }
@@ -25,10 +29,14 @@ export const getNearestDelimiterIndex = (text, index, delimiters = [' ']) => {
  * const word = getWordStartingAt(text, 4)
  * word === 'bar'
  */
-export const getWordStartingAt = (text, index, delimiters = [' ']) => {
+export const getWordStartingAt = <T extends string=string>(
+  text: string,
+  index: number,
+  delimiters:string[]=[' ']
+): T => {
   const endingSpaceIdx = getNearestDelimiterIndex(text, index, delimiters)
   return text.substring(
     index,
     endingSpaceIdx === -1 ? text.length : endingSpaceIdx
-  )
+  ) as T
 }

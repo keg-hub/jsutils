@@ -11,7 +11,7 @@ import { isArr } from '@array/isArr'
  *
  * @returns {String} Joined strings seperated by space
  */
-export const spaceJoin = (original, toAdd) => {
+export const spaceJoin = <T extends string=string>(original: string, toAdd: string | string[]): T => {
   toAdd = isArr(toAdd) ? toAdd : [toAdd]
   return toAdd.reduce(
     (joined, item) => {
@@ -20,5 +20,5 @@ export const spaceJoin = (original, toAdd) => {
         : joined
     },
     isStr(original) ? original : ''
-  )
+  ) as T
 }

@@ -10,11 +10,11 @@ import { capitalize } from './capitalize'
  * @param {String} string to be converted
  * @return {String} - string with all words capitalized
  */
-export const wordCaps = str => {
-  if (!isStr(str)) return str
+export const wordCaps = <T extends string>(str: string): T => {
+  if (!isStr(str)) return str as T
   let cleaned = cleanStr(str)
   return cleaned
     .split(' ')
     .map(word => (word && capitalize(word)) || '')
-    .join(' ')
+    .join(' ') as T
 }

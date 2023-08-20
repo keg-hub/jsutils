@@ -39,7 +39,7 @@ const defObjProps = Array.from([
  * @return {Object} - object with Async methods added
  * @private
  */
-const addAsync = object => {
+const addAsync = (object: any): any => {
   if (!object.__IS_PROMISIFIED__) {
     for (const prop of Object.getOwnPropertyNames(object)) {
       const isAsync = prop.indexOf('Async') !== -1 || object[`${prop}Async`]

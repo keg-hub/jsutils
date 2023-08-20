@@ -10,9 +10,9 @@ import { camelCase } from './camelCase'
  * @param {String} str - string to be converted
  * @return {String} - string in style case format
  */
-export const styleCase = str => {
+export const styleCase = <T extends string=string>(str: string): T => {
   if (!isStr(str)) return str
 
   const cased = camelCase(str)
-  return `${cased[0].toLowerCase()}${cased.slice(1)}`
+  return `${cased[0].toLowerCase()}${cased.slice(1)}` as T
 }

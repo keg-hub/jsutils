@@ -8,7 +8,7 @@ import { isStr } from './isStr'
  * @param {String} str - string to check
  * @return {Boolean} - if it's a uuid
  */
-export const isUuid = str => {
+export const isUuid = <T extends string=string>(str: string): str is T => {
   if (!str || !isStr(str)) return false
   const regex =
     /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i

@@ -9,7 +9,7 @@ import { cleanStr } from './cleanStr'
  * @param {String} string to be converted
  * @return {String} - string in camel case format
  */
-export const camelCase = (str, compCase) => {
+export const camelCase = <T extends string=string>(str: string, compCase?:boolean): T => {
   return (
     (str &&
       cleanStr(str)
@@ -21,5 +21,5 @@ export const camelCase = (str, compCase) => {
           return cased
         }, '')) ||
     str
-  )
+  ) as T
 }

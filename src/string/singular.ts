@@ -6,7 +6,7 @@
  * @param {String} str - string to convert
  * @return {String} string as singular
  */
-export const singular = str => {
-  if (!str || !str.length) return str
-  return str[str.length - 1] === 's' ? str.slice(0, str.length - 1) : str
+export const singular = <T extends string=string>(str: string): T => {
+  if (!str || !str.length) return str as T
+  return str[str.length - 1] === 's' ? str.slice(0, str.length - 1) as T : str as T
 }

@@ -14,8 +14,12 @@ import { getWordStartingAt } from './getWordStartingAt'
  * const word = getWordEndingAt(text, 3)
  * word === 'foo'
  */
-export const getWordEndingAt = (text, index, delimiters = [' ']) => {
+export const getWordEndingAt = <T extends string=string>(
+  text: string,
+  index: number,
+  delimiters:string[]=[' ']
+): T => {
   const reversed = reverseStr(text)
   const reversedIndex = text.length - index
-  return reverseStr(getWordStartingAt(reversed, reversedIndex, delimiters))
+  return reverseStr(getWordStartingAt(reversed, reversedIndex, delimiters)) as T
 }

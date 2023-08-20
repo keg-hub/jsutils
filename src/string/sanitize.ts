@@ -8,8 +8,8 @@ import { isStr } from './isStr'
  * @param {String} string
  * @return {String} - cleaned string
  */
-export const sanitize = str =>
+export const sanitize = <T extends string=string>(str: string): T =>
   (isStr(str) &&
     str.replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')) ||
-  str
+      .replace(/>/g, '&gt;') as T) ||
+  str as T

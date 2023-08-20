@@ -7,7 +7,7 @@
  *
  * @returns {Boolean}
  */
-export const validFilename = fileName => {
+export const validFilename = (fileName: string): boolean => {
   if (!fileName) return false
   // On Unix-like systems '/' is reserved
   // and <>:"/\|?* as well as non-printable characters \u0000-\u001F on Windows

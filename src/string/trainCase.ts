@@ -8,10 +8,10 @@ import { isStr } from './isStr'
  * @param {String} string to be converted
  * @return {String} - string in train case format
  */
-export const trainCase = str =>
+export const trainCase = <T extends string=string>(str: string): T =>
   (isStr(str) &&
     str
       .split(/(?=[A-Z])|[\s_-]/gm)
       .join('-')
-      .toLowerCase()) ||
-  str
+      .toLowerCase()) as T ||
+  str as T

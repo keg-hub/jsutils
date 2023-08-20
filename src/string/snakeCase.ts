@@ -10,7 +10,7 @@ import { delimitString } from './delimitString'
  * snakeCase('fooBar') === 'foo_bar'
  * @returns {String} - The string in snake_case, or the input if it is not a string
  */
-export const snakeCase = str => {
+export const snakeCase = <T extends string=string>(str: string): T => {
   const underscored = delimitString(str, '_')
-  return underscored.toLowerCase()
+  return underscored.toLowerCase() as T
 }

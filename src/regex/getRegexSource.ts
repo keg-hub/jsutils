@@ -16,5 +16,5 @@ import { isStr } from '@string/isStr'
  * getRegexSource('test') // 'test'
  * getRegexSource(34) // null
  */
-export const getRegexSource = maybeRx =>
+export const getRegexSource = (maybeRx:any):string|null =>
   isRegex(maybeRx) ? maybeRx.source : isStr(maybeRx) ? maybeRx : null

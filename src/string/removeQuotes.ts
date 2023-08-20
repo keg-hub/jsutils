@@ -6,8 +6,8 @@
  * @param {String} str - string to convert
  * @return {String} string without quotes
  */
-export const removeQuotes = str =>
+export const removeQuotes = <T extends string=string>(str:string): T =>
   str
     .trim()
     .replace(/^("|')/, '')
-    .replace(/("|')$/, '')
+    .replace(/("|')$/, '') as T

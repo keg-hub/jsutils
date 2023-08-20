@@ -12,7 +12,7 @@ import { getRegexSource } from './getRegexSource'
  *  options string
  * ]
  */
-const parseArgs = args => {
+const parseArgs = (args: Array<any>) => {
   if (isArr(args[0])) return [ args[0], args[1] ]
   const last = args[args.length - 1]
   const options = isStr(last) ? last : undefined
@@ -35,11 +35,11 @@ const parseArgs = args => {
  * // calling with an array
  * const joined = joinRegex([ ...allMyRegEx ], 'gi')
  */
-export const joinRegex = (...args) => {
+export const joinRegex = (...args: [RegExp|string]): RegExp => {
   const [ expressions, options ] = parseArgs(args)
 
   // join the regex together in a capture group with the | operator
-  const source = expressions.reduce((joined, next) => {
+  const source = expressions.reduce((joined:string, next:RegExp|string) => {
     const nextSource = getRegexSource(next)
     return !nextSource
       ? joined
