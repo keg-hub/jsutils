@@ -11,7 +11,8 @@ import { logData } from '@log/logData'
 export const cloneJson = <T = any>(obj: any): T => {
   try {
     return JSON.parse(JSON.stringify(obj))
-  } catch (e) {
+  }
+  catch (e) {
     logData(e.message, 'error')
     return null
   }

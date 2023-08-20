@@ -34,7 +34,8 @@ const buildDocs = async () => {
     await runCmd(`./node_modules/.bin/jsdoc -c ./configs/jsdoc.json`)
 
     console.log(`Successfully built docs\n`)
-  } catch (e) {
+  }
+  catch (e) {
     console.error(e)
     exitCode = 1
 
