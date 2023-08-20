@@ -10,21 +10,14 @@ See docs at [https://keg-hub.github.io/jsutils](https://keg-hub.github.io/jsutil
 
 ## Usage
 ```js
-  // * Import into code
-  import jsutils from '@keg-hub/jsutils'
+  // * Import the whole lib
+  import { capitalize } from '@keg-hub/jsutils'
+
   // Or only the methods you need
-  import { capitalize } from '@keg-hub/jsutils/string'
-  import { reduceObj, mapObj } from '@keg-hub/jsutils/object'
+  import { capitalize } from '@keg-hub/jsutils/capitalize'
 
   // * Or require code
-  const jsutils = require('@keg-hub/jsutils')
+  const { capitalize } = require('@keg-hub/jsutils')
+  const { capitalize } = require('@keg-hub/jsutils/capitalize')
 
-  // * Or add as html script
-  <script src='/path/to/jsutils/build/jsutils.min.js'></script>
-
-  // jsutils will be available on the window 
-  <script>
-    const jsutils = window.jsutils
-
-  </script>
 ```
