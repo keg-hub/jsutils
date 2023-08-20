@@ -58,6 +58,10 @@
     "index.js"
   ],
   "exclude": [
+    "__tests__",
+    "**/__tests__",
+    "__tests__/*",
+    "**/__tests__/*",
     "./types",
     "./build",
     "./docs",
