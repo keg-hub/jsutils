@@ -50,7 +50,7 @@
   ],
   "scripts": {
     "prebuild": "pnpm format && pnpm test",
-    "postpublish": "pnpm build:docs && pnpm json:reset",
+    "postpublish": "pnpm json:reset",
     "build": "pnpm build:es && pnpm types",
     "build:es": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
     "build:clean": "rm -rf ./build",
@@ -59,7 +59,7 @@
     "clean:nm": "rm -rf node_modules",
     "clean:full": "pnpm clean && pnpm install",
     "clean": "pnpm build:clean && pnpm clean:nm",
-    "docs:deploy": "pnpm build && gh-pages -d docs",
+    "docs:deploy": "pnpm build && pnpm build:docs && gh-pages -d docs",
     "entries": "node -r esbuild-register ./scripts/getEntries.ts",
     "format:eslint": "eslint --config ./configs/eslintrc.config.js . --fix --quiet",
     "format:prettier": "prettier --config ./configs/prettier.config.js --ignore-path .eslintignore --write '**/*.ts'",

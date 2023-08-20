@@ -6,7 +6,7 @@ index b776103db2547a1ee08a67505bfea7bb9e87fa24..d5fb8bd159bae7a2bf7a1d24d8753260
      var name = info.name.replace('exports.', '');
  
      this._extras[filename] = this._extras[filename] || {};
--    this._extras[filename][name] = this._extras[filename][name] || [];
+-    const extrasArr = this._extras[filename][name] || [];
 +    this._extras[filename][name] = extrasArr && !Array.isArray(extrasArr)
 +        ? [extrasArr]
 +        : extrasArr
