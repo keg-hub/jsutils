@@ -18,7 +18,7 @@ import { isArr } from '@array/isArr'
  * @param {*} obj - Object to check if empty
  * @return {Boolean} - True if the passed in collection is empty
  */
-export const isEmptyColl = obj =>
+export const isEmptyColl = <T=Record<any, any>|any[]>(obj: any): obj is T =>
   isArr(obj)
     ? obj.length === 0
     : isColl(obj) && Object.getOwnPropertyNames(obj).length === 0

@@ -21,17 +21,17 @@ const hasProp = Object.prototype.hasOwnProperty
  * @param {Object|Array} a - Object to check
  * @param {Object|Array} b - Object to check against
  */
-export const deepEqual = (a, b) => {
-  if (a === b) return true
+export const deepEqual = <T=Record<any, any>|any[], M=Record<any, any>|any[]>(a: T, b: M): boolean => {
+  if ((a as any) === b) return true
 
   if (!a || !b || typeof a != 'object' || typeof b != 'object')
     return a !== a && b !== b
 
   const arrA = isArray(a)
   const arrB = isArray(b)
-  let i
-  let length
-  let key
+  let i:number
+  let length:number
+  let key:string
 
   // If both are arrays
   if (arrA && arrB) {

@@ -14,7 +14,11 @@ import { validate } from '@validation/validate'
  * @param {Function} testFunc
  * @returns {*}
  */
-const mapFindArr = (arr, mapper, testFunc) => {
+const mapFindArr = (
+  arr: any[],
+  mapper: (...params: any[]) => any,
+  testFunc:(...params: any[]) => any=exists
+) => {
   // iterate over each value in the array,
   // returning when a mapped value is found that passes `testFunc`
   for (let i = 0; i < arr.length; i++) {
@@ -33,7 +37,11 @@ const mapFindArr = (arr, mapper, testFunc) => {
  * @param {Function} testFunc
  * @returns {*}
  */
-const mapFindObj = (obj, mapper, testFunc) => {
+const mapFindObj = (
+  obj: Record<any, any>,
+  mapper: (...params: any[]) => any,
+  testFunc:(...params: any[]) => any=exists
+): any => {
   let idx = 0
 
   // iterate over each property in the object
@@ -76,7 +84,11 @@ const mapFindObj = (obj, mapper, testFunc) => {
  * const filePaths = { document: "foo/bar/doc.txt", image: "foo/bar/pic.img"}
  * const loadedFile = mapFind(filePaths, (value, key) => tryRequireSync(value), isObj)
  */
-export const mapFind = (coll, mapper, testFunc = exists) => {
+export const mapFind = (
+  coll: Record<any, any>|any[],
+  mapper: (...params: any[]) => any,
+  testFunc:(...params: any[]) => any=exists
+): any => {
   const [valid] = validate(
     { coll, mapper, testFunc },
     { coll: isColl, $default: isFunc }
@@ -85,5 +97,5 @@ export const mapFind = (coll, mapper, testFunc = exists) => {
 
   return isObj(coll)
     ? mapFindObj(coll, mapper, testFunc)
-    : mapFindArr(coll, mapper, testFunc)
+    : mapFindArr(coll as any[], mapper, testFunc)
 }

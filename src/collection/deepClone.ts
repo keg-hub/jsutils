@@ -19,12 +19,12 @@ import { isArr } from '@array/isArr'
  * @param {Object} obj - Object to clone
  * @return {Object} - Cloned Object
  */
-export const deepClone = (obj, hash = new WeakMap()) => {
+export const deepClone = <T=Record<any, any>|any[]>(obj: any, hash:any=new WeakMap()): T => {
   if (Object(obj) !== obj) return obj
-  if (obj instanceof Set) return new Set(obj)
+  if (obj instanceof Set) return new Set(obj) as T
   if (hash.has(obj)) return hash.get(obj)
-  if (isArr(obj)) return obj.map(x => deepClone(x))
-  if (isFunc(obj)) return cloneFunc(obj)
+  if (isArr(obj)) return obj.map(x => deepClone(x)) as T
+  if (isFunc(obj)) return cloneFunc(obj) as T
 
   const result =
     obj instanceof Date
@@ -43,12 +43,12 @@ export const deepClone = (obj, hash = new WeakMap()) => {
   if (obj instanceof Map)
     return Array.from(obj, ([ key, val ]) =>
       result.set(key, deepClone(val, hash))
-    )
+    ) as T
 
   return Object.assign(
     result,
     ...Object.keys(obj).map(key => ({ [key]: deepClone(obj[key], hash) }))
-  )
+  ) as T
 }
 
 /**
@@ -58,7 +58,7 @@ export const deepClone = (obj, hash = new WeakMap()) => {
  * @param {Object} objectWithPrototype - any object that has a prototype
  * @returns {Object} the cloned object
  */
-export const cloneObjWithPrototypeAndProperties = objectWithPrototype => {
+export const cloneObjWithPrototypeAndProperties = <T=Record<any, any>|any[]>(objectWithPrototype: any): T => {
   if (!objectWithPrototype) return objectWithPrototype
 
   const prototype = Object.getPrototypeOf(objectWithPrototype)

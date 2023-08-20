@@ -15,7 +15,7 @@ import { isNum } from '@number/isNum'
  * @example repeat(1, 3) // returns [1, 1, 1]
  * @example repeat(() => 2 * 2, 3) // returns [4, 4, 4]
  */
-export const repeat = (element, times, cloneDeep = false) => {
+export const repeat = (element: any, times: number, cloneDeep:boolean=false): any[] => {
   if (!times || times <= 0) return []
   if (!isNum(times)) {
     console.error('Times argument must be a number')

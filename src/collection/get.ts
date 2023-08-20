@@ -20,7 +20,7 @@ import { isStr } from '@string/isStr'
  * @param {*} [fallback] - Separated string to search the object
  * @return {*} - The final value found from the path
  */
-export const get = (obj, path, fallback) => {
+export const get =<T=any>(obj: Record<any, any>|any[], path: string | string[], fallback?: T): T => {
   const isPathArr = isArr(path)
   if (!isStr(path) && !isPathArr) return exists(fallback) ? fallback : undefined
 

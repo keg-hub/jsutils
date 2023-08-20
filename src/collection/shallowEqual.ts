@@ -31,7 +31,7 @@ import { isColl } from './isColl'
  *
  * @returns {Boolean} - true or false if the objects keys values are equal
  */
-export const shallowEqual = (col1, col2, path) => {
+export const shallowEqual = (col1: Record<any, any>|any[], col2: Record<any, any>|any[], path?: string|string[]): boolean => {
   // If a path is passed in, update the collections to be that path
   if (path && (isArr(path) || isStr(path))) {
     col1 = get(col1, path)

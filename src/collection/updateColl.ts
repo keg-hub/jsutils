@@ -14,7 +14,7 @@ import { isColl } from './isColl'
  * @param {*} val - Value to set or return based on the type argument
  * @returns {*} - Relative to the type argument
  */
-export const updateColl = (obj, path, type, val) => {
+export const updateColl = <T extends Record<any, any>|any[]=any>(obj:T, path:string|string[], type:string, val?:any):undefined => {
   const org = obj
   if (!isColl(obj) || !obj || !path) return (type !== 'set' && val) || undefined
 

@@ -18,5 +18,5 @@ import { convertToStrBool } from './convertToStrBool'
  * @param {*} val - value to convert
  * @return {Boolean} true or false based on passed in value.
  */
-export const toBool = val =>
+export const toBool = (val: any): boolean =>
   isStrBool(val) ? val === 'true' : convertToStrBool(val) === 'true'

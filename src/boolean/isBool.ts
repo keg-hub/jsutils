@@ -12,4 +12,4 @@
  * @param {*} val - value to check if is a number
  * @return {Boolean} True if val is a boolean
  */
-export const isBool = val => typeof val === 'boolean'
+export const isBool = <T=boolean>(val: any): val is T => typeof val === 'boolean'
