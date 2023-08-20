@@ -18,10 +18,10 @@ export const resolvePath = (
   return location.startsWith(`~`)
     ? path.resolve(path.join(homeDir, location.replace(`~`, '')))
     : location === `.`
-    ? rootDir
-    : location.startsWith(`./`)
-    ? path.resolve(path.join(`${rootDir}/`, location.replace(`./`, ``)))
-    : location.startsWith(`/`)
-    ? path.resolve(location)
-    : path.resolve(path.join(rootDir, location))
+      ? rootDir
+      : location.startsWith(`./`)
+        ? path.resolve(path.join(`${rootDir}/`, location.replace(`./`, ``)))
+        : location.startsWith(`/`)
+          ? path.resolve(location)
+          : path.resolve(path.join(rootDir, location))
 }
