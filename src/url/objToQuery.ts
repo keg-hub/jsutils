@@ -13,7 +13,7 @@ import { isArr } from '@array/isArr'
  * @function
  * @returns {String} querystring
  */
-export const objToQuery = obj => {
+export const objToQuery = <T extends string>(obj: Record<string, any>): T => {
   let firstSet
   return reduceObj(
     obj,
@@ -39,5 +39,5 @@ export const objToQuery = obj => {
       return urlStr
     },
     ''
-  )
+  ) as T
 }

@@ -12,7 +12,9 @@ const defFilters = [ `node:internal`, `node_modules/jest` ]
  *
  * @returns {Array<string>} - List of paths from the stackTrace
  */
-export const stackTracePaths = (filter:string[] = defFilters) => {
+export const stackTracePaths = (
+  filter:string[]|((location:string,cs?:Record<any, any>,stack?:Record<any, any>[])=> boolean) = defFilters
+):string[] => {
   const orgPreStackTrace = Error.prepareStackTrace
   Error.prepareStackTrace = (_, stack) => stack
 

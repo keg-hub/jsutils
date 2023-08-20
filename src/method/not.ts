@@ -53,7 +53,7 @@ import { isValidUrl } from '@url/isValidUrl'
  *
  * @returns {Function} - Calls the passed in function then returns True if the passed in function returns falsy, otherwise false
  */
-export const not = (func:(...args:any[])=>any) => {
+export const not = (func:(...args:any[]) => any):(...arg:any[]) => boolean => {
   return (...args:any[]) => !func.apply(null, args)
 }
 

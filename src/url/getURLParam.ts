@@ -16,7 +16,7 @@ import { isStr } from '@string/isStr'
  * getURLParam('x') // 1
  * getURLParam('y') // 2
  */
-export const getURLParam = paramKey => {
+export const getURLParam = <T extends string>(paramKey: string): T => {
   const [valid] = validate({ paramKey }, { paramKey: isStr })
   if (!valid) return null
 

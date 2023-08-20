@@ -8,12 +8,12 @@ import { isArr } from '@array/isArr'
  * @function
  * @returns {Object}
  */
-export const queryToObj = string => {
+export const queryToObj = <T extends Record<string, any>=Record<string, any>>(string: string): T => {
   const currentQueryItems = {}
   const stringSplit = string.split('?')
   const querystring = stringSplit[stringSplit.length - 1]
 
-  if (!querystring) return currentQueryItems
+  if (!querystring) return currentQueryItems as T
 
   const split = querystring.split('&')
 
@@ -42,5 +42,5 @@ export const queryToObj = string => {
       }
     })
 
-  return currentQueryItems
+  return currentQueryItems as T
 }

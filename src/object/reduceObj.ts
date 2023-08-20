@@ -14,7 +14,7 @@ import { isObj } from './isObj'
 export const reduceObj = <T=any>(
   obj:Record<string, any>,
   cb:(key: string, value: any, data: any) => any,
-  start:Record<string, any>={}
+  start:any={}
 ): T =>
   (isObj(obj) &&
     isFunc(cb) &&

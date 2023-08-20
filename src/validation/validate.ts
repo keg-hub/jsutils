@@ -1,4 +1,5 @@
 /** @module Validation */
+import { ensureArr } from '../array/ensureArr'
 
 /**
  * @type {Object}
@@ -11,6 +12,29 @@ const OPTIONS = {
 
 // if no default or custom validator set for an arg, just assert it is valid
 const defaultValidator = () => true
+
+export type TValidateOpts = {
+  logs?: boolean,
+  throws?: boolean,
+  prefix?: string,
+}
+
+export type TValidateRes = {
+  success: boolean,
+  key: string,
+  value: any,
+  validator: any,
+  reason: string
+}
+
+export type TValidateFun = ((
+  argObj:Record<string, any>,
+  validators?:Record<string, any>,
+  options?: TValidateOpts
+) => [success:boolean, results:TValidateRes]) & {
+  setOptions: ({ logs, throws, prefix }:TValidateOpts) => void
+  resetOptions: () => void
+}
 
 /**
  *  Validates each key-value entry in argObj using the validator functions in validators with matching keys.
@@ -35,7 +59,7 @@ const defaultValidator = () => true
  *    console.log(isValid) // false
  *    console.log(results.elements.success) // false
  */
-export const validate = (argObj, validators = {}, options = {}) => {
+export const validate:TValidateFun = (argObj, validators = {}, options = {}) => {
   const {
     logs = OPTIONS.SHOULD_LOG,
     throws = OPTIONS.SHOULD_THROW,
@@ -74,7 +98,7 @@ export const validate = (argObj, validators = {}, options = {}) => {
  * @param {Boolean} options.throws - indicates validate() should throw an error when a case fails
  * @param {String} options.prefix - a prefix to any console error logs or to messages of errors thrown
  */
-validate.setOptions = ({ logs, throws, prefix }) => {
+validate.setOptions = ({ logs, throws, prefix }:TValidateOpts) => {
   if (logs !== undefined) {
     OPTIONS.SHOULD_LOG = logs
   }
@@ -104,7 +128,7 @@ validate.resetOptions = () => {
  * @returns {Object} of form { success, reason }
  * @ignore
  */
-const validateArgument = (key, value, validator) => {
+const validateArgument = (key:string, value:any, validator:(val:any) => boolean) => {
   const success = validator(value)
 
   // if validator is a named function, use its name. If it is an inline anonymous arrow function, its name
@@ -133,9 +157,9 @@ const validateArgument = (key, value, validator) => {
  * @ignore
  */
 const validationReducer = (
-  finalResult,
-  nextValidation,
-  { logs, throws, prefix }
+  finalResult:any,
+  nextValidation:TValidateRes,
+  { logs, throws, prefix }:TValidateOpts
 ) => {
   // handle the failure
   !nextValidation.success && handleFailure(nextValidation, logs, throws, prefix)
@@ -157,11 +181,16 @@ const validationReducer = (
  * @param {String} prefix - optional prefix to any error or console log
  * @ignore
  */
-const handleFailure = (validation, shouldLog, shouldThrow, prefix) => {
+const handleFailure = (
+  validation:TValidateRes,
+  shouldLog?:boolean,
+  shouldThrow?:boolean,
+  prefix?:string
+) => {
   // prepend the prefix if one is defined
   const reason = prefix ? [ prefix, ...validation.reason ] : validation.reason
 
-  if (shouldThrow) throw new Error(reason.join())
+  if (shouldThrow) throw new Error(ensureArr(reason).join())
 
   if (shouldLog) console.error(...reason)
 }
