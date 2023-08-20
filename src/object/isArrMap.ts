@@ -10,7 +10,7 @@ import { toBool } from '@boolean/toBool'
  * @param {Object|*} obj - data to check
  * @return {Boolean} - true if input is an array map
  */
-export const isArrMap = obj => {
+export const isArrMap = (obj: any): obj is Record<any, any[]> => {
   if (!isObj(obj)) return false
   const values = Object.values(obj)
   return toBool(values.length && values.every(isArr))

@@ -19,8 +19,11 @@ import { ensureArr } from '@array/ensureArr'
  * @return {Array<Object>} - First object contains keys matching keys of the keys argument
  *                          - Second object contains keys not matching keys of the keys argument
  */
-export const splitByKeys = (obj = {}, keys) => {
-  if (!keys) return [{}, { ...obj }]
+export const splitByKeys = <T=Record<string, any>,S=Record<string, any>>(
+  obj: Record<string, any>={},
+  keys:string[]
+): [T, S] => {
+  if (!keys) return [{}, { ...obj }] as [T, S]
 
   const intersect = [{}, {}]
   const compareKeys = ensureArr(keys)
@@ -37,5 +40,5 @@ export const splitByKeys = (obj = {}, keys) => {
       },
       intersect
     )
-    : intersect
+    : intersect as [T, S]
 }

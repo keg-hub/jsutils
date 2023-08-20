@@ -63,13 +63,13 @@ const addAsync = object => {
  * @param {Object} object
  * @return {Object} - promisified object
  */
-export const promisifyAll = object => {
-  if (!isObj(object)) return object
+export const promisifyAll = <T=Record<string, any>>(object:Record<string, any>):T => {
+  if (!isObj(object)) return object as T
 
   addAsync(object)
   const proto = Object.getPrototypeOf(object)
 
   proto && Object.getPrototypeOf(proto) !== null && addAsync(proto)
 
-  return object
+  return object as T
 }

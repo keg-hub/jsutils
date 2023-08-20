@@ -12,7 +12,7 @@ import { isObj } from './isObj'
  * @param {Boolean} [logError=true] - Boolean indicating if errors should be logged
  * @returns {Boolean} - True if at least one entry satisfied the predicate, false if not
  */
-export const someEntry = (obj, predicate, logError = true) => {
+export const someEntry = (obj: Record<string, any>, predicate: (key:string, value:string) => boolean, logError:boolean=true): boolean => {
   if (!isObj(obj)) {
     logError && console.error(`First argument ${obj} must be an object.`)
     return false

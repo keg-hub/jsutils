@@ -13,7 +13,7 @@ import { isColl } from '@collection/isColl'
  * @param {Array} sources - array of objects to join
  * @returns {Object|Array} - merged object or array
  */
-export const deepMerge = (...sources) => {
+export const deepMerge = <T=any>(...sources: any[]): T => {
   return sources.reduce((merged, source) => {
     const srcCopy = deepClone(source)
     return isArr(srcCopy)

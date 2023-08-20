@@ -1,12 +1,12 @@
 /** @module Object */
 
-const pad = (hash, len) => {
+const pad = (hash:any, len:number) => {
   while (hash.length < len) hash = '0' + hash
 
   return hash
 }
 
-const fold = (hash, text) => {
+const fold = (hash:any, text:string) => {
   if (text.length === 0) return hash
 
   let i
@@ -22,14 +22,19 @@ const fold = (hash, text) => {
   return hash < 0 ? hash * -2 : hash
 }
 
-const foldObject = (hash, obj, seen) => {
-  const foldKey = (hash, key) => foldValue(hash, obj[key], key, seen)
+const foldObject = (hash:any, obj:Record<string, any>, seen:any[]) => {
+  const foldKey = (hash:any, key:string) => foldValue(hash, obj[key], key, seen)
 
   return Object.keys(obj).sort()
     .reduce(foldKey, hash)
 }
 
-const foldValue = (input, value, key, seen) => {
+const foldValue = (
+  input:number,
+  value:any,
+  key:string,
+  seen:any[]
+) => {
   const hash = fold(fold(fold(input, key), toString(value)), typeof value)
 
   if (value === null) return fold(hash, 'null')
@@ -56,11 +61,11 @@ const foldValue = (input, value, key, seen) => {
   return fold(hash, value.toString())
 }
 
-const toString = obj => Object.prototype.toString.call(obj)
+const toString = (obj: Record<any, any>) => Object.prototype.toString.call(obj)
 
 /**
  * Creates a consistent hash string from the passed in object
  * <br/>Not intended to be secure
  * <br/>Given the same input keys and values, it will always return the same output hash
  */
-export const hashObj = obj => pad(foldValue(0, obj, '', []).toString(16), 8)
+export const hashObj = (obj: Record<any, any>): string => pad(foldValue(0, obj, '', []).toString(16), 8)

@@ -11,7 +11,7 @@ import { mapEntries } from './mapEntries'
  * @param {Function} keyMapper - Function of shape (key) => nextKey
  * @returns {Object} - The new object with each key mapped to the response of keyMapper
  */
-export const mapKeys = (obj, keyMapper) => {
+export const mapKeys = <T=Record<string, any>>(obj: Record<string, any>, keyMapper: (key:string) => any): T => {
   if (!isObj(obj) || !isFunc(keyMapper)) return obj
 
   return mapEntries(obj, (key, value) => [ keyMapper(key), value ])

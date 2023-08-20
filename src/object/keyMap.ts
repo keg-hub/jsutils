@@ -10,7 +10,7 @@ import { isArr } from '@array/isArr'
  * @param {Boolean} toUpperCase - converts the key and value to uppercase
  * @return {Object} built object
  */
-export const keyMap = (arr, toUpperCase) =>
+export const keyMap = <T=Record<string, string>>(arr: string[], toUpperCase?: boolean): T =>
   (isArr(arr) &&
     arr.reduce((obj, key) => {
       if (!isStr(key)) return obj
@@ -19,5 +19,5 @@ export const keyMap = (arr, toUpperCase) =>
       obj[use] = use
 
       return obj
-    }, {})) ||
-  {}
+    }, {} as T)) ||
+  {} as T

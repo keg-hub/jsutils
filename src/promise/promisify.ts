@@ -9,10 +9,10 @@ import { isFunc } from '@method/isFunc'
  *
  * @return {Promise<Function>} - Passed in method converted into a promise
  */
-export const promisify = method => {
+export const promisify = (method: (...params: any[]) => any): (...args:any[]) => Promise<(...params: any[]) => any> => {
   if (!isFunc(method)) throw `Argument must be a function`
 
-  return (...args) => {
+  return ((...args:any[]) => {
     return new Promise((res, rej) => {
       // If the last arg is not a function, just return the resolved method
       if (!isFunc(args[args.length - 1])) return res(method(...args))
@@ -23,11 +23,12 @@ export const promisify = method => {
       args.push((...cbData) => {
         // If the cbData first arg is not falsy, then reject the promise
         // Otherwise resolve it
-        return cbData && cbData[0] ? rej(...cbData) : res(...cbData)
+        // @ts-ignore
+        return cbData && cbData[0] ? rej(...cbData) : res(...cbData as any[])
       })
 
       // Call the method, and return it
       return method(...args)
     })
-  }
+  })
 }

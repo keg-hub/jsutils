@@ -9,4 +9,5 @@ import { isObj } from './isObj'
  * @param {Object} obj2 - use if first is not an object
  * @returns {Object}
  */
-export const eitherObj = (obj1, obj2) => (isObj(obj1) && obj1) || obj2
+
+export const eitherObj = <T=any, M=T>(obj1?: T, obj2?: M): T | M => (isObj(obj1) && obj1) || obj2

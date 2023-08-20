@@ -10,7 +10,7 @@ import { reduceObj } from './reduceObj'
  * @param {Array} keys - keys to not add to new object
  * @return {Object} new object with only keys not in array
  */
-export const omitKeys = (obj = {}, keys = []) =>
+export const omitKeys = <T=Record<string, any>>(obj: Record<string, any>={}, keys: string[]=[]): T =>
   (isObj(obj) &&
     reduceObj(
       obj,

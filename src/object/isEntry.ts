@@ -16,7 +16,7 @@ import { isArr } from '@array/isArr'
  *
  * @returns {Boolean} - True if it is an entry, false otherwise
  */
-export const isEntry = maybeEntry =>
+export const isEntry = <T=any,V=any>(maybeEntry: any): maybeEntry is [T, V] =>
   isArr(maybeEntry) &&
   maybeEntry.length === 2 &&
   (isNum(maybeEntry[0]) || isStr(maybeEntry[0]))

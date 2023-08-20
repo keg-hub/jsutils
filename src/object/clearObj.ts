@@ -7,7 +7,7 @@
  * @param {Array} [filter] - list of keys to not remove
  * @returns {void}
  */
-export const clearObj = (obj, filter) => {
+export const clearObj = (obj: Record<any, any>, filter?: string[]): void => {
   obj &&
     Object.entries(obj).map(([ key, value ]) => {
       if (filter && filter.indexOf(key) !== -1) return

@@ -7,7 +7,7 @@
  * @param { object | array } two - object to compare with param one
  * @return {Boolean} status of equality
  */
-export const jsonEqual = (one, two) => {
+export const jsonEqual = (one: any, two: any): boolean => {
   try {
     return JSON.stringify(one) === JSON.stringify(two)
   }

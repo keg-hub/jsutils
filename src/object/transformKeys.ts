@@ -11,10 +11,10 @@ import { emptyObj } from '@ext/noOps'
  * const opts = { strict: true }
  * transformKeys({my_key: `1234`, other_key: `4321`}, {my_key: `myKey`}, opts) === { myKey: `1234` }
  */
-export const transformKeys = (
-  obj = emptyObj,
-  keyMap = emptyObj,
-  opts = emptyObj
+export const transformKeys = <T=Record<string, any>>(
+  obj: Record<string, any> = emptyObj,
+  keyMap: Record<string, any> = emptyObj,
+  opts: Record<string, any> = emptyObj
 ) => {
   const { strict = false } = opts
 
@@ -23,5 +23,5 @@ export const transformKeys = (
     ref && (acc[ref] = value)
 
     return acc
-  }, {})
+  }, {}) as T
 }

@@ -18,7 +18,7 @@ import { isEntry } from './isEntry'
  *
  * @returns {Object} - new object with mapping applied, or the original obj if input was invalid
  */
-export const mapEntries = (obj, cb) => {
+export const mapEntries =<T=Record<string, any>>(obj: any | any[], cb: (key:string, value:any) => [string, any]): T => {
   if (!isArr(obj) && !isObj(obj)) {
     console.error(obj, `Expected array or object for obj. Found ${typeof obj}`)
     return obj
@@ -39,8 +39,8 @@ export const mapEntries = (obj, cb) => {
       console.error(
         `Callback function must return entry. Found: ${result}. Using current entry instead.`
       )
-      return set(obj, key, value)
+      return set(obj, key, value) as T
     }
-    return set(obj, result[0], result[1])
-  }, initialValue)
+    return set(obj, result[0], result[1]) as T
+  }, initialValue as T)
 }
