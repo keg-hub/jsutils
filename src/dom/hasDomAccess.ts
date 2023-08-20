@@ -10,7 +10,7 @@
  * hasDomAccess() === false
  * @return {Boolean} True if executed in a browser
  */
-export const hasDomAccess = () => {
+export const hasDomAccess = (): boolean => {
   try {
     return !!(
       typeof window !== 'undefined' &&

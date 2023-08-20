@@ -1,6 +1,6 @@
 /** @module Node */
 
-const fs = require('fs')
+import fs from 'fs'
 
 /**
  * Tries to synchronously require the path, returning null if unable to.
@@ -12,7 +12,7 @@ const fs = require('fs')
  * const module = tryRequireSync('/keg/tap/foo/bar.js')
  * if (!module) console.log('bar.js module does not exist')
  */
-const tryRequireSync = filePath => {
+export const tryRequireSync = <T=any>(filePath: string): T => {
   try {
     return fs.existsSync(filePath) ? require(filePath) : null
   }
@@ -31,7 +31,7 @@ const tryRequireSync = filePath => {
  * const module = await tryRequire('/keg/tap/foo/bar.js')
  * if (!module) console.log('bar.js module does not exist')
  */
-const tryRequire = filePath => {
+export const tryRequire = <T=any>(filePath: string): Promise<T> => {
   return new Promise(resolve => {
     fs.access(filePath, err => {
       if (err) return resolve(null)
@@ -45,5 +45,3 @@ const tryRequire = filePath => {
     })
   })
 }
-
-module.exports = { tryRequire, tryRequireSync }

@@ -16,5 +16,5 @@ import { isNum } from './isNum'
  * @param {*} val - value to convert
  * @return {Number} value converted to a float
  */
-export const toNum = val =>
+export const toNum = (val: any): number =>
   isNum(val) ? val : (val && !equalsNaN(val) && Number(getNums(val))) || 0

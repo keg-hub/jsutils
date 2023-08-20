@@ -1,7 +1,7 @@
 /** @module Node */
 
-const os = require('os')
-const path = require('path')
+import os from 'os'
+import path from 'path'
 const homeDir = os.homedir()
 
 /**
@@ -11,7 +11,7 @@ const homeDir = os.homedir()
  *
  * @returns {string} - Resolved location
  */
-const resolvePath = (location, rootDir = process.cwd()) => {
+export const resolvePath = (location:string, rootDir:string=process.cwd()):string => {
   return location.startsWith(`~`)
     ? path.resolve(path.join(homeDir, location.replace(`~`, '')))
     : location === `.`
@@ -21,8 +21,4 @@ const resolvePath = (location, rootDir = process.cwd()) => {
         : location.startsWith(`/`)
           ? path.resolve(location)
           : path.resolve(path.join(rootDir, location))
-}
-
-module.exports = {
-  resolvePath,
 }

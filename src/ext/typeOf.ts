@@ -12,4 +12,4 @@
  * @param {*} val - value to get type for
  * @return {String} type of the value
  */
-export const typeOf = val => Object.prototype.toString.call(val).slice(8, -1)
+export const typeOf = (val: any): string => Object.prototype.toString.call(val).slice(8, -1)

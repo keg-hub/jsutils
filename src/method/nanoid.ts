@@ -5,9 +5,14 @@ import { doIt } from './doIt'
 import { isObj } from '@object/isObj'
 import { isStr } from '@string/isStr'
 
-const sudoRandomStr = str => {
+export type TNanoidOpts = {
+  joiner?:string
+  parts?:number
+  prefix?:string
+}
+
+const sudoRandomStr = (str:string) => {
   const times = Math.floor(str.length / 2)
-  // @ts-ignore
   return doIt(times, {}, () =>
     str.charAt(Math.floor(Math.random() * str.length))
   ).join(``)
@@ -21,7 +26,11 @@ const sudoRandom = (radix = 36) => {
   return sudoRandomNum().toString(radix)
 }
 
-export const nanoid = (base, opts) => {
+
+export const nanoid = (
+  base?:string|TNanoidOpts,
+  opts?:TNanoidOpts
+):string => {
   if (!isObj(opts)) {
     if (isObj(base)) {
       opts = base
@@ -42,7 +51,5 @@ export const nanoid = (base, opts) => {
     return sudoRandomStr((even && salt.pop()) || seed)
   }
 
-  return `${prefix ? `${prefix}${joiner}` : ``}${doIt(parts, {}, gen).join(
-    joiner
-  )}`
+  return `${prefix ? `${prefix}${joiner}` : ``}${doIt(parts, {}, gen).join(joiner)}`
 }

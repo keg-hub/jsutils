@@ -14,4 +14,4 @@ import { isNum } from './isNum'
  * @param {Number} num - value to check
  * @return {Boolean} true or false - value is an Float
  */
-export const isFloat = val => isNum(val) && val % 1 !== 0
+export const isFloat = <T=number>(val: any): val is T => isNum(val) && val % 1 !== 0

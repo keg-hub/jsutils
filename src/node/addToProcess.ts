@@ -1,7 +1,7 @@
 /** @module Node */
 
-const { exists } = require('../../build/cjs/exists')
-const { emptyObj } = require('../../build/cjs/noOps')
+import { exists } from '../ext/exists'
+import { emptyObj } from '../ext/noOps'
 
 /**
  * Loop over the passed in ENVs, and add them to the current process
@@ -12,16 +12,14 @@ const { emptyObj } = require('../../build/cjs/noOps')
  *
  * @returns {Void}
  */
-const addToProcess = (addEnvs, opts = emptyObj) => {
-  const { force } = opts
+export const addToProcess = (addEnvs: any, options:{force?: boolean}=emptyObj): void => {
+  const { force } = options
 
   Object.entries(addEnvs).map(([ key, value ]) => {
-    exists(value) &&
-      (!exists(process.env[key]) || force) &&
-      (process.env[key] = value)
+    exists(value)
+      && (!exists(process.env[key]) || force)
+      // @ts-ignore
+      && (process.env[key] = value)
   })
 }
 
-module.exports = {
-  addToProcess,
-}

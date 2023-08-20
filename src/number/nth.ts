@@ -20,11 +20,11 @@ import { toNum } from './toNum'
  * @param {Number} num - value to check
  * @return {String} ext of the number
  */
-export const nth = num => {
+export const nth = (num: number): string => {
   if (!isNum(num)) {
-    num = getNums(num)
-    if (!num) return ''
-    num = toNum(num)
+    const strNum = getNums(num)
+    if (!strNum) return ''
+    num = toNum(strNum)
     if (equalsNaN(num)) return ''
   }
 

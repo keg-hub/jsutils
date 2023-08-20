@@ -13,7 +13,7 @@ import { validate } from '@validation/validate'
  * const isNonNegative = complement(isNegative)
  * isNonNegative(1) // true
  */
-export const complement = predicate => {
+export const complement = (predicate:(...args:any[]) => any) => {
   const [valid] = validate({ predicate }, { predicate: isFunc })
-  return valid ? (...args) => !predicate(...args) : null
+  return valid ? (...args:any[]) => !predicate(...args) : null
 }

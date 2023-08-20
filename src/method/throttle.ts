@@ -9,7 +9,7 @@
  * @param {Number} [wait=100] time to wait between calls
  * @return {Function} throttled function
  */
-export const throttle = (func, wait = 100) => {
+export const throttle = (func: any, wait:number=100): (...params: any[]) => any => {
   let waiting = false
   return function (...args) {
     if (waiting) return

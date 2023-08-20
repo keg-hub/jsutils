@@ -1,6 +1,6 @@
 /** @module Node */
 
-const os = require('os')
+import os from 'os'
 
 /**
  * Gets and normalizes the current operating system
@@ -8,7 +8,7 @@ const os = require('os')
  *
  * @returns {String} - The current operating system
  */
-const getOS = () => {
+const getOS = (): string|boolean => {
   const system = (process.platform || os.platform()).toLowerCase()
   return system === `darwin`
     ? `mac`
@@ -19,6 +19,3 @@ const getOS = () => {
         : false
 }
 
-module.exports = {
-  getOS,
-}

@@ -3,6 +3,7 @@
 import { isNum } from '@number/isNum'
 import { hasOwn } from '@object/hasOwn'
 import { isFunc } from './isFunc'
+import { noOp } from './noOp'
 
 /**
  * Creates a method to memorize passed in methods output
@@ -16,12 +17,14 @@ import { isFunc } from './isFunc'
  *
  * @return {Function} memorized function with cache
  */
-export const memorize = (func, getCacheKey, limit = 1) => {
-  if (!isFunc(func) || (getCacheKey && !isFunc(getCacheKey)))
-    return console.error('Error: Expected a function', func, getCacheKey)
+export const memorize = (func: (...params: any[]) => any, getCacheKey: (...params: any[]) => any, limit=1): (...params: any[]) => any => {
+  if (!isFunc(func) || (getCacheKey && !isFunc(getCacheKey))){
+    console.error('Error: Expected a function', func, getCacheKey)
+    return noOp
+  }
 
   let memorized = function () {
-    const cache = memorized.cache
+    const cache = (memorized as any).cache
     const key = getCacheKey ? getCacheKey.apply(this, arguments) : arguments[0]
 
     if (hasOwn(cache, key)) return cache[key]
@@ -30,15 +33,19 @@ export const memorize = (func, getCacheKey, limit = 1) => {
 
     isNum(limit) && Object.keys(cache).length < limit
       ? (cache[key] = result)
-      : (memorized.cache = { [key]: result })
+      : ((memorized as any).cache = { [key]: result })
 
     return result
   }
 
+  // @ts-ignore
   memorized.cache = {}
+  // @ts-ignore
   memorized.destroy = () => {
     getCacheKey = undefined
+    // @ts-ignore
     memorized.cache = undefined
+    // @ts-ignore
     memorized.destroy = undefined
     memorized = undefined
   }

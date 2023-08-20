@@ -13,14 +13,14 @@ import { get } from '@collection/get'
  *
  * @returns {Object} cloned function
  */
-export const cloneFunc = func => {
-  const funcClone = function (...args) {
+export const cloneFunc = <T=any>(func: (...params: any[]) => any): T => {
+  const funcClone = function (...args:any[]) {
     return func instanceof funcClone
       ? (() => {
-          return new func(...args)
+          return new (func as any)(...args)
         })()
       : get(func.prototype, 'constructor.name')
-        ? new func(...args)
+        ? new (func as any)(...args)
         : func.apply(func, args)
   }
 
@@ -32,5 +32,5 @@ export const cloneFunc = func => {
   })
   funcClone.toString = () => func.toString()
 
-  return funcClone
+  return funcClone as T
 }

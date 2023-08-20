@@ -10,14 +10,14 @@ import { eitherObj } from '@object/eitherObj'
  * When object, will be passed as the first argument of the callback
  *   * Checks the `allowArgs` property to know if it should forward arguments to the callback
  */
-export const asCallback = (callback, defs) => {
-  if (!isFunc(callback)) return noOp
+export const asCallback = <T=(...args:any[])=>any>(callback:T, defs:Record<any, any>|boolean):T => {
+  if (!isFunc(callback)) return noOp as T
 
   const defArgs = isBool(defs)
     ? { allowArgs: defs }
     : eitherObj(defs, { allowArgs: true })
 
-  return (...args) => {
-    return defArgs?.allowArgs ? callback(defArgs, ...args) : callback()
-  }
+  return ((...args:any[]) => {
+    return defArgs?.allowArgs ? (callback as any)(defArgs, ...args) : (callback as any)()
+  }) as T 
 }

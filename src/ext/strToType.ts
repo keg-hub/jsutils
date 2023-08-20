@@ -21,7 +21,7 @@ import { toBool } from '@boolean/toBool'
  * @param {*} val - value to convert
  * @return { any | string } converted value || string if can't convert
  */
-export const strToType = val => {
+export const strToType = <T=any>(val: any): T => {
   return !val || !isStr(val)
     ? val
     : isStrBool(val)

@@ -17,5 +17,5 @@
  *
  * @returns {Boolean} - If the item exists or not
  */
-export const exists = value =>
+export const exists = <T=any>(value: any): value is T =>
   value === value && value !== undefined && value !== null

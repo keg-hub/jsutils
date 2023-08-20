@@ -6,4 +6,4 @@
  * @param {*} x
  * @returns {*} the input
  */
-export const identity = x => x
+export const identity = <T=any>(x: T): T => x

@@ -19,8 +19,13 @@ import { isFunc } from './isFunc'
  * @param {Boolean} immediate - should call immediately
  * @return { void }
  */
-export const debounce = (func, wait = 250, immediate = false) => {
-  let timeout
+export const debounce = <T=(...args:any[])=> any>(
+  func: (...params: any[]) => any,
+  wait?: number,
+  immediate?: boolean
+): T => {
+  let timeout:NodeJS.Timeout
+
   function wrapFunc(...args) {
     if (!isFunc(func)) return null
 
@@ -34,5 +39,5 @@ export const debounce = (func, wait = 250, immediate = false) => {
     timeout = setTimeout(later, wait)
     if (callNow) return isFunc(func) && func.apply(context, args)
   }
-  return wrapFunc
+  return wrapFunc as T
 }

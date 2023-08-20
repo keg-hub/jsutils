@@ -16,6 +16,6 @@ import { getNums } from './getNums'
  * @param {*} val - value to convert
  * @return {Number} value converted to an float
  */
-export const toFloat = val =>
-  (val && !equalsNaN(val) && parseFloat((isNum(val) && val) || getNums(val))) ||
+export const toFloat = (val: any): number =>
+  (val && !equalsNaN(val) && parseFloat((isNum(val) && `${val}`) || getNums(val))) ||
   0

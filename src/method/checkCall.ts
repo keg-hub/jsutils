@@ -12,6 +12,10 @@ import { isFunc } from './isFunc'
  * @param {Object} params - params to pass to the method on call
  * @return {*} - whatever the passed in method returns
  */
-export const checkCall = (method, ...params) => {
+export function checkCall<P=unknown, T=unknown>(method: (param?:P, ...params:any[]) => T, param?:P, ...params:any[]): T
+export function checkCall<T=any>(method: <M=any>(...params: any[]) => M, ...params:any[]): T
+export function checkCall<T=any>(method: (...params: any[]) => any, ...params:any[]): T
+export function checkCall(method: (...params: any[]) => any, ...params:any[]): any {
   return isFunc(method) ? method(...params) : undefined
 }
+

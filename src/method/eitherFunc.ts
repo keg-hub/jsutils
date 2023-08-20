@@ -16,4 +16,4 @@ import { isFunc } from './isFunc'
  * @param {Function} func2 - use if first is not an object
  * @returns {Function}
  */
-export const eitherFunc = (func1, func2) => (isFunc(func1) && func1) || func2
+export const eitherFunc = <T=(...params: any[]) => any>(func1: (...params: any[]) => any, func2: (...params: any[]) => any): T => (isFunc(func1) && func1) as T || func2 as T

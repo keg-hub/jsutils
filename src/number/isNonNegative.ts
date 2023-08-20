@@ -12,4 +12,4 @@ import { isNum } from './isNum'
  * @function
  * @returns {Boolean} - True if val is non negative number
  */
-export const isNonNegative = val => isNum(val) && val >= 0
+export const isNonNegative = <T=number>(val: any): val is T => isNum(val) && val >= 0

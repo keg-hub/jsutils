@@ -14,6 +14,6 @@
  * -1 % 10      // -1
  * mod(-1, 10)  // 9
  */
-export const mod = (num, divisor) => {
+export const mod = (num: number, divisor: number): number => {
   return ((num % divisor) + divisor) % divisor
 }

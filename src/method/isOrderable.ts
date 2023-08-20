@@ -10,4 +10,4 @@ import { isNum } from '@number/isNum'
  * @param {*} x
  * @returns {bool} - true if x is a comparable primitive
  */
-export const isOrderable = x => isStr(x) || isNum(x) || isBool(x)
+export const isOrderable = (x: any): boolean => isStr(x) || isNum(x) || isBool(x)

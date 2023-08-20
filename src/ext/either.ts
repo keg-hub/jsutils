@@ -21,7 +21,7 @@ import { isFunc } from '@method/isFunc'
  * @param {Function} [check] - called to determine which value to return
  * @returns {*}
  */
-export const either = (val1, val2, check) =>
+export const either = <T=any>(val1?: any, val2?: any, check?: (v1:any, v2:any) => any): T =>
   !isFunc(check)
     ? (softFalsy(val1) && val1) || val2
     : (check(val1, val2) && val1) || val2

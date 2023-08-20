@@ -5,4 +5,4 @@
  * @function
  * @returns {void}
  */
-export const noOp = () => {}
+export const noOp = (): void => {}

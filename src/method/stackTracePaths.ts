@@ -1,6 +1,7 @@
 /** @module Function */
 
 import { isFunc } from './isFunc'
+import { ensureArr } from '../array/ensureArr'
 
 const defFilters = [ `node:internal`, `node_modules/jest` ]
 
@@ -11,11 +12,12 @@ const defFilters = [ `node:internal`, `node_modules/jest` ]
  *
  * @returns {Array<string>} - List of paths from the stackTrace
  */
-export const stackTracePaths = (filter = defFilters) => {
+export const stackTracePaths = (filter:string[] = defFilters) => {
   const orgPreStackTrace = Error.prepareStackTrace
   Error.prepareStackTrace = (_, stack) => stack
 
-  const stack = new Error().stack.slice(1)
+  const stack = ensureArr(new Error().stack.slice(1))
+  
   Error.prepareStackTrace = orgPreStackTrace
 
   return stack.reduce((acc, cs) => {
@@ -31,5 +33,5 @@ export const stackTracePaths = (filter = defFilters) => {
     !ignore && acc.push(loc)
 
     return acc
-  }, [])
+  }, [] as string[])
 }

@@ -12,4 +12,4 @@
  * @param {*} test
  * @return {Boolean} is a function
  */
-export const isFunc = func => typeof func === 'function'
+export const isFunc = <T=(...args:any[])=>any>(func: any): func is T => typeof func === 'function'

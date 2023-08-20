@@ -26,7 +26,11 @@ import { deepClone } from '@collection/deepClone'
  * @example
  * const results = await runSeq(asyncFunctions, { cloneResults: true, returnOriginal: false })
  */
-export const runSeq = async (asyncFns = [], options = {}) => {
+ 
+type TAsyncFuns = ((...params: any[]) => void)[]
+type TAsyncOpts = Record<string, any>
+
+export const runSeq = async (asyncFns: TAsyncFuns=[], options:TAsyncOpts = {}): Promise<any[]> => {
   const [valid] = validate({ asyncFns }, { asyncFns: isArr })
   if (!valid) return []
 

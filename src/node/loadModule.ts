@@ -2,19 +2,20 @@
 
 'use strict'
 
-const path = require('path')
-const { isArr } = require('../../build/cjs/isArr')
-const { isFunc } = require('../../build/cjs/isFunc')
-const { isObj } = require('../../build/cjs/isObj')
-const { isStr } = require('../../build/cjs/isStr')
-const { logData } = require('../../build/cjs/logData')
+import path from 'path'
+import { isArr } from '../array/isArr'
+import { isFunc } from '../method/isFunc'
+import { isObj } from '../object/isObj'
+import { isStr } from '../string/isStr'
+import { logData } from '../log/logData'
+
 
 /**
  * Gets the relative path from the passed in pathToModule
  * @param {String} pathToModule - Location to get the relative path from
  * @returns {String} - Update pathToModule string as a relative path
  */
-const getRelativePath = pathToModule => {
+const getRelativePath = (pathToModule: string): string => {
   const { filename } = module.parent
   const split = filename.split('/')
   split.pop()
@@ -33,7 +34,7 @@ const getRelativePath = pathToModule => {
  *
  * @returns {Object|Function} - Loaded module
  */
-const requireModule = (pathToModule, config) => {
+const requireModule = (pathToModule:string, config:Record<string, any>={}) => {
   const { rootDir, logErrors } = config
   try {
     // Check if a rootDir exists
@@ -60,7 +61,7 @@ const requireModule = (pathToModule, config) => {
  *
  * @returns {any} - Loaded modules or undefined
  */
-const loadByType = (foundModule, params) => {
+const loadByType = (foundModule:any, params:any[]) => {
   // Check the type of the foundModule
   return isFunc(foundModule)
     ? // If it's a function call it with params
@@ -82,7 +83,11 @@ const loadByType = (foundModule, params) => {
  *
  * @returns {Object} - Loaded module object
  */
-const loopLoad = (pathsToModule, config, params) => {
+const loopLoad = (
+  pathsToModule:string[],
+  config:Record<string, any>={},
+  params:any[]
+) => {
   try {
     const modulePath = pathsToModule.shift()
     const foundModule = requireModule(modulePath, config)
@@ -122,13 +127,17 @@ const loopLoad = (pathsToModule, config, params) => {
  *
  * @returns {Object} - Loaded module object
  */
-const loadModule = (pathsToModule, config = {}, ...params) => {
+export const loadModule = (
+  pathsToModule:string|string[],
+  config:Record<string, any>={},
+  ...params:any[]
+) => {
   // Check If a string is passed in
   pathsToModule = isStr(pathsToModule)
     ? // If it's a string, convert to an array
-      [pathsToModule]
+      [pathsToModule] as string[]
     : // Otherwise check if it's and array
-    isArr(pathsToModule) && pathsToModule
+    isArr(pathsToModule) && pathsToModule as string[]
 
   // Check if there are paths to load
   return pathsToModule
@@ -141,6 +150,3 @@ const loadModule = (pathsToModule, config = {}, ...params) => {
     )
 }
 
-module.exports = {
-  loadModule,
-}

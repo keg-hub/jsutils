@@ -9,8 +9,8 @@ const { isStr } = require('@string/isStr')
  * @param {Object|string} error - The Error message or Object to throw
  *
  */
-export const throwError = error => {
-  if (!isStr(error) && error && error.stack && error.message) throw error
+export const throwError = (error:string|Error) => {
+  if(isStr(error)) throw new Error(error as string)
 
-  throw new Error(error)
+  throw error
 }

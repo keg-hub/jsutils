@@ -10,7 +10,7 @@ import { isFunc } from './isFunc'
  * @param {*} item
  * @param {*} expression
  */
-export const applyToFunc = (item, expression) => {
+export const applyToFunc = <T=any>(item: any, expression: any): T => {
   if (isArr(expression)) {
     const [ func, ...args ] = expression
     return func(item, ...args)

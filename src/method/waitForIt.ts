@@ -9,7 +9,7 @@
  *
  * @returns {Promise}
  */
-const inBetween = (waitArgs, args) => {
+const inBetween = (waitArgs:TWaitArgs, args:any[]) => {
   return new Promise(async (res, rej) => {
     setTimeout(async () => {
       res(await waitForIt(waitArgs, args))
@@ -30,10 +30,19 @@ const inBetween = (waitArgs, args) => {
  *
  * @returns {Promise<any>} - Resolves to the response from onFinish
  */
-export const waitForIt = (
-  { check, onFinish, amount = 4, wait = 1000, total },
-  ...args
-) => {
+
+type TWaitArgs = {
+    check: (...params:any[]) => boolean,
+    onFinish: (...params:any[]) => any,
+    amount?:number,
+    wait?:number,
+    total?:number
+}
+
+export const waitForIt = <T=any>(
+  { check, onFinish, amount = 4, wait = 1000, total }:TWaitArgs,
+  ...args:any[]
+):Promise<T> => {
   total = total || 0
   return new Promise(async (res, rej) => {
     total++
@@ -43,6 +52,6 @@ export const waitForIt = (
 
     finished
       ? res(onFinish(finished, ...args))
-      : res(await inBetween({ check, onFinish, amount, wait, total }, args))
+      : res(await inBetween({ check, onFinish, amount, wait, total }, args) as T)
   })
 }

@@ -17,7 +17,7 @@ import { isEmpty } from '@ext/isEmpty'
  *   const message = parseErrorMessage(err) || 'Error'
  * }
  */
-export const parseErrorMessage = exception => {
+export const parseErrorMessage = (exception: any): string => {
   return isStr(exception) && !isEmpty(exception)
     ? exception
     : isObj(exception)

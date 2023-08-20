@@ -16,5 +16,5 @@ import { getNums } from './getNums'
  * @param {*} val - value to convert
  * @return {Number} value converted to a integer
  */
-export const toInt = val =>
-  (val && !equalsNaN(val) && parseInt((isNum(val) && val) || getNums(val))) || 0
+export const toInt = (val: any): number =>
+  (val && !equalsNaN(val) && parseInt((isNum(val) && `${val}`) || getNums(val))) || 0

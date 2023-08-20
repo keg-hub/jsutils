@@ -5,7 +5,7 @@
  * @function
  * @private
  */
-const formatCls = classes =>
+const formatCls = (classes:string[]) =>
   classes
     .filter(item => typeof item === 'string' && Boolean(item))
     .join(` `)
@@ -27,7 +27,7 @@ const formatCls = classes =>
  * cls(`class1`, `class2`, [`class3`], { class4: true }) === `class1 class2 class3 class4`
  * @returns {string} - Formatted class names
  */
-export const cls = (...classGroup) => {
+export const cls = (...classGroup:any[]) => {
   return formatCls(
     classGroup.map(classes => {
       return Array.isArray(classes)

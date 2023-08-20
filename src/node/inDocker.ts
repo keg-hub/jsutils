@@ -1,7 +1,7 @@
 /** @module Node */
 
-const fs = require('fs')
-let inContainer
+import fs from 'fs'
+let inContainer:boolean=undefined
 
 /**
  * Wraps a method with try catch, and returns false when it throws
@@ -9,7 +9,7 @@ let inContainer
  *
  * @returns {Boolean} true if the cb returns a truthy response
  */
-const tryCatch = cb => {
+const tryCatch = (cb:()=>any) => {
   try {
     return Boolean(cb())
   }
@@ -23,14 +23,14 @@ const tryCatch = cb => {
  *
  * @returns {Boolean} true if the check for /.dockerenv does not throw
  */
-const dockEnv = () => fs.statSync('/.dockerenv') || true
+const dockEnv = ():boolean => Boolean(fs.statSync('/.dockerenv') || true)
 
 /**
  * Checks if docker is in the process group
  *
  * @returns {Boolean} true if the docker group exists
  */
-const docGroup = () =>
+const docGroup = ():boolean =>
   fs.readFileSync('/proc/self/cgroup', 'utf8').includes('docker')
 
 /**
@@ -38,13 +38,11 @@ const docGroup = () =>
  *
  * @returns {Boolean} true if running in a docker container
  */
-const inDocker = () => {
+export const inDocker = ():boolean => {
   inContainer === undefined &&
     (inContainer = tryCatch(dockEnv) || tryCatch(docGroup))
 
   return inContainer
 }
 
-module.exports = {
-  inDocker,
-}
+

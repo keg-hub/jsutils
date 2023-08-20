@@ -17,4 +17,4 @@ import { equalsNaN } from './equalsNaN'
  * @param {*} val - value to check if is a number
  * @return {Boolean} T/F - if value is a number
  */
-export const isNum = val => typeof val === 'number' && !equalsNaN(val)
+export const isNum = <T=number>(val: any): val is T => typeof val === 'number' && !equalsNaN(val)

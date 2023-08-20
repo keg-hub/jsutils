@@ -1,7 +1,5 @@
-module.exports = {
-  ...require('./findProc'),
-  ...require('./tryRequire'),
-  ...require('./loadModule'),
-  ...require('./resolvePath'),
-  ...require('./inDocker'),
-}
+export * from './findProc'
+export * from './tryRequire'
+export * from './loadModule'
+export * from './resolvePath'
+export * from './inDocker'

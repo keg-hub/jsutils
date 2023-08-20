@@ -16,7 +16,36 @@ import { isFunc } from './isFunc'
  * @param {Function} args.last arg of args array - method to call
  * @return { void }
  */
-export const doIt = (...args) => {
+export function doIt<F extends (...params: any[]) => any=(...params: any[]) => any>(
+    num:number,
+    bindTo:any,
+    last:F
+  ): ReturnType<F>[]
+export function doIt<F extends (...params: any[]) => any=(...params: any[]) => any>(
+    bindTo:any,
+    num:number,
+    last:F
+  ): ReturnType<F>[]
+export function doIt<F extends (...params: any[]) => any=(...params: any[]) => any>(
+    bindTo:any,
+    last:F,
+    num:number,
+  ): ReturnType<F>[]
+export function doIt<F extends (...params: any[]) => any=(...params: any[]) => any>(
+    num:number,
+    last:F
+  ): ReturnType<F>[]
+export function doIt<F extends (...params: any[]) => any=(...params: any[]) => any>(
+    last:F,
+    num:number,
+  ): ReturnType<F>[]
+export function doIt<F extends (...params: any[]) => any=(...params: any[]) => any>(
+    last:F,
+    bindTo:any,
+    num:number,
+  ): ReturnType<F>[]
+
+export function doIt<F extends (...params: any[]) => any=(...params: any[]) => any>(...args:Array<F|any|number>) {
   const params = args.slice()
 
   const num = params.find(p => isNum(p))

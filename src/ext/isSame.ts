@@ -10,7 +10,7 @@
  * @param {*} val2 - value to compare
  * @return {Boolean} is the values are the same
  */
-export const isSame = (val1, val2) =>
+export const isSame = (val1: any, val2: any): val1 is typeof val2 =>
   val1 === val2
     ? val1 !== 0 || 1 / val1 === 1 / val2
     : val1 !== val1 && val2 !== val2

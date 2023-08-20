@@ -14,11 +14,11 @@ import { isFunc } from './isFunc'
  * @example
  * const [ result, executionTime ] = timedRun(http.get, url)
  */
-export const timedRun = async (fn, ...args) => {
+export const timedRun = async (fn: (...params: any[]) => any, ...args: any[]): Promise<[any, number]> => {
   const [valid] = validate({ fn }, { fn: isFunc })
   if (!valid) return [ undefined, -1 ]
 
   const startTime = new Date()
   const result = await fn(...args)
-  return [ result, new Date() - startTime ]
+  return [ result, (new Date() as any) - (startTime as any) ]
 }
