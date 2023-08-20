@@ -21,6 +21,7 @@ See docs at [https://keg-hub.github.io/jsutils](https://keg-hub.github.io/jsutil
 
   // * Or add as html script
   <script src='/path/to/jsutils/build/jsutils.min.js'></script>
+
   // jsutils will be available on the window 
   <script>
     const jsutils = window.jsutils
