@@ -72,7 +72,7 @@ const getPlatformCmd = (procName:string, platform:string) => {
  */
 
 
-export const findProc = <T=any>(procName: string, opts: any): Promise<T> => {
+export const findProc = <T=any>(procName: string, opts:any={}): Promise<T> => {
   return new Promise((res, rej) => {
     const platform = process.platform
     // Use the platform to know the correct search command
@@ -86,7 +86,7 @@ export const findProc = <T=any>(procName: string, opts: any): Promise<T> => {
         : res(parseOutput(procName, stdout))
     })
   }).catch(err => {
-    opts.log && console.error(err.message)
+    opts?.log && console.error(err.message)
     return []
   }) as Promise<T>
 }

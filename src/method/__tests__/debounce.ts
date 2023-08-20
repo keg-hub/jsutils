@@ -1,4 +1,4 @@
-const Method = require('../')
+import { debounce } from '../debounce'
 
 describe('debounce', () => {
   beforeEach(() => jest.resetAllMocks())
@@ -6,7 +6,7 @@ describe('debounce', () => {
   // eslint-disable-next-line jest/no-done-callback
   it('should call the passed method after the correct amount of time', done => {
     const testMethod = jest.fn(() => {})
-    const boundMethod = Method.debounce(testMethod, 100)
+    const boundMethod = debounce(testMethod, 100)
     boundMethod()
 
     setTimeout(() => {
@@ -21,7 +21,7 @@ describe('debounce', () => {
   // eslint-disable-next-line jest/no-done-callback
   it('should use 250 as default wait time when not wait time is passed', done => {
     const testMethod = jest.fn(() => {})
-    const boundMethod = Method.debounce(testMethod)
+    const boundMethod = debounce(testMethod)
     boundMethod()
 
     setTimeout(() => {
@@ -37,9 +37,9 @@ describe('debounce', () => {
   // eslint-disable-next-line jest/no-done-callback
   it('should call immediately is passed in as true', done => {
     const testMethod = jest.fn(() => {})
-    const boundMethod = Method.debounce(testMethod, 300)
+    const boundMethod = debounce(testMethod, 300)
     boundMethod()
-    const nowMethod = Method.debounce(testMethod, 300, true)
+    const nowMethod = debounce(testMethod, 300, true)
 
     setTimeout(() => {
       expect(testMethod).not.toHaveBeenCalled()
@@ -50,7 +50,7 @@ describe('debounce', () => {
   })
 
   it('should not try to call the fun if a fun is not passed in', () => {
-    const boundMethod = Method.debounce(undefined)
+    const boundMethod = debounce(undefined)
 
     expect(boundMethod()).toEqual(null)
   })

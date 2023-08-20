@@ -2,6 +2,7 @@
 
 import { isFunc } from './isFunc'
 
+
 /**
  * Limits the amount of calls to a function over time
  * @example
@@ -20,13 +21,13 @@ import { isFunc } from './isFunc'
  * @return { void }
  */
 export const debounce = <T=(...args:any[])=> any>(
-  func: (...params: any[]) => any,
-  wait?: number,
-  immediate?: boolean
+  func?: (...params: any[]) => any,
+  wait: number=250,
+  immediate:boolean=false
 ): T => {
   let timeout:NodeJS.Timeout
 
-  function wrapFunc(...args) {
+  function wrapFunc(...args:any[]) {
     if (!isFunc(func)) return null
 
     const context = this

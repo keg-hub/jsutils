@@ -11,6 +11,10 @@ describe(`nanoid`, () => {
 
   test(`it generates a new id`, () => {
     const id = nanoid()
+    
+    console.log(`------- id-------`)
+    console.log(id)
+    
     expect(typeof id).toBe(`string`)
     expect(id.length).toBe(12)
   })

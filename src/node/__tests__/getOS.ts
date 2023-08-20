@@ -1,4 +1,5 @@
-const os = require('os')
+import os from 'os'
+
 const orgPlatform = process.platform
 const platform = os.platform().toLowerCase()
 jest.setMock('os', {
@@ -36,32 +37,41 @@ describe('getOS', () => {
   })
 
   it('should return mac when OS is darwin', () => {
+    // @ts-ignore
     process.platform = `darwin`
     expect(getOS()).toBe('mac')
 
+    // @ts-ignore
     process.platform = orgPlatform
   })
 
   it('should return win when OS is win32 or win64', () => {
+    // @ts-ignore
     process.platform = `win32`
     expect(getOS()).toBe('win')
+    // @ts-ignore
     process.platform = `win64`
     expect(getOS()).toBe('win')
 
+    // @ts-ignore
     process.platform = orgPlatform
   })
 
   it('should return lin when OS is linux', () => {
+    // @ts-ignore
     process.platform = `linux`
     expect(getOS()).toBe('lin')
 
+    // @ts-ignore
     process.platform = orgPlatform
   })
 
   it('should return false when no match is found', () => {
+    // @ts-ignore
     process.platform = undefined
     expect(getOS()).toBe(false)
 
+    // @ts-ignore
     process.platform = orgPlatform
   })
 })

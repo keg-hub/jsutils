@@ -41,6 +41,7 @@ describe('findProc', () => {
       expect(resp.length).toBe(0)
     }
     catch (err) {
+      console.error(err.message)
       throw new Error(`findProc method should not throw`)
     }
   })
