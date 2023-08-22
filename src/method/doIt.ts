@@ -34,10 +34,10 @@ export function doIt<
 export function doIt<
   F extends (...params: any[]) => any = (...params: any[]) => any
 >(last: F, bindTo: any, num: number): ReturnType<F>[]
-
 export function doIt<
   F extends (...params: any[]) => any = (...params: any[]) => any
->(...args: Array<F | any | number>) {
+>(...args: Array<F | any | number>): ReturnType<F>[]
+export function doIt(...args: Array<any>) {
   const params = args.slice()
 
   const num = params.find(p => isNum(p))

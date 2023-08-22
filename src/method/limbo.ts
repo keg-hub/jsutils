@@ -29,11 +29,15 @@ export function limbo<T = any>(
   promise: Promise<any>,
   asObj?: boolean
 ): Promise<[err?: Error, response?: T]>
+export function limbo<T = any, E = Error>(
+  promise: Promise<any>,
+  asObj?: boolean
+): Promise<[err?: E, response?: T]>
 export function limbo(
   promise: Promise<any>,
   asObj?: boolean
 ): Promise<[err?: Error, response?: any]>
-export function limbo<T = any, E = Error>(
+export function limbo<T=any, E=Error>(
   promise: Promise<any>,
   asObj: boolean = false
 ): Promise<[err?: E, response?: T]> {

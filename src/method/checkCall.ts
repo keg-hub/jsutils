@@ -21,6 +21,10 @@ export function checkCall<T = any>(
   method: <M = any>(...params: any[]) => M,
   ...params: any[]
 ): T
+export function checkCall<T = any, M = any>(
+  method: (...params: any[]) => M,
+  ...params: any[]
+): T
 export function checkCall<T = any>(
   method: (...params: any[]) => any,
   ...params: any[]
