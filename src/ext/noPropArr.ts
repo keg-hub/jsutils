@@ -7,4 +7,4 @@ import { deepFreeze } from '@object/deepFreeze'
  * @array
  * @type {Array}
  */
-export const noPropArr = deepFreeze([])
+export const noPropArr = deepFreeze<any[]>([])
