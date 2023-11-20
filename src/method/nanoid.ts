@@ -1,4 +1,5 @@
-// @ts-nocheck
+/** @module Function */
+
 import { emptyObj } from '@ext/noOps'
 import { uuid } from './uuid'
 import { doIt } from './doIt'
@@ -26,6 +27,10 @@ const sudoRandom = (radix = 36) => {
   return sudoRandomNum().toString(radix)
 }
 
+/**
+ * Generates am ID using the UUID method, but makes it shorter
+ * Also allows passing some custom options like a prefix for the generated ID
+ */
 export const nanoid = (
   base?: string | TNanoidOpts,
   opts?: TNanoidOpts
