@@ -18,7 +18,6 @@ export default defineConfig(async (options) => {
   const entries = await getEntries()
 
   return {
-    dts: true,
     entry: [
       nodeEntry,
       indexEntry,
@@ -29,6 +28,7 @@ export default defineConfig(async (options) => {
     sourcemap: true,
     treeshake: true,
     legacyOutput: true,
+    experimentalDts: true,
     format: [`esm`, `cjs`],
     async onSuccess() {
       await fs.rename(path.join(cjsdir, `esm`), esmdir)

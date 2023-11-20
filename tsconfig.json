@@ -21,7 +21,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noUnusedParameters": true,
-    "emitDeclarationOnly": true,
     "strictFunctionTypes": true,
     "moduleResolution": "nodenext",
     "noFallthroughCasesInSwitch": true,
