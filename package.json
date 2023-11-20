@@ -5,6 +5,7 @@
   "main": "build/cjs/index.js",
   "module": "build/esm/index.js",
   "browser": "build/esm/index.js",
+  "typings": "build/cjs/index.d.ts",
   "exports": {
     "./node": "./build/cjs/node/node.js",
     "./src/node": "./build/cjs/node/node.js",
@@ -48,13 +49,11 @@
     "helpers"
   ],
   "scripts": {
-    "prebuild": "pnpm format && pnpm test",
+    "prebuild": "pnpm format && pnpm test && pnpm types",
     "postpublish": "pnpm json:reset",
-    "build": "pnpm build:es && pnpm types",
-    "build:es": "node --enable-source-maps -r esbuild-register configs/build.config.ts",
+    "build": "tsup --config configs/tsup.config.ts",
     "build:clean": "rm -rf ./build",
     "build:docs": "node --enable-source-maps -r esbuild-register scripts/buildDocs.ts",
-    "build:test": "node -r esbuild-register ./scripts/testBuild.ts",
     "clean:nm": "rm -rf node_modules",
     "clean:full": "pnpm clean && pnpm install",
     "clean": "pnpm build:clean && pnpm clean:nm",
@@ -67,14 +66,14 @@
     "json:reset": "git checkout ./package.json",
     "test": "NODE_ENV=test jest --verbose --config=./configs/jest.config.js  --maxWorkers=50%",
     "prepack": "pnpm json:rm",
-    "types": "tsc && pnpm types:fix",
-    "types:fix": "node --enable-source-maps -r esbuild-register scripts/fixTypes.ts",
+    "types": "tsc",
     "validate": "tsc --noEmit",
     "web": "npx http-server ./docs -p 8888 --cors"
   },
   "devDependencies": {
     "@daybrush/jsdoc": "0.4.7",
     "@jgoz/esbuild-plugin-typecheck": "3.0.2",
+    "@microsoft/api-extractor": "7.38.3",
     "@microsoft/tsdoc": "0.14.2",
     "@types/debug": "4.1.5",
     "@types/jest": "29.5.2",
@@ -89,6 +88,7 @@
     "eslint-plugin-jest": "27.0.1",
     "glob": "10.3.3",
     "jest": "29.5.0",
+    "tsup": "8.0.0",
     "typescript": "5.1.6"
   },
   "directories": {

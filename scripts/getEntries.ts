@@ -17,7 +17,6 @@ export const getEntries = async () => {
     absolute: true,
     ignore: [
       `**/*.d.ts`,
-      `**/node/**`,
       `/node_modules/`,
       `**/index.{${exts}}`,
       `\\.pnp\\.[^\\\/]+$`,
