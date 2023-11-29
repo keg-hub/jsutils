@@ -6,7 +6,7 @@
     "baseUrl": "./",
     "outDir": "./build/esm",
     "target": "esnext",
-    "module": "esnext",
+    "module": "nodenext",
     "noEmit": false,
     "allowJs": true,
     "sourceMap": true,
