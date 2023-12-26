@@ -2,28 +2,51 @@
   "name": "@keg-hub/jsutils",
   "version": "9.10.0",
   "description": "Keg common javascript utils",
-  "main": "build/cjs/index.js",
-  "module": "build/esm/index.js",
-  "browser": "build/esm/index.js",
-  "typings": "build/cjs/index.d.ts",
+  "main": "./index.js",
+  "browser": "./build/esm/index.js",
+  "typings": "build/esm/index.d.ts",
+  "type": "module",
   "exports": {
-    "./node": "./build/cjs/node/node.js",
-    "./src/node": "./build/cjs/node/node.js",
-    "./src/node/*": "./build/cjs/node/node.js",
-    "./node/*": {
+    "./node": {
+      "require": "./build/cjs/node/node.cjs",
       "import": "./build/esm/node/node.js",
-      "require": "./build/cjs/node/node.js",
-      "default": "./build/cjs/node/node.js"
+      "browser": "./build/esm/node/node.js",
+      "default": "./build/esm/node/node.js",
+      "typings": "./build/esm/node/node.d.ts"
+    },
+    "./node/*": {
+      "require": "./build/cjs/node/*.cjs",
+      "import": "./build/esm/node/*.js",
+      "default": "./build/esm/node/*.js",
+      "typings": "./build/esm/node/*.d.ts"
+    },
+    "./src/node": {
+      "require": "./build/cjs/node/node.cjs",
+      "import": "./build/esm/node/node.js",
+      "browser": "./build/esm/node/node.js",
+      "default": "./build/esm/node/node.js",
+      "typings": "./build/esm/node/node.d.ts"
+    },
+    "./src/node/*": {
+      "require": "./build/cjs/node/*.cjs",
+      "import": "./build/esm/node/*.js",
+      "browser": "./build/esm/node/*.js",
+      "default": "./build/esm/node/*.js",
+      "typings": "./build/esm/node/*.d.ts"
     },
     "./*": {
+      "require": "./build/cjs/*.cjs",
       "import": "./build/esm/*.js",
-      "require": "./build/cjs/*.js",
-      "default": "./build/cjs/*.js"
+      "browser": "./build/esm/*.js",
+      "default": "./build/esm/*.js",
+      "typings": "./build/esm/*.d.ts"
     },
     ".": {
+      "require": "./build/cjs/index.cjs",
       "import": "./build/esm/index.js",
-      "require": "./build/cjs/index.js",
-      "default": "./build/cjs/index.js"
+      "browser": "./build/esm/index.js",
+      "default": "./build/esm/index.js",
+      "typings": "./build/esm/index.d.ts"
     }
   },
   "author": "lancetipton <lancetipton04@gmail.com>",
@@ -37,7 +60,13 @@
   },
   "homepage": "https://github.com/keg-hub/keg-hub#readme",
   "files": [
-    "build"
+    "build",
+    "node.js",
+    "index.js",
+    "index.cjs",
+    "index.mjs",
+    "node.cjs",
+    "node.mjs"
   ],
   "publishConfig": {
     "access": "public"
@@ -49,31 +78,45 @@
     "helpers"
   ],
   "scripts": {
-    "prebuild": "pnpm format && pnpm test && pnpm types",
-    "postpublish": "pnpm json:reset",
-    "build": "tsup --config configs/tsup.config.ts",
+    "build": "pnpm build:cjs && pnpm build:esm",
+    "build:all": "pnpm build:cjs && pnpm build:esm",
+    "build:cjs": "tsup --config configs/tsup.cjs.config.ts && pnpm clean:temp",
+    "build:esm": "tsup --config configs/tsup.esm.config.ts && pnpm clean:temp",
     "build:clean": "rm -rf ./build",
-    "build:docs": "node --enable-source-maps -r esbuild-register scripts/buildDocs.ts",
-    "clean:nm": "rm -rf node_modules",
-    "clean:full": "pnpm clean && pnpm install",
+    "build:docs": "node --no-warnings --enable-source-maps --loader esbuild-register/loader -r esbuild-register scripts/buildDocs.ts",
     "clean": "pnpm build:clean && pnpm clean:nm",
+    "clean:full": "pnpm clean && pnpm install",
+    "clean:nm": "rm -rf node_modules",
+    "clean:temp": "rm -rf temp",
     "docs:build": "./node_modules/.bin/jsdoc -c ./configs/jsdoc.json",
     "docs:deploy": "pnpm build && pnpm build:docs",
-    "entries": "node -r esbuild-register ./scripts/getEntries.ts",
-    "format:eslint": "eslint --config ./configs/eslintrc.config.js . --fix",
+    "entries": "node --no-warnings --loader esbuild-register/loader -r esbuild-register ./scripts/getEntries.ts",
+    "format:eslint": "eslint --config ./configs/eslintrc.config.cjs . --fix",
     "format": "pnpm format:eslint",
     "json:rm": "dot-json package.json devDependencies -d",
-    "json:reset": "git checkout ./package.json",
-    "test": "NODE_ENV=test jest --verbose --config=./configs/jest.config.js  --maxWorkers=50%",
+    "json:reset": "node --no-warnings --enable-source-maps --loader esbuild-register/loader -r esbuild-register scripts/resetPkg.ts",
     "prepack": "pnpm json:rm",
+    "prebuild": "pnpm format && pnpm test && pnpm types",
+    "postpublish": "pnpm json:reset",
+    "test": "NODE_ENV=test jest --verbose --config=./configs/jest.config.cjs  --maxWorkers=50%",
     "types": "tsc",
     "validate": "tsc --noEmit",
     "web": "npx http-server ./docs -p 8888 --cors"
   },
+  "directories": {
+    "doc": "docs"
+  },
+  "publish": {
+    "repository": "https://github.com/keg-hub/jsutils.git"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@daybrush/jsdoc@0.4.7": "patches/@daybrush__jsdoc@0.4.7.patch"
+    }
+  },
   "devDependencies": {
     "@daybrush/jsdoc": "0.4.7",
     "@jgoz/esbuild-plugin-typecheck": "3.0.2",
-    "@microsoft/api-extractor": "7.38.3",
     "@microsoft/tsdoc": "0.14.2",
     "@types/debug": "4.1.5",
     "@types/jest": "29.5.2",
@@ -90,16 +133,5 @@
     "jest": "29.5.0",
     "tsup": "8.0.0",
     "typescript": "5.1.6"
-  },
-  "directories": {
-    "doc": "docs"
-  },
-  "publish": {
-    "repository": "https://github.com/keg-hub/jsutils.git"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@daybrush/jsdoc@0.4.7": "patches/@daybrush__jsdoc@0.4.7.patch"
-    }
   }
 }
