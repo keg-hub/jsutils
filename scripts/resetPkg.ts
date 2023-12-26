@@ -33,8 +33,7 @@ const resetPkg = async () => {
   await runCmd(`git add ./package.json`)
 
   try {
-    const resp = await runCmd(`git commit -m "Update version to \"${oldv}\""`)
-    console.log(resp)
+    await runCmd(`git commit -m "Update version to \"${oldv}\""`)
   }
   catch(err){
     if(err.stdout.includes(`not staged`)) return
