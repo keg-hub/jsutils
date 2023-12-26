@@ -1,6 +1,6 @@
 {
   "name": "@keg-hub/jsutils",
-  "version": "9.10.0",
+  "version": "10.0.0",
   "description": "Keg common javascript utils",
   "main": "./index.js",
   "browser": "./build/esm/index.js",
