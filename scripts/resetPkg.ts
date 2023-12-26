@@ -31,7 +31,15 @@ const resetPkg = async () => {
   await runCmd(`git checkout ./package.json`)
   await runCmd(`pnpm version ${oldv} --no-git-tag-version --allow-same-version --no-commit-hooks`)
   await runCmd(`git add ./package.json`)
-  await runCmd(`git commit -m "Update version to "${oldv}"`)
+
+  try {
+    const resp = await runCmd(`git commit -m "Update version to \"${oldv}\""`)
+    console.log(resp)
+  }
+  catch(err){
+    if(err.stdout.includes(`not staged`)) return
+    throw err
+  }
 }
 
 
