@@ -5,13 +5,9 @@ import { promises as fs } from 'node:fs'
 import { buildIndexes } from '../scripts/buildIndexes'
 
 
-
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.join(dirname, `..`)
-const tempDir = path.join(rootDir, `./temp`)
-const outdir = path.join(rootDir, `build`)
-const esmdir = path.join(outdir, `esm`)
-const cjsdir = path.join(outdir, `cjs`)
+const outdir = path.join(rootDir, `build/cjs`)
 
 
 export default defineConfig(async (options) => {
@@ -20,18 +16,13 @@ export default defineConfig(async (options) => {
   const entries = await buildIndexes()
 
   return {
+    dts: true,
     entry: entries,
-    outDir: cjsdir,
+    outDir: outdir,
     splitting: true,
     sourcemap: true,
     treeshake: true,
-    legacyOutput: true,
-    experimentalDts: true,
-    format: [`esm`, `cjs`],
-    async onSuccess() {
-      await fs.rename(path.join(cjsdir, `esm`), esmdir)
-      await fs.rm(tempDir, { recursive: true, force: true })
-    },
+    format: [`cjs`]
   }
 
 })
